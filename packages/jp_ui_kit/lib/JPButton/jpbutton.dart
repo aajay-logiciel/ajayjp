@@ -13,7 +13,7 @@ import 'Position/position.dart';
 class JPButton extends StatefulWidget {
   const JPButton({
     Key? key,
-    required this.onPressed,
+    this.onPressed,
     this.onHighlightChanged,
     this.textStyle,
     this.boxShadow,
@@ -23,41 +23,34 @@ class JPButton extends StatefulWidget {
     this.highlightColor,
     this.splashColor,
     this.elevation = 0.0,
-    this.focusElevation = 4.0,
-    this.hoverElevation = 4.0,
     this.highlightElevation = 1.0,
     this.disabledElevation = 0.0,
     this.padding = const EdgeInsets.symmetric(horizontal: 8),
     this.constraints,
     this.borderShape,
     this.animationDuration = kThemeChangeDuration,
-    this.clipBehavior = Clip.none,
     this.focusNode,
     this.autofocus = false,
     MaterialTapTargetSize? materialTapTargetSize,
     this.child,
     this.type = ButtonType.solid,
-    this.shape = BShape.standard,
+    this.shape = BShape.circular,
     this.color = Color_.PRIMARY,
     this.textColor,
     this.position = Position.start,
     this.size = JPSize.MEDIUM,
     this.borderSide,
-    this.text,
+    this.text="BUTTON",
     this.icon,
     this.blockButton,
     this.fullWidthButton,
     this.width,
-    this.colorScheme,
-    this.enableFeedback,
-    this.onLongPress,
+    this.height,
     this.disabledColor,
     this.disabledTextColor,
   })  : materialTapTargetSize =
       materialTapTargetSize ?? MaterialTapTargetSize.padded,
   // assert(elevation != null && elevation >= 0.0),
-        assert(focusElevation >= 0.0),
-        assert(hoverElevation >= 0.0),
         assert(highlightElevation >= 0.0),
         assert(disabledElevation >= 0.0),
         super(key: key);
@@ -77,7 +70,7 @@ class JPButton extends StatefulWidget {
   /// The box shadow for the button's [Material], if GFButtonType is solid
   final BoxShadow? boxShadow;
 
-  /// Pass [JPColors] or [Color]. The color for the button's [Material] when it has the input focus.
+  /// Pass [Colors] or [Color]. The color for the button's [Material] when it has the input focus.
   final Color? focusColor;
 
   /// Pass [JPColors] or [Color]. The color for the button's [Material] when a pointer is hovering over it.
@@ -91,12 +84,6 @@ class JPButton extends StatefulWidget {
 
   /// The elevation for the button's [Material] when the button is [enabled] but not pressed.
   final double elevation;
-
-  /// The elevation for the button's [Material] when the button is [enabled] and a pointer is hovering over it.
-  final double hoverElevation;
-
-  /// The elevation for the button's [Material] when the button is [enabled] and has the input focus.
-  final double focusElevation;
 
   /// The elevation for the button's [Material] when the button is [enabled] and pressed.
   final double highlightElevation;
@@ -131,8 +118,6 @@ class JPButton extends StatefulWidget {
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
-  /// {@macro flutter.widgets.Clip}
-  final Clip clipBehavior;
 
   /// Button type of [ButtonType] i.e, solid, outline, transparent
   final ButtonType type;
@@ -172,7 +157,7 @@ class JPButton extends StatefulWidget {
   ///  * [textColor] - The color to use for this button's text when the button is [enabled].
   final Color? disabledTextColor;
 
-  /// size of [double] or [JPSize] i.e, small, medium, large etc.
+  /// size of [double] or [Size] i.e, small, medium, large etc.
   final double size;
 
   /// text of type [String] is alternative to child. text will get priority over child
@@ -181,7 +166,7 @@ class JPButton extends StatefulWidget {
   /// icon of type [Widget]
   final Widget? icon;
 
-  /// icon type of [JPPosition] i.e, start, end
+  /// icon type of [Position] i.e, start, end
   final Position position;
 
   /// on true state blockButton gives block size button
@@ -190,42 +175,15 @@ class JPButton extends StatefulWidget {
   /// on true state full width Button gives full width button
   final bool? fullWidthButton;
 
-  //set Button Width According to requiredment
+  ///set Button Width According to requirement
   final double? width;
+
+  ///set Button Width According to requirement
+  final double? height;
 
   /// on true state default box shadow appears around button, if JPButtonType is solid
   final bool? buttonBoxShadow;
 
-  /// A set of nine colors that can be used to derive the button theme's
-  /// colors.
-  ///
-  /// This property was added much later than the theme's set of highly
-  /// specific colors, like [ThemeData.buttonColor], [ThemeData.highlightColor],
-  /// [ThemeData.splashColor] etc.
-  ///
-  /// The colors for new button classes can be defined exclusively in terms
-  /// of [colorScheme]. When it's possible, the existing buttons will
-  /// (continue to) gradually migrate to it.
-  final ColorScheme? colorScheme;
-
-  /// Whether detected gestures should provide acoustic and/or haptic feedback.
-  ///
-  /// For example, on Android a tap will produce a clicking sound and a
-  /// long-press will produce a short vibration, when feedback is enabled.
-  ///
-  /// See also:
-  ///
-  ///  * [Feedback] for providing platform-specific feedback to certain actions.
-  final bool? enableFeedback;
-
-  /// Called when the button is long-pressed.
-  ///
-  /// If this callback and [onPressed] are null, then the button will be disabled.
-  ///
-  /// See also:
-  ///
-  ///  * [enabled], which is true if the button is enabled.
-  final VoidCallback? onLongPress;
 
   @override
   _JPButtonState createState() => _JPButtonState();
@@ -267,7 +225,6 @@ class _JPButtonState extends State<JPButton> {
     super.initState();
   }
 
-  bool get _hovered => _states.contains(MaterialState.hovered);
   bool get _focused => _states.contains(MaterialState.focused);
   bool get _pressed => _states.contains(MaterialState.pressed);
   bool get _disabled => _states.contains(MaterialState.disabled);
@@ -298,15 +255,6 @@ class _JPButtonState extends State<JPButton> {
       });
     }
   }
-
-  void _handleHoveredChanged(bool value) {
-    if (_hovered != value) {
-      setState(() {
-        _updateState(MaterialState.hovered, value);
-      });
-    }
-  }
-
   void _handleFocusedChanged(bool value) {
     if (_focused != value) {
       setState(() {
@@ -351,12 +299,6 @@ class _JPButtonState extends State<JPButton> {
     }
     if (_pressed) {
       return widget.highlightElevation;
-    }
-    if (_hovered) {
-      return widget.hoverElevation;
-    }
-    if (_focused) {
-      return widget.focusElevation;
     }
     return widget.elevation;
   }
@@ -406,7 +348,7 @@ class _JPButtonState extends State<JPButton> {
           widget.type == ButtonType.transparent) {
         return color;
       } else {
-        return Color_.DARK;
+        return Color_.WHITE;
       }
     }
 
@@ -569,22 +511,15 @@ class _JPButtonState extends State<JPButton> {
             : widget.borderShape ?? shapeBorderType,
         color: widget.enabled ? getColor() : getDisabledFillColor(),
         type: MaterialType.button,
-        animationDuration: widget.animationDuration,
-        clipBehavior: widget.clipBehavior,
         child: InkWell(
           focusNode: widget.focusNode,
           canRequestFocus: widget.enabled,
           onFocusChange: _handleFocusedChanged,
           autofocus: widget.autofocus,
-          onHighlightChanged: _handleHighlightChanged,
-          onHover: _handleHoveredChanged,
           onTap: widget.onPressed,
-          onLongPress: widget.onLongPress,
-          enableFeedback: widget.enableFeedback,
           splashColor: widget.splashColor,
           highlightColor: widget.highlightColor,
           focusColor: widget.focusColor,
-          hoverColor: widget.hoverColor,
           customBorder: widget.type == ButtonType.transparent
               ? null
               : widget.borderShape ?? shapeBorderType,

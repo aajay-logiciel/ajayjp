@@ -42,7 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               JPButton(
                 onPressed: (){},
-                shape: BShape.circular,
                 fullWidthButton: true,
                 text: "NORMAL BUTTON",
               ),
@@ -174,9 +173,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               JPIconButton(
                 onPressed: (){},
-                size: JPSize.SMALL,
+                //size: JPSize.SMALL,
                 icon: Icon(Icons.replay_circle_filled,color: Colors.white,),
               ),
+              SizedBox(
+                height: 5,
+              ),
+               JPText(
+                  text: "Ajay",
+              )
 
             ],
           ),

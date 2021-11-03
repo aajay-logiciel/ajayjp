@@ -21,7 +21,7 @@ class JPIconButton extends StatefulWidget {
     this.highlightColor,
     this.splashColor,
     this.disabledColor,
-    required this.onPressed,
+     this.onPressed,
     this.focusNode,
     this.autofocus = false,
     this.tooltip,
@@ -53,22 +53,22 @@ class JPIconButton extends StatefulWidget {
   /// The color for the button's icon when a pointer is hovering over it.
   final Color? hoverColor;
 
-  /// Button type of [JPButtonType] i.e, solid, outline, outline2x transparent
+  /// Button type of [ButtonType] i.e, solid, outline, outline2x transparent
   final ButtonType type;
 
-  /// Button type of [JPIconButtonShape] i.e, standard, pills, square, shadow, icons
+  /// Button type of [IconShape] i.e, standard, pills, square, shadow, icons
   final IconShape shape;
 
-  /// Pass [JPColors] or [Color]
+  /// Pass [Colors] or [Color]
   final Color color;
 
-  /// Pass [JPColors] or [Color]. The primary color of the button when the button is in the down (pressed) state.
+  /// Pass [Colors] or [Color]. The primary color of the button when the button is in the down (pressed) state.
   final Color? splashColor;
 
-  /// Pass [JPColors] or [Color]. The secondary color of the button when the button is in the down (pressed) state.
+  /// Pass [Colors] or [Color]. The secondary color of the button when the button is in the down (pressed) state.
   final Color? highlightColor;
 
-  /// Pass [JPColors] or [Color]. The color to use for the icon inside the button, if the icon is disabled.
+  /// Pass [Colors] or [Color]. The color to use for the icon inside the button, if the icon is disabled.
   final Color? disabledColor;
 
   /// The callback that is called when the button is tapped or otherwise activated.
@@ -89,7 +89,7 @@ class JPIconButton extends StatefulWidget {
   /// The shape and border for the button's [Material].
   final ShapeBorder? borderShape;
 
-  /// size of [double] or [JPSize] i.e, 1.2, small, medium, large etc.
+  /// size of [double] or [Size] i.e, 1.2, small, medium, large etc.
   final double size;
 
   /// on true state default box shadow appears around button, if GFButtonType is solid
@@ -204,7 +204,7 @@ class _JPIconButtonState extends State<JPIconButton> {
       );
     } else if (shape == IconShape.standard) {
       shapeBorderType = RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(3),
+        borderRadius: BorderRadius.circular(10),
         side: shapeBorder,
       );
     } else if (shape == IconShape.circle) {

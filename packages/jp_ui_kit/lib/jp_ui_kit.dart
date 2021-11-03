@@ -8,3 +8,6 @@ export 'package:jp_ui_kit/common_files/Colors/colors.dart';
 export 'package:jp_ui_kit/common_files/Shape/shape.dart';
 export 'package:jp_ui_kit/common_files/Size/size.dart';
 export 'package:jp_ui_kit/common_files/Shape/shape.dart';
+export 'package:jp_ui_kit/JPText/font.dart';
+export 'package:jp_ui_kit/JPText/textsize.dart';
+export 'package:jp_ui_kit/JPText/jptext.dart';

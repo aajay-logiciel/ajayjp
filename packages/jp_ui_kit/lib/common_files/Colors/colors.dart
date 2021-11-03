@@ -11,5 +11,6 @@ class Color_ {
   static const Color WHITE = Color(0xffffffff);
   static const Color BORDERCOLOR= Color(0xffE0E0E0);
   static const Color TRANSPARENT= Colors.transparent;
+  static const Color BLACK= Color(0xff222326);
 
 }
