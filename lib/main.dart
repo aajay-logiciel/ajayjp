@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/JPButton/jpbutton.dart';
+import 'package:jp_ui_kit/JPCheckBox/jpcheckbox.dart';
+import 'package:jp_ui_kit/JPText/text_type.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 void main() {
@@ -25,6 +27,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool status = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: EdgeInsets.all(10),
           child: Column(
             children:  [
-              Text("Full Buttons"),
+              JPText(text:"Full Buttons"),
               SizedBox(
                 height: 5,
               ),
@@ -53,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: BShape.circular,
                 fullWidthButton: true,
                 text: "TERTIARY BUTTON",
-                color: Color_.TERTIARY,
+                color: JPColor.TERTIARY,
               ),
               SizedBox(
                 height: 5,
@@ -63,12 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: BShape.circular,
                 fullWidthButton: true,
                 text: "GRAY BUTTON",
-                color: Color_.LIGHTBUTTON,
+                color: JPColor.LIGHTBUTTON,
               ),
               SizedBox(
                 height: 5,
               ),
-              Text("Full Disable Buttons"),
+              JPText(text:"Full Disable Buttons"),
               SizedBox(
                 height: 5,
               ),
@@ -86,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: BShape.circular,
                 fullWidthButton: true,
                 text: "TERTIARY BUTTON",
-                color: Color_.TERTIARY,
+                color: JPColor.TERTIARY,
               ),
               SizedBox(
                 height: 5,
@@ -96,12 +99,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: BShape.circular,
                 fullWidthButton: true,
                 text: "GRAY BUTTON",
-                color: Color_.LIGHTBUTTON,
+                color: JPColor.LIGHTBUTTON,
               ),
               SizedBox(
                 height: 5,
               ),
-              const Text("MEDIUM Buttons"),
+              const JPText(text:"MEDIUM Buttons"),
               SizedBox(
                 height: 5,
               ),
@@ -114,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 height: 5,
               ),
-              const Text("Small Buttons"),
+              const JPText(text:"Small Buttons"),
               SizedBox(
                 height: 5,
               ),
@@ -127,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 height: 5,
               ),
-              const Text("Custom Width Buttons"),
+              const JPText(text: "Custom Width Buttons"),
               SizedBox(
                 height: 5,
               ),
@@ -180,9 +183,68 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 5,
               ),
                JPText(
-                  text: "Ajay",
-              )
+                  text: "Ajay Rathi",
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              JPText(
+                text: "Ajay",
+                textSize: TextSize.Heading_1,
+                font: Font.Montserrat,
+              ), SizedBox(
+                height: 5,
+              ),
+              JPText(
+                text: "Ajay jhsdga;s askdgja;lksdgjad skadgjalsdg;asd sgdljasdlgfjoregad sdkfjalsdgjpogdadskgjdsg sdakgjlasdgrdklg sldkfjalsdg lsdfjsldgosdglk sldgjLSDGJO",
+              ),
+              SizedBox(
+                height: 5,
+              ),
+          RadioButtonGroup(
+            disabled: [
+              "Option 1"
+            ],
+              labels: <String>[
+                "Option 1",
+                "Option 2",
+                "Option 3",
+              ],
+          ),
 
+              JPToggle(
+               // width: 125.0,
+               // height: 55.0,
+              //  valueFontSize: 25.0,
+               // toggleSize: 45.0,
+                value: status,
+               // borderRadius: 30.0,
+              //  padding: 8.0,
+              //  disabled: true,
+              //  showOnOff: true,
+                onToggle: (val) {
+                  setState(() {
+                    status = val;
+                  });
+                },
+              ),
+
+              JPCheckbox(labels: ['Option1','Option2','Option3','Option4','Option5','Option6','Option7'],
+                disabled: ['Option1'],
+                onChange: (bool isChecked, String label, int index) {  },
+                orientation: JPOrientation.HORIZONTAL,
+              ),
+              JPBadges(
+                backgroundcolor: Colors.pink,
+                text: "12345",
+              ),
+              JPBadges(
+                text: "1",
+              ),
+              JPBadges(
+                backgroundcolor: Colors.greenAccent,
+                text: "2",
+              ),
             ],
           ),
         ),

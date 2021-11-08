@@ -27,7 +27,7 @@ class JPIconButton extends StatefulWidget {
     this.tooltip,
     this.type = ButtonType.solid,
     this.shape = IconShape.standard,
-    this.color = Color_.PRIMARY,
+    this.color = JPColor.PRIMARY,
     this.borderShape,
     this.boxShadow,
     this.size = JPSize.MEDIUM,
@@ -158,14 +158,14 @@ class _JPIconButtonState extends State<JPIconButton> {
     if (widget.type == ButtonType.transparent ||
         widget.type == ButtonType.outline ) {
       return widget.onPressed != null
-          ? color == Color_.TRANSPARENT
-          ? Color_.DARK
+          ? color == JPColor.TRANSPARENT
+          ? JPColor.DARK
           : color
           : color.withOpacity(0.48);
-    } else if (color == Color_.TRANSPARENT) {
-      return widget.onPressed != null ? Color_.DARK : Color_.WHITE;
+    } else if (color == JPColor.TRANSPARENT) {
+      return widget.onPressed != null ? JPColor.DARK : JPColor.WHITE;
     } else {
-      return Color_.WHITE;
+      return JPColor.WHITE;
     }
   }
 

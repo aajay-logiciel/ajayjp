@@ -1,0 +1,4 @@
+enum JPOrientation{
+  HORIZONTAL,
+  VERTICAL,
+}

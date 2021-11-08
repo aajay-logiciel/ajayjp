@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Color_ {
+class JPColor {
   static const Color PRIMARY = Color(0xff418BCA);
   static const Color LIGHTBLUE = Color(0xffCCE7FF);
   static const Color SECONDARY = Color(0xffC81B1B);

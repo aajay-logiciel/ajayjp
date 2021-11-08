@@ -35,7 +35,7 @@ class JPButton extends StatefulWidget {
     this.child,
     this.type = ButtonType.solid,
     this.shape = BShape.circular,
-    this.color = Color_.PRIMARY,
+    this.color = JPColor.PRIMARY,
     this.textColor,
     this.position = Position.start,
     this.size = JPSize.MEDIUM,
@@ -323,7 +323,7 @@ class _JPButtonState extends State<JPButton> {
     Color getDisabledFillColor() {
       if (widget.type == ButtonType.transparent ||
           widget.type == ButtonType.outline ) {
-        return Color_.WHITE;
+        return JPColor.WHITE;
       }
       if (disabledColor != null) {
         return disabledColor!;
@@ -335,7 +335,7 @@ class _JPButtonState extends State<JPButton> {
     Color getColor() {
       if (widget.type == ButtonType.transparent ||
           widget.type == ButtonType.outline ) {
-        return Color_.WHITE;
+        return JPColor.WHITE;
       }
       final Color fillColor = color;
       return fillColor;
@@ -348,7 +348,7 @@ class _JPButtonState extends State<JPButton> {
           widget.type == ButtonType.transparent) {
         return color;
       } else {
-        return Color_.WHITE;
+        return JPColor.WHITE;
       }
     }
 
@@ -357,17 +357,17 @@ class _JPButtonState extends State<JPButton> {
           widget.type == ButtonType.transparent) {
         return widget.enabled
             ? textColor == null
-            ? color == Color_.WHITE
-            ? Color_.DARK
+            ? color == JPColor.WHITE
+            ? JPColor.DARK
             : color
             : textColor!
             : getDisabledTextColor();
       }
       if (textColor == null) {
-        if (color == Color_.TRANSPARENT) {
-          return Color_.DARK;
+        if (color == JPColor.TRANSPARENT) {
+          return JPColor.DARK;
         } else {
-          return Color_.WHITE;
+          return JPColor.WHITE;
         }
       } else {
         return textColor!;

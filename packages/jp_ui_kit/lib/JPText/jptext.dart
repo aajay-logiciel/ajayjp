@@ -9,13 +9,15 @@ class JPText extends StatelessWidget {
     this.textSize=TextSize.Heading_1,
     this.font=Font.Roboto,
     this.type=TextType.REGULAR,
+    this.textcolor=JPColor.BLACK,
     Key? key}) : super(key: key);
 
 
   final String text;
   final TextSize? textSize;
   final Font? font;
-  final TextType type;
+  final TextType? type;
+  final Color textcolor;
 
 
   @override
@@ -68,11 +70,11 @@ FontWeight getfontweight(){
     return Text(
          text,
       style: TextStyle(
+        color: textcolor,
         fontSize: gettextsize(),
         fontFamily: getfont(),
         fontWeight: getfontweight(),
         fontStyle: FontStyle.normal,
-        color:Color_.BLACK,
         overflow: TextOverflow.ellipsis
       ),
     );
