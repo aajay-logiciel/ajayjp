@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:jp_ui_kit/JPButton/jpbutton.dart';
 import 'package:jp_ui_kit/JPCheckBox/jpcheckbox.dart';
 import 'package:jp_ui_kit/JPText/text_type.dart';
@@ -28,6 +29,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool status = false;
+  bool status1 = false;
+  bool status2 = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -181,19 +185,98 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               SizedBox(
                 height: 5,
-              ),
-               JPText(
-                  text: "Ajay Rathi",
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              JPText(
-                text: "Ajay",
-                textSize: TextSize.Heading_1,
-                font: Font.Montserrat,
               ), SizedBox(
-                height: 5,
+                height: 20,
+              ),
+              Column(
+                children: [
+                  JPText(text: "This is new text"),
+
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_1,
+                    font: Font.Roboto,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_2,
+                    font: Font.Roboto,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_3,
+                    font: Font.Roboto,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_4,
+                    font: Font.Roboto,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_5,
+                    font: Font.Roboto,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_6,
+                    font: Font.Roboto,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_1,
+                    font: Font.Montserrat,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_2,
+                    font: Font.Montserrat,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_3,
+                    font: Font.Montserrat,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_4,
+                    font: Font.Montserrat,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_5,
+                    font: Font.Montserrat,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_6,
+                    font: Font.Montserrat,
+                    type: TextType.MEDIUM,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_1,
+                    font: Font.Montserrat,
+                    type: TextType.MEDIUM,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_2,
+                    font: Font.Montserrat,
+                    type: TextType.MEDIUM,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_3,
+                    font: Font.Montserrat,
+                    type: TextType.MEDIUM,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_4,
+                    font: Font.Montserrat,
+                    type: TextType.MEDIUM,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_5,
+                    font: Font.Montserrat,
+                    type: TextType.MEDIUM,
+                  ),
+                  JPText(text: "This is new text",
+                    textSize: TextSize.Heading_6,
+                    font: Font.Montserrat,
+                    type: TextType.MEDIUM,
+                  ),
+
+                ],
+              ),
+
+              SizedBox(
+                height: 20,
               ),
               JPText(
                 text: "Ajay jhsdga;s askdgja;lksdgjad skadgjalsdg;asd sgdljasdlgfjoregad sdkfjalsdgjpogdadskgjdsg sdakgjlasdgrdklg sldkfjalsdg lsdfjsldgosdglk sldgjLSDGJO",
@@ -212,39 +295,128 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
           ),
 
-              JPToggle(
-               // width: 125.0,
-               // height: 55.0,
-              //  valueFontSize: 25.0,
-               // toggleSize: 45.0,
-                value: status,
-               // borderRadius: 30.0,
-              //  padding: 8.0,
-              //  disabled: true,
-              //  showOnOff: true,
-                onToggle: (val) {
-                  setState(() {
-                    status = val;
-                  });
-                },
-              ),
 
-              JPCheckbox(labels: ['Option1','Option2','Option3','Option4','Option5','Option6','Option7'],
+              JPCheckbox(labels: ['Option1','Option2','Option3','Option4',],
                 disabled: ['Option1'],
                 onChange: (bool isChecked, String label, int index) {  },
-                orientation: JPOrientation.HORIZONTAL,
+               // orientation: JPOrientation.VERTICAL,
               ),
-              JPBadges(
-                backgroundcolor: Colors.pink,
-                text: "12345",
+              SizedBox(
+                height: 20,
               ),
-              JPBadges(
-                text: "1",
+
+              Row(
+                children: [
+                  JPToggle(
+                    value: status,
+                    onToggle: (val) {
+                      setState(() {
+                        status = val;
+                      });
+                    },
+                  ),
+                  SizedBox(width: 20,),
+                  JPToggle(
+                    disabled: true,
+                    value: status1,
+                    onToggle: (val) {
+                      setState(() {
+                        status1 = val;
+                      });
+                    },
+                  ),
+                  SizedBox(width: 20,),
+                  JPToggle(
+                    disabled: true,
+                    value: status2,
+                    onToggle: (val) {
+                      setState(() {
+                        status2 = val;
+                      });
+                    },
+                  ),
+                ],
               ),
-              JPBadges(
-                backgroundcolor: Colors.greenAccent,
-                text: "2",
+
+
+              SizedBox(
+                height: 20,
               ),
+
+
+             SingleChildScrollView(
+               scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    JPChips(
+                      iscancel: true,
+                      isleading: true,
+                      text: "Chip Name",
+                    ),
+                    SizedBox(
+                     width: 20,
+                    ),
+                    JPChips(
+                      iscancel: true,
+                      text: "Chip Name",
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    JPChips(
+                      text: "Chip Name",
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+
+              Row(
+                children: [
+                  JPBadges(
+                    text: "2",
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  JPBadges(
+                    backgroundcolor: JPColor.TERTIARY,
+                    text: "2",
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  JPBadges(
+                    backgroundcolor: JPColor.SECONDARY,
+                    text: "2",
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  JPBadges(
+                    backgroundcolor: JPColor.LIGHTBLUE,
+                    text: "2",
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  JPBadges(
+                    text: "12",
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  JPBadges(
+                    text: "123",
+                  ),
+                ],
+              )
+
             ],
           ),
         ),

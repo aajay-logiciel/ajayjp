@@ -46,11 +46,11 @@ double gettextsize(){
   }
 }
 String getfont(){
-  if(font==Font.Roboto){
-    return 'Roboto';
+  if(font==Font.Montserrat){
+    return 'Montserrat';
   }
   else{
-    return 'Montserrat';
+    return 'Roboto';
   }
 }
 FontWeight getfontweight(){

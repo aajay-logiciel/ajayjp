@@ -12,5 +12,6 @@ class JPColor {
   static const Color BORDERCOLOR= Color(0xffE0E0E0);
   static const Color TRANSPARENT= Colors.transparent;
   static const Color BLACK= Color(0xff222326);
+  static const Color BACKGROUND= Color(0xffE5E5E5);
 
 }

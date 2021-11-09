@@ -16,3 +16,4 @@ export 'package:jp_ui_kit/JPRadioButton/jp_radio_button.dart';
 export 'package:jp_ui_kit/JPRadioButton/grouped_button_orientation.dart';
 export 'package:jp_ui_kit/JPToggle/jptoggle.dart';
 export 'package:jp_ui_kit/JPBadges/jpbadges.dart';
+export 'package:jp_ui_kit/JPChips/jp_chips.dart';
