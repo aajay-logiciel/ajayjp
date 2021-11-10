@@ -1,5 +1,5 @@
 /// [ButtonType] is used to change the type of widgets
-enum ButtonType {
+enum JPButtonType {
   /// Default type is [ButtonType.solid], used to fill with color for widget
   solid,
 

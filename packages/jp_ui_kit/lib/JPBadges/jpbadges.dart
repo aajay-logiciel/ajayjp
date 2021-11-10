@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jp_ui_kit/common_files/jp_colors.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPBadges extends StatelessWidget {

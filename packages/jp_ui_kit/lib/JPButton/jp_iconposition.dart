@@ -1,5 +1,5 @@
 /// [Position] is used to position the icon, badges to start or end of the button
-enum Position {
+enum JPIconPosition {
   /// [Position.start] is used to place icon, badges to start of the Button
   start,
 

@@ -1,81 +1,80 @@
 import 'package:flutter/material.dart';
-import 'package:jp_ui_kit/JPText/font.dart';
-import 'package:jp_ui_kit/JPText/text_type.dart';
-import 'package:jp_ui_kit/JPText/textsize.dart';
+import 'package:jp_ui_kit/JPText/jp_fontfamily.dart';
+import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
+import 'package:jp_ui_kit/JPText/jp_textsize.dart';
+import 'package:jp_ui_kit/common_files/jp_colors.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPText extends StatelessWidget {
   const JPText({ required this.text,
-    this.textSize=TextSize.Heading_1,
-    this.font=Font.Roboto,
-    this.type=TextType.REGULAR,
+    this.textSize=JPTextSize.Heading_1,
+    this.fontfamily=JPFontFamily.Roboto,
+    this.fontWeight=JPFontWeight.REGULAR,
     this.textcolor=JPColor.BLACK,
     Key? key}) : super(key: key);
 
 
   final String text;
-  final TextSize? textSize;
-  final Font? font;
-  final TextType? type;
+  final JPTextSize? textSize;
+  final JPFontFamily? fontfamily;
+  final JPFontWeight? fontWeight;
   final Color textcolor;
 
 
   @override
   Widget build(BuildContext context) {
-double gettextsize(){
-  if(textSize==TextSize.Heading_1){
-    return 20;
+
+  double getTextSize(){
+    switch(textSize){
+      case JPTextSize.Heading_1:
+        return 20;
+      case JPTextSize.Heading_2:
+        return 18;
+      case JPTextSize.Heading_3:
+        return 16;
+      case JPTextSize.Heading_4:
+        return 14;
+      case JPTextSize.Heading_5:
+        return 12;
+      case JPTextSize.Heading_6:
+        return 11;
+      default:
+        return 14;
+    }
   }
-  else if(textSize==TextSize.Heading_2){
-    return 18;
-  }
-  else if(textSize==TextSize.Heading_3){
-    return 16;
-  }
-  else if(textSize==TextSize.Heading_4){
-    return 14;
-  }
-  else if(textSize==TextSize.Heading_5){
-    return 12;
-  }
-  else if(textSize==TextSize.Heading_6){
-    return 11;
-  }
-  else{
-    return 14;
-  }
+
+String getFontFamily(){
+    switch(fontfamily){
+      case JPFontFamily.Roboto:
+        return 'Roboto';
+      case JPFontFamily.Montserrat:
+        return 'Montserrat';
+      case JPFontFamily.DancingScript:
+        return 'DancingScript';
+      default:
+        return 'Roboto';
+    }
 }
-String getfont(){
-  if(font==Font.Montserrat){
-    return 'Montserrat';
-  }
-  else{
-    return 'Roboto';
-  }
-}
-FontWeight getfontweight(){
-  if(type==TextType.REGULAR){
-    return FontWeight.w400;
-  }
-  else if(type==TextType.MEDIUM){
-    return FontWeight.w500;
-  }
-  else if(type==TextType.BOLD&&font==Font.Roboto){
-    return FontWeight.w700;
-  }
-  else{
-    return FontWeight.w400;
-  }
-}
+    FontWeight getFontWeight(){
+      switch(fontWeight){
+        case JPFontWeight.REGULAR:
+          return FontWeight.w400;
+        case JPFontWeight.MEDIUM:
+          return FontWeight.w500;
+        case JPFontWeight.BOLD:
+          return FontWeight.w700;
+        default:
+          return FontWeight.w400;
+      }
+    }
     return Text(
          text,
       style: TextStyle(
         color: textcolor,
-        fontSize: gettextsize(),
-        fontFamily: getfont(),
-        fontWeight: getfontweight(),
-        fontStyle: FontStyle.normal,
-        overflow: TextOverflow.ellipsis
+        fontSize: getTextSize(),
+        fontFamily: getFontFamily(),
+       package: 'jp_ui_kit',
+       fontWeight: getFontWeight(),
       ),
     );
   }

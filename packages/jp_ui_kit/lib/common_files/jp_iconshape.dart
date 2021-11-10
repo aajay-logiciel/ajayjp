@@ -1,5 +1,5 @@
 /// [IconShape] is used to shape the IconButton widget.
-enum IconShape {
+enum JPIconShape {
   /// [JPIconShape.circle], used for rounded shape icon button
   circle,
 

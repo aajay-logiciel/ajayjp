@@ -246,7 +246,7 @@ class _JPToggleState extends State<JPToggle>
         return Container(
           width: widget.width,
           child: Align(
-            child: GestureDetector(
+            child: InkWell(
               onTap: () {
                 if (!widget.disabled) {
                   if (widget.value)

@@ -1,5 +1,5 @@
 /// [TextSize] is used to change the size of the text.
-enum TextSize {
+enum JPTextSize {
    Heading_6 ,
    Heading_5 ,
    Heading_4 ,

@@ -1,0 +1,7 @@
+enum JPButtonSize{
+ SMALL,
+ MEDIUM,
+ LARGE,
+ JPRECTANGLE,
+ JPSQUARE,
+}
