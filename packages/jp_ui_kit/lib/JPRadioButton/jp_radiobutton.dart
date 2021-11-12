@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/JPCommonFiles/jp_colors.dart';
+import 'package:jp_ui_kit/JPCommonFiles/jp_orientation.dart';
 import 'package:jp_ui_kit/JPText/jp_fontfamily.dart';
 import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
 import 'package:jp_ui_kit/JPText/jp_text.dart';
 import 'package:jp_ui_kit/JPText/jp_textsize.dart';
 
-import 'grouped_button_orientation.dart';
 
 class JPRadioButton extends StatefulWidget {
   /// A list of strings that describes each Radio button. Each label must be distinct.
@@ -57,7 +57,7 @@ class JPRadioButton extends StatefulWidget {
     this.onSelected,
     this.labelStyle = const TextStyle(),
     this.activeColor, //defaults to toggleableActiveColor,
-    this.orientation = JPOrientation.VERTICAL,
+    this.orientation = JPOrientation.vertical,
     this.itemBuilder,
     this.padding = const EdgeInsets.all(0.0),
     this.margin = const EdgeInsets.all(0.0),
@@ -127,7 +127,7 @@ class _JPRadioButtonState extends State<JPRadioButton> {
       else{ //otherwise, use predefined method of building
 
         //vertical orientation means Column with Row inside
-        if(widget.orientation == JPOrientation.VERTICAL){
+        if(widget.orientation == JPOrientation.vertical){
 
           content.add(Row(children: <Widget>[
             SizedBox(width: 12.0),
@@ -152,7 +152,7 @@ class _JPRadioButtonState extends State<JPRadioButton> {
     return Container(
       padding: widget.padding,
       margin: widget.margin,
-      child: widget.orientation == JPOrientation.VERTICAL ? Column(children: content) : Row(children: content),
+      child: widget.orientation == JPOrientation.vertical ? Column(children: content) : Row(children: content),
     );
   }
 }

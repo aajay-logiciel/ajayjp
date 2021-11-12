@@ -332,7 +332,7 @@ class _MyHomePageState extends State<MyHomePage> {
               JPCheckbox(labels: ['Option1','Option2','Option3','Option4',],
                 disabled: ['Option1'],
                 onChange: (bool isChecked, String label, int index) {  },
-                orientation: JPOrientation.HORIZONTAL,
+                orientation: JPOrientation.horizontal,
               ),
               JPCheckbox(labels: ["abc"],),
               SizedBox(

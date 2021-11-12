@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/JPCheckBox/jp_checkbox.dart';
-import 'package:jp_ui_kit/JPRadioButton/grouped_button_orientation.dart';
+import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class Checkbox extends StatefulWidget {
   const Checkbox({Key? key}) : super(key: key);
@@ -33,7 +33,6 @@ class _CheckboxState extends State<Checkbox> {
               JPCheckbox(labels: ['Option1','Option2','Option3','Option4',],
                 disabled: ['Option1'],
                 onChange: (bool isChecked, String label, int index) {  },
-                orientation: JPOrientation.HORIZONTAL,
               ),
               JPCheckbox(labels: ["abc"],),
               SizedBox(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/JPCommonFiles/jp_colors.dart';
-import 'package:jp_ui_kit/JPRadioButton/grouped_button_orientation.dart';
+import 'package:jp_ui_kit/JPCommonFiles/jp_orientation.dart';
 import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
@@ -65,7 +65,7 @@ class JPCheckbox extends StatefulWidget {
     this.activeColor, //defaults to toggleableActiveColor,
     this.checkColor =  JPColor.WHITE,
     this.tristate = false,
-    this.orientation = JPOrientation.VERTICAL,
+    this.orientation = JPOrientation.vertical,
     this.itemBuilder,
     this.padding = const EdgeInsets.all(0.0),
     this.margin = const EdgeInsets.all(0.0),
@@ -130,7 +130,7 @@ class _JPCheckboxState extends State<JPCheckbox> {
       else{ //otherwise, use predefined method of building
 
         //vertical orientation means Column with Row inside
-        if(widget.orientation == JPOrientation.VERTICAL){
+        if(widget.orientation == JPOrientation.vertical){
 
           content.add(Row(children: <Widget>[
             SizedBox(width: 12.0),
@@ -157,7 +157,7 @@ class _JPCheckboxState extends State<JPCheckbox> {
     return Container(
       padding: widget.padding,
       margin: widget.margin,
-      child: widget.orientation == JPOrientation.VERTICAL ? Column(children: content) : Row(children: content),
+      child: widget.orientation == JPOrientation.vertical ? Column(children: content) : Row(children: content),
     );
   }
 
