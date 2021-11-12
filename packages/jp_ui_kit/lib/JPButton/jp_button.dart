@@ -164,7 +164,7 @@ class _JPButtonState extends State<JPButton> {
   void initState() {
     color = widget.color;
     textColor = widget.textColor;
-    child = widget.text != null ? JPText( text: widget.text!) : widget.child;
+    child = widget.text != null ? JPText(text:widget.text!,) : widget.child;
     iconData = widget.iconData;
     onPressed = widget.onPressed;
     type = widget.type;
@@ -372,6 +372,7 @@ class _JPButtonState extends State<JPButton> {
       return null;
     }
 
+
     TextStyle getTextStyle(){
       switch(widget.jpButtonwidth){
         case JPButtonSize.small:
@@ -415,7 +416,7 @@ class _JPButtonState extends State<JPButton> {
       decoration: widget.type == JPButtonType.solid ? getBoxShadow() : null,
       child: Material(
         elevation: 0,
-        textStyle: widget.textStyle == null ? getTextStyle() : widget.textStyle,
+        textStyle: widget.textStyle ?? getTextStyle(),
         shape: widget.type == JPButtonType.transparent
             ? null
             : widget.borderShape ?? shapeBorderType,

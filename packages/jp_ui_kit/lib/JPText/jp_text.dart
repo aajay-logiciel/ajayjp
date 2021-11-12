@@ -24,7 +24,7 @@ class JPText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-  double getTextSize(){
+    double getTextSize(){
     switch(textSize){
       case JPTextSize.Heading_1:
         return 20;
@@ -43,7 +43,7 @@ class JPText extends StatelessWidget {
     }
   }
 
-String getFontFamily(){
+    String getFontFamily(){
     switch(fontfamily){
       case JPFontFamily.Roboto:
         return 'Roboto';
@@ -55,6 +55,7 @@ String getFontFamily(){
         return 'Roboto';
     }
 }
+
     FontWeight getFontWeight(){
       switch(fontWeight){
         case JPFontWeight.REGULAR:
@@ -67,6 +68,7 @@ String getFontFamily(){
           return FontWeight.w400;
       }
     }
+
     return Text(
          text,
       style: TextStyle(
