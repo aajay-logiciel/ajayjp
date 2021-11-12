@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jp_ui_kit/common_files/jp_colors.dart';
+import 'package:jp_ui_kit/JPCommonFiles/jp_colors.dart';
+import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPBadges extends StatelessWidget {
@@ -21,15 +22,14 @@ class JPBadges extends StatelessWidget {
       ),
       child:  Padding(
           padding: EdgeInsets.symmetric(vertical: 2.0,horizontal: 5.0),
-            child: Text(
-              text,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                fontFamily: 'Roboto',
-                color: JPColor.WHITE,
-              ),
-            )
+            child:
+        JPText(
+          text: text,
+          textSize: JPTextSize.Heading_5,
+          fontWeight: JPFontWeight.REGULAR,
+          fontfamily: JPFontFamily.Roboto,
+          textcolor: JPColor.WHITE,
+        )
           ),
     );
   }

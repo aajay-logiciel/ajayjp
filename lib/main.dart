@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:jp_ui_kit/JPButton/jp_buttonsize.dart';
-import 'package:jp_ui_kit/JPButton/jpbutton.dart';
-import 'package:jp_ui_kit/JPCheckBox/jpcheckbox.dart';
+import 'package:jp_ui_kit/JPButton/jp_button_size.dart';
+import 'package:jp_ui_kit/JPButton/jp_button.dart';
+import 'package:jp_ui_kit/JPCheckBox/jp_checkbox.dart';
 import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
@@ -45,14 +45,20 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             children:  [
               JPText(text:"Full Buttons"),
+              JPButton(
+                iconData: Icons.eleven_mp,
+              ),
+              JPButton(
+
+              ),
               SizedBox(
                 height: 5,
               ),
               JPButton(
                 onPressed: (){},
                 text: "NORMAL BUTTON",
-                jpButtonwidth: JPButtonSize.LARGE,
-                jpButtonhight: JPButtonSize.LARGE,
+                jpButtonwidth: JPButtonSize.large,
+                jpButtonhight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -62,8 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: JPShape.circular,
                 text: "TERTIARY BUTTON",
                 color: JPColor.TERTIARY,
-                jpButtonwidth: JPButtonSize.LARGE,
-                jpButtonhight: JPButtonSize.LARGE,
+                jpButtonwidth: JPButtonSize.large,
+                jpButtonhight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -73,8 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: JPShape.circular,
                 text: "GRAY BUTTON",
                 color: JPColor.LIGHTBUTTON,
-                jpButtonwidth: JPButtonSize.LARGE,
-                jpButtonhight: JPButtonSize.LARGE,
+                jpButtonwidth: JPButtonSize.large,
+                jpButtonhight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -84,33 +90,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 5,
               ),
               JPButton(
-                onPressed: null,
+                enabled: false,
                 shape: JPShape.circular,
                 text: "NORMAL BUTTON",
-                jpButtonwidth: JPButtonSize.LARGE,
-                jpButtonhight: JPButtonSize.LARGE,
+                jpButtonwidth: JPButtonSize.large,
+                jpButtonhight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
               ),
               const JPButton(
-                onPressed: null,
+                enabled: false,
                 shape: JPShape.circular,
                 text: "TERTIARY BUTTON",
                 color: JPColor.TERTIARY,
-                jpButtonwidth: JPButtonSize.LARGE,
-                jpButtonhight: JPButtonSize.LARGE,
+                jpButtonwidth: JPButtonSize.large,
+                jpButtonhight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
               ),
               const JPButton(
-                onPressed: null,
+                enabled: false,
                 shape: JPShape.circular,
                 text: "GRAY BUTTON",
                 color: JPColor.LIGHTBUTTON,
-                jpButtonwidth: JPButtonSize.LARGE,
-                jpButtonhight: JPButtonSize.LARGE,
+                jpButtonwidth: JPButtonSize.large,
+                jpButtonhight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -120,10 +126,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 5,
               ),
               JPButton(
-                jpButtonwidth: JPButtonSize.MEDIUM ,
-                jpButtonhight: JPButtonSize.MEDIUM,
+                jpButtonwidth: JPButtonSize.medium ,
+                jpButtonhight: JPButtonSize.medium,
                 onPressed: (){},
-                size: JPSize.MEDIUM,
+                size: JPSize.medium,
                 shape: JPShape.circular,
                 text: "MEDIUM BUTTON",
               ),
@@ -135,10 +141,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 5,
               ),
               JPButton(
-                jpButtonwidth: JPButtonSize.SMALL,
-                jpButtonhight: JPButtonSize.SMALL,
+                jpButtonwidth: JPButtonSize.small,
+                jpButtonhight: JPButtonSize.small,
                 onPressed: (){},
-                size: JPSize.SMALL,
+                size: JPSize.small,
                 shape: JPShape.circular,
                 text: "SMALL",
               ),
@@ -163,11 +169,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 5,
               ),
               JPButton(
-                jpButtonwidth: JPButtonSize.SMALL,
-                jpButtonhight: JPButtonSize.SMALL,
+                jpButtonwidth: JPButtonSize.small,
+                jpButtonhight: JPButtonSize.small,
                 onPressed: (){},
                 type: JPButtonType.outline,
-                size: JPSize.SMALL,
+                size: JPSize.small,
                 shape: JPShape.circular,
                 text: "SMALL",
               ),
@@ -180,8 +186,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               JPButton(
                 onPressed: (){},
-                jpButtonwidth: JPButtonSize.JPRECTANGLE,
-                jpButtonhight: JPButtonSize.JPRECTANGLE,
+                jpButtonwidth: JPButtonSize.rectangle,
+                jpButtonhight: JPButtonSize.rectangle,
                 shape: JPShape.circular,
                 text: "Loading",
                 iconData:Icons.replay_circle_filled ,
@@ -196,13 +202,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
 
               JPButton(
-                jpButtonwidth: JPButtonSize.JPSQUARE,
-                jpButtonhight: JPButtonSize.JPSQUARE,
+                jpButtonwidth: JPButtonSize.square,
+                jpButtonhight: JPButtonSize.square,
                 shape: JPShape.standard,
                 onPressed: (){},
                 text: null,
                 iconData:Icons.replay_circle_filled ,
-                iconcolor: Colors.white,
+                iconcolor: JPColor.WHITE,
               ),
               SizedBox(
                 height: 20,
@@ -308,17 +314,10 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 height: 20,
               ),
-
-              /*Text("This is new",
-              style: TextStyle(
-                fontSize: 20,
-                fontFamily: JPFontFamily.Roboto,
-                package: 'jp'
-              ),),*/
               SizedBox(
                 height: 5,
               ),
-          RadioButtonGroup(
+              JPRadioButton(
             disabled: [
               "Option 1"
             ],
@@ -333,12 +332,9 @@ class _MyHomePageState extends State<MyHomePage> {
               JPCheckbox(labels: ['Option1','Option2','Option3','Option4',],
                 disabled: ['Option1'],
                 onChange: (bool isChecked, String label, int index) {  },
-               // orientation: JPOrientation.VERTICAL,
+                orientation: JPOrientation.HORIZONTAL,
               ),
-              JPCheckbox(labels: ['faf'],
-                onChange: (bool isChecked, String label, int index) {  },
-                // orientation: JPOrientation.VERTICAL,
-              ),
+              JPCheckbox(labels: ["abc"],),
               SizedBox(
                 height: 20,
               ),

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:jp_ui_kit/JPCommonFiles/jp_colors.dart';
+import 'package:jp_ui_kit/JPText/jp_fontfamily.dart';
+import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
+import 'package:jp_ui_kit/JPText/jp_text.dart';
+import 'package:jp_ui_kit/JPText/jp_textsize.dart';
 
 import 'grouped_button_orientation.dart';
 
-class RadioButtonGroup extends StatefulWidget {
+class JPRadioButton extends StatefulWidget {
   /// A list of strings that describes each Radio button. Each label must be distinct.
   final List<String>? labels;
 
@@ -30,7 +35,7 @@ class RadioButtonGroup extends StatefulWidget {
   final JPOrientation? orientation;
 
   /// Called when needed to build a RadioButtonGroup element.
-  final Widget Function(Radio radioButton, Text label, int index)? itemBuilder;
+  final Widget Function(Radio radioButton, JPText label, int index)? itemBuilder;
 
   //RADIO BUTTON FIELDS
   /// The color to use when a Radio button is checked.
@@ -43,9 +48,9 @@ class RadioButtonGroup extends StatefulWidget {
   /// Empty space surrounding the RadioButtonGroup.
   final EdgeInsetsGeometry? margin;
 
-  RadioButtonGroup({
+  JPRadioButton({
     Key? key,
-    this.labels,
+    required this.labels,
     this.picked,
     this.disabled,
     this.onChange,
@@ -59,10 +64,10 @@ class RadioButtonGroup extends StatefulWidget {
   }) : super (key: key);
 
   @override
-  _RadioButtonGroupState createState() => _RadioButtonGroupState();
+  _JPRadioButtonState createState() => _JPRadioButtonState();
 }
 
-class _RadioButtonGroupState extends State<RadioButtonGroup> {
+class _JPRadioButtonState extends State<JPRadioButton> {
   String? _selected;
 
   @override
@@ -102,11 +107,18 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
         }),
       );
 
-      Text t = Text(
+      /*Text t = Text(
           widget.labels!.elementAt(i),
           style: (widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i))) ?
           widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
           widget.labelStyle
+      );*/
+      JPText t =JPText(text:widget.labels!.elementAt(i),
+        textcolor:(widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i)))?
+        Theme.of(context).disabledColor:JPColor.BLACK,
+        fontfamily: JPFontFamily.Roboto,
+        fontWeight: JPFontWeight.REGULAR,
+        textSize: JPTextSize.Heading_4,
       );
 
       //use user defined method to build

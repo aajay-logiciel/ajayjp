@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jp_ui_kit/JPCommonFiles/jp_colors.dart';
 import 'package:jp_ui_kit/JPRadioButton/grouped_button_orientation.dart';
+import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
+import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPCheckbox extends StatefulWidget {
   /// A list of strings that describes each Checkbox. Each label must be distinct.
@@ -17,7 +20,7 @@ class JPCheckbox extends StatefulWidget {
   final List<String>? disabled;
 
   /// Called when the value of the CheckboxGroup changes.
-  final void Function(bool isChecked, String label, int index) onChange;
+  final void Function(bool isChecked, String label, int index)? onChange;
 
   /// Called when the user makes a selection.
   final void Function(List<String> selected)? onSelected;
@@ -29,7 +32,7 @@ class JPCheckbox extends StatefulWidget {
   final JPOrientation? orientation;
 
   /// Called when needed to build a CheckboxGroup element.
-  final Widget Function(Checkbox checkBox, Text label, int index)? itemBuilder;
+  final Widget Function(Checkbox checkBox, JPText label, int index)? itemBuilder;
 
   //THESE FIELDS ARE FOR THE CHECKBOX
 
@@ -56,11 +59,11 @@ class JPCheckbox extends StatefulWidget {
     required this.labels,
     this.checked,
     this.disabled,
-    required this.onChange,
+     this.onChange,
     this.onSelected,
     this.labelStyle = const TextStyle(),
     this.activeColor, //defaults to toggleableActiveColor,
-    this.checkColor = const Color(0xFFFFFFFF),
+    this.checkColor =  JPColor.WHITE,
     this.tristate = false,
     this.orientation = JPOrientation.VERTICAL,
     this.itemBuilder,
@@ -110,11 +113,13 @@ class _JPCheckboxState extends State<JPCheckbox> {
         tristate: widget.tristate!,
       );
 
-      Text t = Text(
-          widget.labels!.elementAt(i),
-          style: (widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i))) ?
-          widget.labelStyle!.apply(color: Theme.of(context).disabledColor) :
-          widget.labelStyle
+
+      JPText t =JPText(text:widget.labels!.elementAt(i),
+      textcolor:(widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i)))?
+      Theme.of(context).disabledColor:JPColor.BLACK,
+        fontfamily: JPFontFamily.Roboto,
+        fontWeight: JPFontWeight.REGULAR,
+        textSize: JPTextSize.Heading_4,
       );
 
 
@@ -132,14 +137,16 @@ class _JPCheckboxState extends State<JPCheckbox> {
             cb,
             SizedBox(width: 12.0),
             t,
+            SizedBox(width: 12.0),
           ]));
 
         }else{ //horizontal orientation means Row with Column inside
 
-          content.add(Column(children: <Widget>[
+          content.add(Row(children: <Widget>[
             cb,
             SizedBox(width: 12.0),
             t,
+            SizedBox(width: 12.0),
           ]));
 
         }
@@ -166,7 +173,7 @@ class _JPCheckboxState extends State<JPCheckbox> {
           _selected.add(widget.labels!.elementAt(i));
         }
 
-        if(widget.onChange != null) widget.onChange(isChecked, widget.labels!.elementAt(i), i);
+        if(widget.onChange != null) widget.onChange!(isChecked, widget.labels!.elementAt(i), i);
         if(widget.onSelected != null) widget.onSelected!(_selected);
       });
     }

@@ -1,4 +1,4 @@
-enum CheckboxOrientation{
+enum JPCheckboxOrientation{
   HORIZONTAL,
   VERTICAL,
   WRAP

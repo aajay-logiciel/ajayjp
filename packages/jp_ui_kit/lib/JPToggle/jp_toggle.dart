@@ -306,29 +306,6 @@ class _JPToggleState extends State<JPToggle>
                               color: _toggleColor,
                               border: _toggleBorder,
                             ),
-                            /*child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Container(
-                                child: Stack(
-                                  children: [
-                                    Center(
-                                      child: AnimatedOpacity(
-                                        opacity: widget.value ? 1.0 : 0.0,
-                                        duration: widget.duration,
-                                      //  child: widget.activeIcon,
-                                      ),
-                                    ),
-                                    Center(
-                                      child: AnimatedOpacity(
-                                        opacity: !widget.value ? 1.0 : 0.0,
-                                        duration: widget.duration,
-                                       // child: widget.inactiveIcon,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),*/
                           ),
                         ),
                       ),
@@ -343,39 +320,4 @@ class _JPToggleState extends State<JPToggle>
     );
   }
 
- /* FontWeight get _activeTextFontWeight =>
-      widget.activeTextFontWeight ?? FontWeight.w900;
-  FontWeight get _inactiveTextFontWeight =>
-      widget.inactiveTextFontWeight ?? FontWeight.w900;*/
-
- /* Widget get _activeText {
-    if (widget.showOnOff) {
-      return Text(
-        widget.activeText ?? "On",
-        style: TextStyle(
-          color: widget.activeTextColor,
-          fontWeight: _activeTextFontWeight,
-          fontSize: widget.valueFontSize,
-        ),
-      );
-    }
-
-    return Text("");
-  }
-
-  Widget get _inactiveText {
-    if (widget.showOnOff) {
-      return Text(
-        widget.inactiveText ?? "Off",
-        style: TextStyle(
-          color: widget.inactiveTextColor,
-          fontWeight: _inactiveTextFontWeight,
-          fontSize: widget.valueFontSize,
-        ),
-        textAlign: TextAlign.right,
-      );
-    }
-
-    return Text("");
-  }*/
 }
