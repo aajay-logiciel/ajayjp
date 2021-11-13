@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:jp_ui_kit/JPButton/jp_button_color_type.dart';
 import 'package:jp_ui_kit/JPButton/jp_button_size.dart';
 import 'package:jp_ui_kit/JPButton/jp_icon_position.dart';
 import 'package:jp_ui_kit/JPButton/jp_button_type.dart';
@@ -15,7 +16,7 @@ import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 
 class JPButton extends StatefulWidget {
-  const JPButton({
+   JPButton({
     Key? key,
     this.onPressed,
     this.textStyle,
@@ -27,9 +28,9 @@ class JPButton extends StatefulWidget {
     this.child,
     this.type = JPButtonType.solid,
     this.shape = JPShape.circular,
-    this.color = JPColor.PRIMARY,
-    this.jpButtonwidth =JPButtonSize.large,
-    this.jpButtonhight = JPButtonSize.large,
+    this.color = JPColor.primary,
+    this.jpButtonwidth ,
+    this.jpButtonheight ,
     this.textColor,
     this.iconposition = JPIconPosition.start,
     this.size = JPSize.medium,
@@ -40,8 +41,9 @@ class JPButton extends StatefulWidget {
     this.disabledColor,
     this.disabledTextColor,
     this.iconData,
-    this.iconcolor=JPColor.WHITE,
+    this.iconcolor=JPColor.white,
     this.enabled=true,
+    this.jpButtonColorType,
   })  :super(key: key);
 
   /// Called when the button is tapped or otherwise activated.
@@ -80,9 +82,9 @@ class JPButton extends StatefulWidget {
   /// Button type of [BShape] i.e, standard, circular, square, icons
   final JPShape shape;
 
-  final JPButtonSize jpButtonwidth;
+  JPButtonSize? jpButtonwidth;
 
-  final JPButtonSize jpButtonhight;
+  JPButtonSize? jpButtonheight;
 
   /// Pass [JPColors] or [Color]
   final Color color;
@@ -138,6 +140,8 @@ class JPButton extends StatefulWidget {
   /// on true state default box shadow appears around button, if JPButtonType is solid
   final bool? buttonBoxShadow;
 
+  final JPButtonColorType? jpButtonColorType;
+
 
   @override
   _JPButtonState createState() => _JPButtonState();
@@ -158,32 +162,37 @@ class _JPButtonState extends State<JPButton> {
   late BoxShadow boxShadow;
   late JPButtonSize jpButtonWidth;
 
+  JPButtonColorType? jpButtonColorType;
+
   final Set<MaterialState> _states = <MaterialState>{};
 
   @override
   void initState() {
+   // widget.jpButtonwidth= (widget.iconData!=null)?JPButtonSize.square:JPButtonSize.large;
+   // widget.jpButtonheight= (widget.iconData!=null)?JPButtonSize.square:JPButtonSize.large;
     color = widget.color;
     textColor = widget.textColor;
-    child = widget.text != null ? JPText(text:widget.text!,) : widget.child;
+    child = widget.text != null ? JPText(text:widget.text!,textcolor: JPColor.white,) : widget.child;
     iconData = widget.iconData;
     onPressed = widget.onPressed;
     type = widget.type;
     shape = widget.shape;
     size = widget.size;
-    jpButtonWidth=widget.jpButtonwidth;
+  //  jpButtonWidth=widget.jpButtonwidth;
     iconposition = widget.iconposition;
     disabledColor = widget.disabledColor;
     disabledTextColor = widget.disabledTextColor;
+    jpButtonColorType=((widget.iconData!=null&&widget.text!=null)?JPButtonColorType.white : widget.jpButtonColorType);
     super.initState();
   }
 
 
 
-  double buttonWidth(){
-    if(widget.iconData!=null && widget.text==null){
+   buttonWidth(){
+    /*if(widget.iconData!=null && widget.text==null){
       return 30;
     }
-    else{
+    else{*/
       switch(widget.jpButtonwidth){
         case JPButtonSize.large:
           return MediaQuery.of(context).size.width;
@@ -196,11 +205,11 @@ class _JPButtonState extends State<JPButton> {
         case JPButtonSize.square:
           return 30;
       }
-    }
+   // }
 
   }
 
-  double buttonHeight(){
+   buttonHeight(){
     if(widget.iconData!=null && widget.text==null){
       return 30;
     }
@@ -220,6 +229,8 @@ class _JPButtonState extends State<JPButton> {
     }
 
   }
+
+
   @override
   Widget build(BuildContext context) {
     ShapeBorder shapeBorderType;
@@ -236,10 +247,9 @@ class _JPButtonState extends State<JPButton> {
         }
       }
     }
-     Color getDisabledFillColor() {
-      if (widget.type == JPButtonType.transparent ||
-          widget.type == JPButtonType.outline ) {
-        return JPColor.WHITE;
+    Color getDisabledFillColor() {
+      if (widget.type == JPButtonType.outline ) {
+        return JPColor.white;
       }
       if (disabledColor != null) {
         return disabledColor!;
@@ -248,45 +258,14 @@ class _JPButtonState extends State<JPButton> {
       }
     }
 
-    Color getColor() {
-      if (widget.type == JPButtonType.transparent ||
-          widget.type == JPButtonType.outline ) {
-        return JPColor.WHITE;
-      }
-      final Color fillColor = color;
-      return fillColor;
-    }
 
     Color getDisabledTextColor() {
       if (disabledTextColor != null) {
         return disabledTextColor!;
-      } else if (widget.type == JPButtonType.outline ||
-          widget.type == JPButtonType.transparent) {
+      } else if (widget.type == JPButtonType.outline ) {
         return color;
       } else {
-        return JPColor.WHITE;
-      }
-    }
-
-    Color getTextColor() {
-      if (widget.type == JPButtonType.outline ||
-          widget.type == JPButtonType.transparent) {
-        return widget.enabled==true
-            ? textColor == null
-            ? color == JPColor.WHITE
-            ? JPColor.DARK
-            : color
-            : textColor!
-            : getDisabledTextColor();
-      }
-      if (textColor == null) {
-        if (color == JPColor.TRANSPARENT) {
-          return JPColor.DARK;
-        } else {
-          return JPColor.WHITE;
-        }
-      } else {
-        return textColor!;
+        return JPColor.white;
       }
     }
 
@@ -351,64 +330,44 @@ class _JPButtonState extends State<JPButton> {
     }
 
 
-    BoxDecoration? getBoxShadow() {
-      if (widget.type != JPButtonType.transparent) {
-        if (widget.boxShadow == null && widget.buttonBoxShadow != true) {
-          return null;
-        } else {
+
+
+    BoxDecoration? getBoxShadow(){
+      switch(widget.type){
+        case JPButtonType.outline:
           return BoxDecoration(
-            color: widget.type == JPButtonType.transparent ||
-                widget.type == JPButtonType.outline
-                ? Colors.transparent
-                : color,
+            color:JPColor.white,
             borderRadius: widget.shape == JPShape.circular
                 ? BorderRadius.circular(50)
                 : widget.shape == JPShape.standard
                 ? BorderRadius.circular(5)
                 : BorderRadius.zero,
           );
-        }
+        case JPButtonType.solid:
+          return BoxDecoration(
+            color:color,
+            borderRadius: widget.shape == JPShape.circular
+                ? BorderRadius.circular(50)
+                : widget.shape == JPShape.standard
+                ? BorderRadius.circular(5)
+                : BorderRadius.zero,
+          );
       }
-      return null;
     }
 
-
-    TextStyle getTextStyle(){
-      switch(widget.jpButtonwidth){
-        case JPButtonSize.small:
-          return TextStyle(
-              color: widget.enabled==true ? getTextColor() : getDisabledTextColor(),
-               fontFamily: 'Roboto',
-               package: 'jp_ui_kit',
-               fontStyle: FontStyle.normal,
-               fontSize: 12);
-        case JPButtonSize.medium:
-          return TextStyle(
-              color: widget.enabled==true ? getTextColor() : getDisabledTextColor(),
-              fontSize: 13,
-            fontFamily: 'Roboto',
-            package: 'jp_ui_kit',
-            fontStyle: FontStyle.normal,
-            fontWeight: FontWeight.w400,);
-        case JPButtonSize.large:
-          return TextStyle(
-              color: widget.enabled==true ? getTextColor() : getDisabledTextColor(),
-              fontSize: 14,
-            fontFamily: 'Roboto',
-            package: 'jp_ui_kit',
-            fontStyle: FontStyle.normal,
-            fontWeight: FontWeight.w500,);
+    Color? getButtonColorType(){
+      switch(widget.jpButtonColorType){
+        case JPButtonColorType.primary:
+          return JPColor.primary;
+        case JPButtonColorType.tertiary:
+          return JPColor.tertiary;
+        case JPButtonColorType.white:
+          return JPColor.white;
         default:
-          return TextStyle(
-              color: widget.enabled==true ? getTextColor() : getDisabledTextColor(),
-              fontSize: 14,
-            fontFamily: 'Roboto',
-            package: 'jp_ui_kit',
-            fontStyle: FontStyle.normal,
-            fontWeight: FontWeight.w500,);
-
+          return JPColor.primary;
       }
     }
+
     final Widget result = Container(
       constraints: widget.iconData == null
           ? const BoxConstraints(minWidth: 80)
@@ -416,19 +375,14 @@ class _JPButtonState extends State<JPButton> {
       decoration: widget.type == JPButtonType.solid ? getBoxShadow() : null,
       child: Material(
         elevation: 0,
-        textStyle: widget.textStyle ?? getTextStyle(),
-        shape: widget.type == JPButtonType.transparent
-            ? null
-            : widget.borderShape ?? shapeBorderType,
-        color: widget.enabled==true ? getColor() : getDisabledFillColor(),
+        shape: widget.borderShape ?? shapeBorderType,
+        color: widget.enabled==true ? (widget.iconData!=null&&widget.text!=null)?(widget.text==null)?widget.color:JPColor.white:getButtonColorType():getDisabledFillColor(),
         type: MaterialType.button,
         child: InkWell(
           onTap:
-            (widget.enabled==false)?null:(){widget.onPressed;},
+          (widget.enabled==false)?null:(){widget.onPressed;},
 
-          customBorder: widget.type == JPButtonType.transparent
-              ? null
-              : widget.borderShape ?? shapeBorderType,
+          customBorder: widget.borderShape ?? shapeBorderType,
           child: IconTheme.merge(
             data: IconThemeData(color: effectiveTextColor),
             child: Container(
@@ -484,11 +438,10 @@ class _JPButtonState extends State<JPButton> {
     );
 
     return Semantics(
-      container: true,
-      button: true,
-      enabled: widget.enabled,
-      child: result
+        container: true,
+        button: true,
+        enabled: widget.enabled,
+        child: result
     );
   }
 }
-

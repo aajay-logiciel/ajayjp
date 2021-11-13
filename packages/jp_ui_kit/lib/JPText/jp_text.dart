@@ -6,11 +6,12 @@ import 'package:jp_ui_kit/JPCommonFiles/jp_colors.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPText extends StatelessWidget {
-  const JPText({ required this.text,
-    this.textSize=JPTextSize.Heading_1,
+  const JPText({
+    required this.text,
+    this.textSize=JPTextSize.Heading_4,
     this.fontfamily=JPFontFamily.Roboto,
     this.fontWeight=JPFontWeight.REGULAR,
-    this.textcolor=JPColor.BLACK,
+    this.textcolor=JPColor.black,
     Key? key}) : super(key: key);
 
 
@@ -75,8 +76,8 @@ class JPText extends StatelessWidget {
         color: textcolor,
         fontSize: getTextSize(),
         fontFamily: getFontFamily(),
-       package: 'jp_ui_kit',
-       fontWeight: getFontWeight(),
+        package: 'jp_ui_kit',
+        fontWeight: getFontWeight(),
       ),
     );
   }

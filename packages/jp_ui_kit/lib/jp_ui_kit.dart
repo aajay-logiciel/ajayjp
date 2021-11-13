@@ -10,7 +10,6 @@ export 'package:jp_ui_kit/JPCommonFiles/jp_size.dart';
 export 'package:jp_ui_kit/JPText/jp_fontfamily.dart';
 export 'package:jp_ui_kit/JPText/jp_textsize.dart';
 export 'package:jp_ui_kit/JPText/jp_text.dart';
-export 'package:jp_ui_kit/JPRadioButton/radio_status.dart';
 export 'package:jp_ui_kit/JPRadioButton/jp_radiobutton.dart';
 export 'package:jp_ui_kit/JPToggle/jp_toggle.dart';
 export 'package:jp_ui_kit/JPBadges/jpbadges.dart';

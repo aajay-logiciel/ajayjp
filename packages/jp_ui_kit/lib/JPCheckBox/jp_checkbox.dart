@@ -25,9 +25,6 @@ class JPCheckbox extends StatefulWidget {
   /// Called when the user makes a selection.
   final void Function(List<String> selected)? onSelected;
 
-  /// The style to use for the labels.
-  final TextStyle? labelStyle;
-
   /// Specifies the orientation to display elements.
   final JPOrientation? orientation;
 
@@ -54,16 +51,15 @@ class JPCheckbox extends StatefulWidget {
   /// Empty space surrounding the CheckboxGroup.
   final EdgeInsetsGeometry ?margin;
 
-  JPCheckbox({
+  const JPCheckbox({
     Key? key,
     required this.labels,
     this.checked,
     this.disabled,
      this.onChange,
     this.onSelected,
-    this.labelStyle = const TextStyle(),
-    this.activeColor, //defaults to toggleableActiveColor,
-    this.checkColor =  JPColor.WHITE,
+    this.activeColor=JPColor.primary, //defaults to toggleableActiveColor,
+    this.checkColor =  JPColor.white,
     this.tristate = false,
     this.orientation = JPOrientation.vertical,
     this.itemBuilder,
@@ -105,49 +101,50 @@ class _JPCheckboxState extends State<JPCheckbox> {
     for(int i = 0; i < widget.labels!.length; i++){
 
       Checkbox cb = Checkbox(
+        shape:const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        ),
         value: _selected.contains(widget.labels!.elementAt(i)),
         onChanged: (widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i))) ? null :
             (isChecked) => onChanged(isChecked!, i),
         checkColor: widget.checkColor,
-        activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
+        activeColor: widget.activeColor,
         tristate: widget.tristate!,
       );
 
 
       JPText t =JPText(text:widget.labels!.elementAt(i),
       textcolor:(widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i)))?
-      Theme.of(context).disabledColor:JPColor.BLACK,
-        fontfamily: JPFontFamily.Roboto,
-        fontWeight: JPFontWeight.REGULAR,
-        textSize: JPTextSize.Heading_4,
+      Theme.of(context).disabledColor:JPColor.black,
       );
 
 
 
       //use user defined method to build
-      if(widget.itemBuilder != null)
+      if(widget.itemBuilder != null) {
         content.add(widget.itemBuilder!(cb, t, i));
-      else{ //otherwise, use predefined method of building
+      } else{ //otherwise, use predefined method of building
 
         //vertical orientation means Column with Row inside
         if(widget.orientation == JPOrientation.vertical){
 
           content.add(Row(children: <Widget>[
-            SizedBox(width: 12.0),
+            const SizedBox(width: 12.0),
             cb,
-            SizedBox(width: 12.0),
+            const SizedBox(width: 12.0),
             t,
-            SizedBox(width: 12.0),
+            const SizedBox(width: 12.0),
           ]));
 
         }else{ //horizontal orientation means Row with Column inside
 
-          content.add(Row(children: <Widget>[
-            cb,
-            SizedBox(width: 12.0),
-            t,
-            SizedBox(width: 12.0),
-          ]));
+          content.add( Row(children: <Widget>[
+             cb,
+              const SizedBox(width: 12.0),
+              t,
+              const SizedBox(width: 12.0),
+            ]),
+         );
 
         }
 

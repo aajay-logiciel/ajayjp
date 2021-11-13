@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPToggle extends StatefulWidget {
   /// Creates a material design switch.
@@ -12,9 +13,9 @@ class JPToggle extends StatefulWidget {
     Key? key,
     required this.value,
     required this.onToggle,
-    this.activeColor = Colors.blue,
-    this.inactiveColor = Colors.grey,
-    this.toggleColor = Colors.white,
+    this.activeColor = JPColor.primary,
+    this.inactiveColor = JPColor.gray,
+    this.toggleColor = JPColor.white,
     this.activeToggleColor,
     this.inactiveToggleColor,
     this.width = 70.0,
@@ -174,7 +175,7 @@ class JPToggle extends StatefulWidget {
 }
 
 class _JPToggleState extends State<JPToggle>
-    with SingleTickerProviderStateMixin {
+  with SingleTickerProviderStateMixin {
   late final Animation _toggleAnimation;
   late final AnimationController _animationController;
 
@@ -209,10 +210,11 @@ class _JPToggleState extends State<JPToggle>
 
     if (oldWidget.value == widget.value) return;
 
-    if (widget.value)
+    if (widget.value) {
       _animationController.forward();
-    else
+    } else {
       _animationController.reverse();
+    }
   }
 
   @override
@@ -243,16 +245,17 @@ class _JPToggleState extends State<JPToggle>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return Container(
+        return SizedBox(
           width: widget.width,
           child: Align(
             child: InkWell(
               onTap: () {
                 if (!widget.disabled) {
-                  if (widget.value)
+                  if (widget.value) {
                     _animationController.forward();
-                  else
+                  } else {
                     _animationController.reverse();
+                  }
 
                   widget.onToggle(!widget.value);
                 }

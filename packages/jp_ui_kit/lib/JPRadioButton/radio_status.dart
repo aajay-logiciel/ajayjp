@@ -1,4 +1,0 @@
-enum RadioStatus{
-  clicked,
-  normal,
-}

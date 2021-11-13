@@ -28,8 +28,6 @@ class JPRadioButton extends StatefulWidget {
   /// Called when the user makes a selection.
   final void Function(String selected)? onSelected;
 
-  /// The style to use for the labels.
-  final TextStyle labelStyle;
 
   /// Specifies the orientation to display elements.
   final JPOrientation? orientation;
@@ -55,8 +53,7 @@ class JPRadioButton extends StatefulWidget {
     this.disabled,
     this.onChange,
     this.onSelected,
-    this.labelStyle = const TextStyle(),
-    this.activeColor, //defaults to toggleableActiveColor,
+    this.activeColor=JPColor.primary, //defaults to toggleableActiveColor,
     this.orientation = JPOrientation.vertical,
     this.itemBuilder,
     this.padding = const EdgeInsets.all(0.0),
@@ -91,7 +88,7 @@ class _JPRadioButtonState extends State<JPRadioButton> {
     for(int i = 0; i < widget.labels!.length; i++){
 
       Radio rb = Radio(
-        activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
+        activeColor: widget.activeColor,
         groupValue: widget.labels!.indexOf(_selected!),
         value: i,
 
@@ -106,33 +103,23 @@ class _JPRadioButtonState extends State<JPRadioButton> {
           if(widget.onSelected != null) widget.onSelected!(widget.labels!.elementAt(i));
         }),
       );
-
-      /*Text t = Text(
-          widget.labels!.elementAt(i),
-          style: (widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i))) ?
-          widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
-          widget.labelStyle
-      );*/
       JPText t =JPText(text:widget.labels!.elementAt(i),
         textcolor:(widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i)))?
-        Theme.of(context).disabledColor:JPColor.BLACK,
-        fontfamily: JPFontFamily.Roboto,
-        fontWeight: JPFontWeight.REGULAR,
-        textSize: JPTextSize.Heading_4,
+        Theme.of(context).disabledColor:JPColor.black,
       );
 
       //use user defined method to build
-      if(widget.itemBuilder != null)
+      if(widget.itemBuilder != null) {
         content.add(widget.itemBuilder!(rb, t, i));
-      else{ //otherwise, use predefined method of building
+      } else{ //otherwise, use predefined method of building
 
         //vertical orientation means Column with Row inside
         if(widget.orientation == JPOrientation.vertical){
 
           content.add(Row(children: <Widget>[
-            SizedBox(width: 12.0),
+            const SizedBox(width: 12.0),
             rb,
-            SizedBox(width: 12.0),
+            const SizedBox(width: 12.0),
             t,
           ]));
 
@@ -140,7 +127,7 @@ class _JPRadioButtonState extends State<JPRadioButton> {
 
           content.add(Column(children: <Widget>[
             rb,
-            SizedBox(width: 12.0),
+            const SizedBox(width: 12.0),
             t,
           ]));
 

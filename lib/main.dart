@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:jp/button.dart';
+import 'package:jp/text.dart';
+import 'package:jp/toggle.dart';
 import 'package:jp_ui_kit/JPButton/jp_button_size.dart';
 import 'package:jp_ui_kit/JPButton/jp_button.dart';
 import 'package:jp_ui_kit/JPCheckBox/jp_checkbox.dart';
 import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
+
+import 'checkbox.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home:  MyHomePage(),
+      home:  Toggle(),
     );
   }
 }
@@ -51,14 +56,14 @@ class _MyHomePageState extends State<MyHomePage> {
               JPButton(
 
               ),
-              SizedBox(
+                SizedBox(
                 height: 5,
               ),
               JPButton(
                 onPressed: (){},
                 text: "NORMAL BUTTON",
                 jpButtonwidth: JPButtonSize.large,
-                jpButtonhight: JPButtonSize.large,
+                jpButtonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -67,9 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: (){},
                 shape: JPShape.circular,
                 text: "TERTIARY BUTTON",
-                color: JPColor.TERTIARY,
+                color: JPColor.tertiary,
                 jpButtonwidth: JPButtonSize.large,
-                jpButtonhight: JPButtonSize.large,
+                jpButtonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -78,9 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: (){},
                 shape: JPShape.circular,
                 text: "GRAY BUTTON",
-                color: JPColor.LIGHTBUTTON,
+                color: JPColor.light_button,
                 jpButtonwidth: JPButtonSize.large,
-                jpButtonhight: JPButtonSize.large,
+                jpButtonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -94,29 +99,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: JPShape.circular,
                 text: "NORMAL BUTTON",
                 jpButtonwidth: JPButtonSize.large,
-                jpButtonhight: JPButtonSize.large,
+                jpButtonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
               ),
-              const JPButton(
+               JPButton(
                 enabled: false,
                 shape: JPShape.circular,
                 text: "TERTIARY BUTTON",
-                color: JPColor.TERTIARY,
+                color: JPColor.tertiary,
                 jpButtonwidth: JPButtonSize.large,
-                jpButtonhight: JPButtonSize.large,
+                jpButtonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
               ),
-              const JPButton(
+               JPButton(
                 enabled: false,
                 shape: JPShape.circular,
                 text: "GRAY BUTTON",
-                color: JPColor.LIGHTBUTTON,
+                color: JPColor.light_button,
                 jpButtonwidth: JPButtonSize.large,
-                jpButtonhight: JPButtonSize.large,
+                jpButtonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -127,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               JPButton(
                 jpButtonwidth: JPButtonSize.medium ,
-                jpButtonhight: JPButtonSize.medium,
+                jpButtonheight: JPButtonSize.medium,
                 onPressed: (){},
                 size: JPSize.medium,
                 shape: JPShape.circular,
@@ -142,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               JPButton(
                 jpButtonwidth: JPButtonSize.small,
-                jpButtonhight: JPButtonSize.small,
+                jpButtonheight: JPButtonSize.small,
                 onPressed: (){},
                 size: JPSize.small,
                 shape: JPShape.circular,
@@ -170,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               JPButton(
                 jpButtonwidth: JPButtonSize.small,
-                jpButtonhight: JPButtonSize.small,
+                jpButtonheight: JPButtonSize.small,
                 onPressed: (){},
                 type: JPButtonType.outline,
                 size: JPSize.small,
@@ -187,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
               JPButton(
                 onPressed: (){},
                 jpButtonwidth: JPButtonSize.rectangle,
-                jpButtonhight: JPButtonSize.rectangle,
+                jpButtonheight: JPButtonSize.rectangle,
                 shape: JPShape.circular,
                 text: "Loading",
                 iconData:Icons.replay_circle_filled ,
@@ -203,12 +208,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
               JPButton(
                 jpButtonwidth: JPButtonSize.square,
-                jpButtonhight: JPButtonSize.square,
+                jpButtonheight: JPButtonSize.square,
                 shape: JPShape.standard,
                 onPressed: (){},
                 text: null,
                 iconData:Icons.replay_circle_filled ,
-                iconcolor: JPColor.WHITE,
+                iconcolor: JPColor.white,
               ),
               SizedBox(
                 height: 20,
@@ -419,21 +424,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 10,
                   ),
                   JPBadges(
-                    backgroundcolor: JPColor.TERTIARY,
+                    backgroundcolor: JPColor.tertiary,
                     text: "2",
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   JPBadges(
-                    backgroundcolor: JPColor.SECONDARY,
+                    backgroundcolor: JPColor.secondary,
                     text: "2",
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   JPBadges(
-                    backgroundcolor: JPColor.LIGHTBLUE,
+                    backgroundcolor: JPColor.light_blue,
                     text: "2",
                   ),
                   SizedBox(

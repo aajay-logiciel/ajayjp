@@ -38,7 +38,7 @@ class _JPChipsState extends State<JPChips> {
       width: getwidth(),
       constraints: BoxConstraints(maxWidth: 200,minWidth: 70),
       decoration: BoxDecoration(
-        color: JPColor.BACKGROUND,
+        color: JPColor.background,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
@@ -58,7 +58,7 @@ Widget txt(){
         fontSize: 12,
         fontWeight: FontWeight.w400,
         fontFamily: 'Roboto',
-        color: JPColor.BLACK,
+        color: JPColor.black,
       ),);
 }
 
@@ -68,11 +68,11 @@ return Visibility(
     child:(widget.isleading==false)?SizedBox(width: 0,) :Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(width: 2,color: JPColor.PRIMARY)
+        border: Border.all(width: 2,color: JPColor.primary)
       ),
       child: ClipRRect(
        borderRadius: BorderRadius.circular(8),
-        child: Icon(Icons.person,size: 14,color: JPColor.PRIMARY,),
+        child: Icon(Icons.person,size: 14,color: JPColor.primary,),
       ),
     ),
 );
@@ -89,7 +89,7 @@ return Visibility(
              child: IconButton(
                  splashRadius: 1,
                  onPressed: (){},
-                 icon: Icon(Icons.close,color: JPColor.SECONDARY,size: 10,)),
+                 icon: Icon(Icons.close,color: JPColor.secondary,size: 10,)),
            ),
          ),);
   }

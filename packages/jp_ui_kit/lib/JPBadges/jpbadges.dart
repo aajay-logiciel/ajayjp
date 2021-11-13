@@ -4,12 +4,15 @@ import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPBadges extends StatelessWidget {
-  const JPBadges({this.backgroundcolor= JPColor.PRIMARY,
+  const JPBadges({this.backgroundcolor= JPColor.primary,
     required this.text,
+    this.textcolor=JPColor.white,
+
     Key? key}) : super(key: key);
 
   final Color? backgroundcolor ;
   final String text;
+  final Color? textcolor;
   @override
   Widget build(BuildContext context) {
 
@@ -26,9 +29,7 @@ class JPBadges extends StatelessWidget {
         JPText(
           text: text,
           textSize: JPTextSize.Heading_5,
-          fontWeight: JPFontWeight.REGULAR,
-          fontfamily: JPFontFamily.Roboto,
-          textcolor: JPColor.WHITE,
+          textcolor: textcolor,
         )
           ),
     );

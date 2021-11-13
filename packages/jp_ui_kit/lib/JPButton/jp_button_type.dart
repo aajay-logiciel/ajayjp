@@ -5,7 +5,4 @@ enum JPButtonType {
 
   /// Type [ButtonType.outline], used for widget with outline border
   outline,
-
-  /// Type [ButtonType.transparent], used for widget with fill color with Colors.transparent
-  transparent,
 }

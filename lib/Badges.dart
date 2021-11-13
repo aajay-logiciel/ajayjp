@@ -27,21 +27,21 @@ class Badges extends StatelessWidget {
                     width: 10,
                   ),
                   JPBadges(
-                    backgroundcolor: JPColor.TERTIARY,
+                    backgroundcolor: JPColor.tertiary,
                     text: "2",
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   JPBadges(
-                    backgroundcolor: JPColor.SECONDARY,
+                    backgroundcolor: JPColor.secondary,
                     text: "2",
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   JPBadges(
-                    backgroundcolor: JPColor.LIGHTBLUE,
+                    backgroundcolor: JPColor.light_blue,
                     text: "2",
                   ),
                   SizedBox(

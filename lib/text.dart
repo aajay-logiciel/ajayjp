@@ -5,8 +5,8 @@ import 'package:jp_ui_kit/JPText/jp_text.dart';
 import 'package:jp_ui_kit/JPText/jp_textsize.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
-class Text extends StatelessWidget {
-  const Text(String s, {Key? key}) : super(key: key);
+class TextClass extends StatelessWidget {
+  const TextClass(String s, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,10 @@ class Text extends StatelessWidget {
               ),
               Column(
                 children: const [
-                  JPText(text: "This is new text"),
+                  JPText(text: "This is new text",
+                    textcolor: Colors.red,
+                    textSize: JPTextSize.Heading_1,
+                  ),
 
                   JPText(text: "This is new text",
                     textSize: JPTextSize.Heading_1,
