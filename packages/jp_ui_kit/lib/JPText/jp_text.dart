@@ -50,8 +50,6 @@ class JPText extends StatelessWidget {
         return 'Roboto';
       case JPFontFamily.Montserrat:
         return 'Montserrat';
-      case JPFontFamily.DancingScript:
-        return 'DancingScript';
       default:
         return 'Roboto';
     }

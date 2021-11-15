@@ -6,13 +6,13 @@ import 'package:jp_ui_kit/JPText/jp_textsize.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class TextClass extends StatelessWidget {
-  const TextClass(String s, {Key? key}) : super(key: key);
+  const TextClass( {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(""),
+        title: const Text("Text"),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -112,13 +112,6 @@ class TextClass extends StatelessWidget {
                 ],
               ),
 
-              JPText(text: "This is new text",
-                fontfamily: JPFontFamily.DancingScript,
-                textSize: JPTextSize.Heading_1,),
-
-
-
-     
           
 
             ],

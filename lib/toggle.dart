@@ -16,7 +16,7 @@ class _ToggleState extends State<Toggle> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Buttons"),
+        title: const Text("Toggle"),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -55,6 +55,10 @@ class _ToggleState extends State<Toggle> {
                       });
                     },
                   ),
+
+                  Switch(value: status, onChanged: (value){
+                    status=!status;
+                  })
                 ],
               ),
 

@@ -8,6 +8,8 @@ import 'package:jp_ui_kit/JPButton/jp_button.dart';
 import 'package:jp_ui_kit/JPCheckBox/jp_checkbox.dart';
 import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
+import 'package:get/get.dart';
+
 
 import 'checkbox.dart';
 
@@ -21,8 +23,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home:  CheckboxClass(),
+    return  const GetMaterialApp(
+      home:  Button(),
     );
   }
 }

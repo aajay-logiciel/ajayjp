@@ -17,7 +17,7 @@ class _CheckboxClassState extends State<CheckboxClass> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Buttons"),
+        title: const Text("Checkbox"),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -30,7 +30,7 @@ class _CheckboxClassState extends State<CheckboxClass> {
               ),
 
 
-              JPCheckbox(labels: ['Option1','Option2',/*'Option3','Option4','Option5','Option6'*/],
+              JPCheckbox(labels: ['Option1','Option2','Option3','Option4','Option5','Option6',],
                 disabled: ['Option1'],
               ),
               SizedBox(

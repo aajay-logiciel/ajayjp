@@ -6,30 +6,32 @@ import 'package:jp_ui_kit/JPNButton/jp_radius.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 class JPNButton extends StatefulWidget {
    JPNButton({
-     this.enabled=true,
-     this.jpButtonColorType,
-     this.backgroundColor=JPColor.primary,
-     this.buttonType=JPButtonType.solid,
+     this.enabled = true,
+     this.colorType = JPButtonColorType.primary,
+     this.backgroundColor,
+     this.type = JPButtonType.solid,
      this.onPressed,
-     this.iconColor=JPColor.white,
+     this.iconColor = JPColor.white,
      this.iconData,
      this.child,
-     this.iconPosition=JPIconPosition.start,
+     this.iconPosition = JPIconPosition.start,
      this.text,
-     this.jpButtonSize,
+     this.size = JPButtonSize.large,
+     this.textColor = JPColor.white,
     Key? key}) : super(key: key);
 
   final bool? enabled;
-  JPButtonColorType? jpButtonColorType;
+  JPButtonColorType colorType;
   Color? backgroundColor;
-  JPButtonType? buttonType;
-  Function? onPressed;
+  JPButtonType type;
+  final VoidCallback? onPressed;
   final Widget? child;
   final IconData? iconData;
   final Color? iconColor;
   final JPIconPosition iconPosition;
   final String? text;
-  final JPButtonSize? jpButtonSize ;
+  final JPButtonSize size ;
+  final Color textColor;
 
 
   @override
@@ -42,72 +44,123 @@ class _JPNButtonState extends State<JPNButton> {
   IconData? iconData;
   Color? iconColor;
   Widget? child;
-  JPButtonSize? jpButtonSize;
-  JPRadius? jpRadius=JPRadius.circular;
+  JPButtonSize? size;
+  JPRadius? radius = JPRadius.circular;
   ShapeBorder? borderShape;
   JPShape? shape;
   String? text;
   JPTextSize? textSize;
+  JPButtonType? type;
+  Color? textColor;
   @override
   void initState() {
-    text=widget.text;
-    iconData=widget.iconData;
-    iconColor=widget.iconColor;
+    text = widget.text;
+    child = widget.child;
+    type = widget.type;
+    iconData = widget.iconData;
+    iconColor = widget.iconColor;
+    textColor = widget.textColor;
 
-    child = text != null ? JPText(text:text!,textcolor: (widget.buttonType==JPButtonType.outline)?JPColor.primary:JPColor.white,textSize: getTextSize(),) : widget.child;
-    jpButtonSize=(iconData!=null&&text==null)?JPButtonSize.square:(iconData!=null&&text!=null)?JPButtonSize.rectangle:widget.jpButtonSize;
-    shape=(widget.iconData!=null&& child==null)?JPShape.standard:shape;
 
-    // TODO: implement initState
+    if(text != null) {
+      child = JPText ( text: text! ,
+               textcolor: getTextColor() ?? textColor,
+               textSize: getTextSize());
+       } else {
+           child = widget.child;
+             }
+
+    if(iconData != null && text == null) {
+      size = JPButtonSize.square;
+    } else if(iconData != null && text != null) {
+      size = JPButtonSize.rectangle;
+    } else {
+      size=widget.size;
+    }
+
+    if(iconData != null && text == null) {
+      shape = JPShape.standard;
+    } else {
+      shape=shape;
+    }
+
+
     super.initState();
   }
-  getTextSize(){
-switch(jpButtonSize){
-  case JPButtonSize.large:
-    return JPTextSize.Heading_3;
-  case JPButtonSize.medium:
-    return JPTextSize.Heading_4;
-  case JPButtonSize.small:
-    return JPTextSize.Heading_6;
-  case JPButtonSize.rectangle:
-    return JPTextSize.Heading_6;
-  default:
-    return JPTextSize.Heading_3;
-}
+
+  getTextSize() {
+       switch(size) {
+           case JPButtonSize.large:
+                return JPTextSize.Heading_3;
+           case JPButtonSize.medium:
+                return JPTextSize.Heading_4;
+           case JPButtonSize.small:
+                return JPTextSize.Heading_6;
+           case JPButtonSize.rectangle:
+                return JPTextSize.Heading_6;
+           default:
+                return JPTextSize.Heading_3;
+       }
+  }
+
+  getTextColor() {
+    if(type == JPButtonType.outline) {
+      textColor = JPColor.primary;
+    } else {
+      textColor = JPColor.white;
+    }
   }
 
 
-  Color? getButtonColor() {
-    if (widget.buttonType == JPButtonType.outline) {
-      return JPColor.white;
-    }
-    else {
-      switch (widget.jpButtonColorType) {
-        case JPButtonColorType.primary:
-          return JPColor.primary;
-        case JPButtonColorType.tertiary:
-          return JPColor.tertiary;
-        case JPButtonColorType.light_button:
-          return JPColor.light_blue;
-        case JPButtonColorType.white:
-          return JPColor.white;
-        default:
-          return JPColor.primary;
+  Color getButtonColor() {
+    if (type == JPButtonType.outline) {
+      return JPColor.transparent;
+    } else {
+         switch (widget.colorType) {
+           case JPButtonColorType.primary:
+             return JPColor.primary;
+           case JPButtonColorType.tertiary:
+             return JPColor.tertiary;
+           case JPButtonColorType.light_button:
+             return JPColor.light_blue;
+           default:
+             return JPColor.primary;
       }
     }
   }
-  BoxDecoration? getBoxDecoration(){
-    switch(jpRadius){
+
+  BoxDecoration getBoxDecoration(){
+    switch(type) {
+      case JPButtonType.solid:
+        return BoxDecoration(
+          borderRadius: getButtonRadius(),
+          color: widget.backgroundColor  ?? getButtonColor(),
+        );
+      case JPButtonType.outline:
+        return BoxDecoration(
+          borderRadius: getButtonRadius(),
+          color: JPColor.transparent,
+          border: Border.all(
+            width: 1.0,
+            color: widget.backgroundColor ?? getButtonColor(),
+          )
+        );
+      default:
+        return BoxDecoration(
+          borderRadius: getButtonRadius(),
+          color: widget.backgroundColor ?? getButtonColor(),
+        );
+    }
+  }
+
+  BorderRadiusGeometry getButtonRadius(){
+    switch(radius){
       case JPRadius.circular:
-        return BoxDecoration(
-         // color:widget.backgroundColor,
-          borderRadius: BorderRadius.circular(50),
-        );
+        return  BorderRadius.circular(50);
       case JPRadius.round:
-        return BoxDecoration(
-         // color:widget.backgroundColor,
-          borderRadius: BorderRadius.circular(10),
-        );
+        return BorderRadius.circular(10);
+      default:
+        return BorderRadius.circular(50);
     }
   }
 
@@ -115,9 +168,11 @@ switch(jpButtonSize){
 
   @override
   Widget build(BuildContext context) {
-    ShapeBorder shapeBorderType;
-   double? getButtonWidth(){
-      switch(jpButtonSize){
+
+     ShapeBorder shapeBorderType;
+
+     double getButtonWidth(){
+      switch(size){
         case JPButtonSize.large:
           return  MediaQuery.of(context).size.width;
         case JPButtonSize.medium:
@@ -132,8 +187,9 @@ switch(jpButtonSize){
           return  MediaQuery.of(context).size.width;
       }
     }
-   double? getButtonHeight(){
-      switch(jpButtonSize){
+
+     double getButtonHeight(){
+      switch(size){
         case JPButtonSize.large:
           return 52.0;
         case JPButtonSize.medium:
@@ -148,11 +204,12 @@ switch(jpButtonSize){
           return 52.0;
       }
     }
+
     const BorderSide outlineBorder = BorderSide(
       color:JPColor.primary,
       width: 1,
     );
-    final BorderSide shapeBorder = widget.buttonType == JPButtonType.outline
+    final BorderSide shapeBorder = type == JPButtonType.outline
         ? outlineBorder
         :const BorderSide(
           color:JPColor.transparent ,
@@ -189,19 +246,22 @@ switch(jpButtonSize){
 
     }
     final result = Container(
-      constraints: widget.iconData == null
+      constraints: iconData == null
           ? const BoxConstraints(minWidth: 80)
-          :(widget.child == null)? const BoxConstraints(minWidth: 30,minHeight: 30):const BoxConstraints(minWidth: 90,maxHeight: 52),
-        decoration:getBoxDecoration() ,
+          : (child == null)
+          ? const BoxConstraints(minWidth: 30,minHeight: 30)
+          : const BoxConstraints(minWidth: 90,maxHeight: 52),
+        decoration: getBoxDecoration() ,
       child: Material(
         shape: shapeBorderType,
         type: MaterialType.button,
-        color:(widget.jpButtonSize==JPButtonSize.square)?widget.backgroundColor:getButtonColor(),
+        color: widget.backgroundColor ?? getButtonColor(),
         child: InkWell(
             customBorder: borderShape ?? shapeBorderType,
-          onTap: (widget.enabled==false)?null:(){widget.onPressed;},
+          onTap: (widget.enabled == false) ? null : widget.onPressed,
           child: IconTheme.merge(
-              data: IconThemeData(opacity: (widget.enabled==true)?1:0.3),
+              data: IconThemeData(
+                  opacity: (widget.enabled == true) ? 1 : 0.3),
               child: Container(
                 height: getButtonHeight(),
                 width: getButtonWidth(),
@@ -212,44 +272,47 @@ switch(jpButtonSize){
                     widthFactor: 1,
                     heightFactor: 1,
                     child: iconData != null &&
-                        child != null &&
-                        (widget.iconPosition == JPIconPosition.start)
-                        ? Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Icon(
-                          iconData,
-                          size: 15,
-                          color: iconColor,
-                        ),
-                        const SizedBox(width: 8),
-                        child!
-                      ],
+                           child != null &&
+                           (widget.iconPosition == JPIconPosition.start)
+                           ? Row(
+                               mainAxisSize: MainAxisSize.min,
+                               children: <Widget>[
+                                  Icon(
+                                      iconData,
+                                      size: 15,
+                                      color: iconColor,
+                                      ),
+                             const SizedBox(width: 8),
+                             child!
+                               ],
                     )
                         : iconData != null &&
-                        child != null &&
-                        (widget.iconPosition == JPIconPosition.end)
+                          child != null &&
+                          (widget.iconPosition == JPIconPosition.end)
                         ? Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        child!,
-                        const SizedBox(width: 8),
-                        Icon(
-                          iconData,
-                          size: 15,
-                          color: iconColor,
+                             mainAxisSize: MainAxisSize.min,
+                             children: <Widget>[
+                                  child!,
+                                  const SizedBox(width: 8),
+                                  Icon(
+                                     iconData,
+                                     size: 15,
+                                     color: iconColor,
+                                      ),
+                                 ],
+                             )
+                        : (iconData != null && widget.text==null)
+                            ? Icon(
+                                iconData,
+                                size: 15,
+                                color: iconColor,
+                                )
+                            : child,
+                            ),
                         ),
-                      ],
-                    )
-                        : (iconData!=null&& widget.text==null)?Icon(
-                      iconData,
-                      size: 15,
-                      color: iconColor,
-                    ):child,
                   ),
                 ),
-              ),),
-        ),
+              ),
       ),
     );
 

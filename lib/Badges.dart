@@ -9,7 +9,7 @@ class Badges extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Buttons"),
+        title: const Text("Badges"),
       ),
       body: SingleChildScrollView(
         child: Padding(

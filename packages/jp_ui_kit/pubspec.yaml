@@ -50,11 +50,6 @@ flutter:
         - asset: fonts/Montserrat-Regular.ttf
         - asset: fonts/Montserrat-Medium.ttf
 
-    - family: DancingScript
-      fonts:
-        - asset: fonts/DancingScript-Bold.ttf
-
-
 
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages

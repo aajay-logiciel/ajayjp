@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:jp/checkbox.dart';
+import 'package:jp/text.dart';
+import 'package:jp/toggle.dart';
 import 'package:jp_ui_kit/JPButton/jp_button.dart';
 import 'package:jp_ui_kit/JPButton/jp_button_color_type.dart';
 import 'package:jp_ui_kit/JPButton/jp_button_size.dart';
-import 'package:jp_ui_kit/JPButton/jp_icon_position.dart';
 import 'package:jp_ui_kit/JPCommonFiles/jp_shape.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
+import 'package:get/get.dart';
+
+import 'Badges.dart';
+import 'Radiobutton.dart';
+
 class Button extends StatelessWidget {
   const Button({Key? key}) : super(key: key);
 
@@ -20,13 +27,62 @@ class Button extends StatelessWidget {
             height: 20,
           ),
           JPNButton(
-            //jpRadius: JPRadius.round,
-          //  iconData: Icons.eleven_mp,
-           text: "button",
-          buttonType: JPButtonType.outline,
-          //  jpButtonColorType: JPButtonColorType.primary,
-           // jpButtonSize: JPButtonSize.square,
-          //  backgroundColor: Colors.green,
+          text: "button",
+          // size: JPButtonSize.small,
+           // iconData: Icons.nineteen_mp_outlined,
+            backgroundColor: Colors.red,
+           // type: JPButtonType.outline,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          JPNButton(
+            text: "Go to text",
+            onPressed: (){
+
+               Get.to( const TextClass());
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          JPNButton(
+            backgroundColor: Colors.green,
+            text: "Go to Checkbox",
+            onPressed: (){
+
+              Get.to( const CheckboxClass());
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          JPNButton(
+            text: "Go to Radiobutton",
+            onPressed: (){
+              Get.to( const Radiobutton());
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          JPNButton(
+            text: "Go to Toggle",
+            onPressed: (){
+              Get.to( const Toggle());
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          JPNButton(
+            text: "Go to Badges",
+            onPressed: (){
+              Get.to( const Badges());
+            },
+          ),
+          const SizedBox(
+            height: 20,
           ),
         ],
       )
