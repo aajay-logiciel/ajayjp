@@ -25,25 +25,25 @@ class TextClass extends StatelessWidget {
               Column(
                 children: const [
                   JPText(text: "This is new text",
-                    textcolor: Colors.red,
+                    textColor: Colors.red,
                     textSize: JPTextSize.heading_1,
                   ),
 
                   JPText(text: "This is new text",
                     textSize: JPTextSize.heading_1,
-                    fontfamily: JPFontFamily.roboto,
+                    fontFamily: JPFontFamily.roboto,
                   ),
                   JPText(text: "This is new text",
                     textSize: JPTextSize.heading_2,
-                    fontfamily: JPFontFamily.roboto,
+                    fontFamily: JPFontFamily.roboto,
                   ),
                   JPText(text: "This is new text",
                     textSize: JPTextSize.heading_3,
-                    fontfamily: JPFontFamily.roboto,
+                    fontFamily: JPFontFamily.roboto,
                   ),
                   JPText(text: "This is new text",
                     textSize: JPTextSize.heading_4,
-                    fontfamily: JPFontFamily.roboto,
+                    fontFamily: JPFontFamily.roboto,
                   ),
 
 

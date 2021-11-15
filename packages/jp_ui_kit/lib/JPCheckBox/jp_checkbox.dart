@@ -29,7 +29,8 @@ class JPCheckbox extends StatefulWidget {
   final JPOrientation? orientation;
 
   /// Called when needed to build a CheckboxGroup element.
-  final Widget Function(Checkbox checkBox, JPText label, int index)? itemBuilder;
+  final Widget Function(Checkbox checkBox, JPText label, int index)?
+      itemBuilder;
 
   //THESE FIELDS ARE FOR THE CHECKBOX
 
@@ -42,24 +43,23 @@ class JPCheckbox extends StatefulWidget {
   /// If true the checkbox's value can be true, false, or null.
   final bool? tristate;
 
-
   //SPACING STUFF
 
   /// Empty space in which to inset the CheckboxGroup.
   final EdgeInsetsGeometry? padding;
 
   /// Empty space surrounding the CheckboxGroup.
-  final EdgeInsetsGeometry ?margin;
+  final EdgeInsetsGeometry? margin;
 
   const JPCheckbox({
     Key? key,
     required this.labels,
     this.checked,
     this.disabled,
-     this.onChange,
+    this.onChange,
     this.onSelected,
-    this.activeColor=JPColor.primary, //defaults to toggleableActiveColor,
-    this.checkColor =  JPColor.white,
+    this.activeColor = JPColor.primary, //defaults to toggleableActiveColor,
+    this.checkColor = JPColor.white,
     this.tristate = false,
     this.orientation = JPOrientation.vertical,
     this.itemBuilder,
@@ -67,96 +67,96 @@ class JPCheckbox extends StatefulWidget {
     this.margin = const EdgeInsets.all(0.0),
   }) : super(key: key);
 
-
   @override
   _JPCheckboxState createState() => _JPCheckboxState();
 }
-
-
 
 class _JPCheckboxState extends State<JPCheckbox> {
   List<String> _selected = [];
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
     //set the selected to the checked (if not null)
     _selected = widget.checked ?? [];
-
   }
 
   @override
   Widget build(BuildContext context) {
-
     //set the selected to the checked (if not null)
-    if(widget.checked != null){
+    if (widget.checked != null) {
       _selected = [];
       _selected.addAll(widget.checked!); //use add all to prevent a shallow copy
     }
 
-
     List<Widget> content = [];
 
-    for(int i = 0; i < widget.labels!.length; i++){
-
+    for (int i = 0; i < widget.labels!.length; i++) {
       Checkbox cb = Checkbox(
-        shape:const RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
         ),
         value: _selected.contains(widget.labels!.elementAt(i)),
-        onChanged: (widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i))) ? null :
-            (isChecked) => onChanged(isChecked!, i),
+        onChanged: (widget.disabled != null &&
+                widget.disabled!.contains(widget.labels!.elementAt(i)))
+            ? null
+            : (isChecked) => onChanged(isChecked!, i),
         checkColor: widget.checkColor,
         activeColor: widget.activeColor,
         tristate: widget.tristate!,
       );
 
-
-      JPText t =JPText(text:widget.labels!.elementAt(i),
-      textcolor:(widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i)))?
-      Theme.of(context).disabledColor:JPColor.black,
+      JPText t = JPText(
+        text: widget.labels!.elementAt(i),
+        textColor: (widget.disabled != null &&
+                widget.disabled!.contains(widget.labels!.elementAt(i)))
+            ? Theme.of(context).disabledColor
+            : JPColor.black,
       );
 
-
-
       //use user defined method to build
-      if(widget.itemBuilder != null) {
+      if (widget.itemBuilder != null) {
         content.add(widget.itemBuilder!(cb, t, i));
-      } else{ //otherwise, use predefined method of building
-          content.add( Row(children: <Widget>[
-             cb,
-              const SizedBox(width: 12.0),
-              t,
-              const SizedBox(width: 12.0),
-            ]),
-         );
+      } else {
+        //otherwise, use predefined method of building
+        content.add(
+          Row(children: <Widget>[
+            cb,
+            const SizedBox(width: 12.0),
+            t,
+            const SizedBox(width: 12.0),
+          ]),
+        );
       }
     }
 
     return Container(
       padding: widget.padding,
       margin: widget.margin,
-      child: widget.orientation == JPOrientation.vertical ? Column(children: content) : Row(children: content,),
+      child: widget.orientation == JPOrientation.vertical
+          ? Column(children: content)
+          : Row(
+              children: content,
+            ),
     );
   }
 
-
-  void onChanged(bool isChecked, int i){
+  void onChanged(bool isChecked, int i) {
     bool isAlreadyContained = _selected.contains(widget.labels!.elementAt(i));
 
-    if(mounted){
+    if (mounted) {
       setState(() {
-        if(!isChecked && isAlreadyContained){
+        if (!isChecked && isAlreadyContained) {
           _selected.remove(widget.labels!.elementAt(i));
-        }else if(isChecked && !isAlreadyContained){
+        } else if (isChecked && !isAlreadyContained) {
           _selected.add(widget.labels!.elementAt(i));
         }
 
-        if(widget.onChange != null) widget.onChange!(isChecked, widget.labels!.elementAt(i), i);
-        if(widget.onSelected != null) widget.onSelected!(_selected);
+        if (widget.onChange != null)
+          widget.onChange!(isChecked, widget.labels!.elementAt(i), i);
+        if (widget.onSelected != null) widget.onSelected!(_selected);
       });
     }
   }
-
 }

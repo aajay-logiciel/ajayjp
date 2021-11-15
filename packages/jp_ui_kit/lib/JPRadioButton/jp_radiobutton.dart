@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/JPCommonFiles/jp_colors.dart';
 import 'package:jp_ui_kit/JPCommonFiles/jp_orientation.dart';
-import 'package:jp_ui_kit/JPText/jp_fontfamily.dart';
-import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
 import 'package:jp_ui_kit/JPText/jp_text.dart';
-import 'package:jp_ui_kit/JPText/jp_textsize.dart';
-
 
 class JPRadioButton extends StatefulWidget {
   /// A list of strings that describes each Radio button. Each label must be distinct.
@@ -28,12 +24,12 @@ class JPRadioButton extends StatefulWidget {
   /// Called when the user makes a selection.
   final void Function(String selected)? onSelected;
 
-
   /// Specifies the orientation to display elements.
   final JPOrientation? orientation;
 
   /// Called when needed to build a RadioButtonGroup element.
-  final Widget Function(Radio radioButton, JPText label, int index)? itemBuilder;
+  final Widget Function(Radio radioButton, JPText label, int index)?
+      itemBuilder;
 
   //RADIO BUTTON FIELDS
   /// The color to use when a Radio button is checked.
@@ -46,19 +42,19 @@ class JPRadioButton extends StatefulWidget {
   /// Empty space surrounding the RadioButtonGroup.
   final EdgeInsetsGeometry? margin;
 
-  JPRadioButton({
+  const JPRadioButton({
     Key? key,
     required this.labels,
     this.picked,
     this.disabled,
     this.onChange,
     this.onSelected,
-    this.activeColor=JPColor.primary, //defaults to toggleableActiveColor,
+    this.activeColor = JPColor.primary, //defaults to toggleableActiveColor,
     this.orientation = JPOrientation.vertical,
     this.itemBuilder,
     this.padding = const EdgeInsets.all(0.0),
     this.margin = const EdgeInsets.all(0.0),
-  }) : super (key: key);
+  }) : super(key: key);
 
   @override
   _JPRadioButtonState createState() => _JPRadioButtonState();
@@ -68,78 +64,79 @@ class _JPRadioButtonState extends State<JPRadioButton> {
   String? _selected;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
     //set the selected to the picked (if not null)
     _selected = widget.picked ?? "";
-
   }
-
 
   @override
   Widget build(BuildContext context) {
-
     //set the selected to the picked (if not null)
     _selected = widget.picked ?? _selected;
 
-
     List<Widget> content = [];
-    for(int i = 0; i < widget.labels!.length; i++){
-
+    for (int i = 0; i < widget.labels!.length; i++) {
       Radio rb = Radio(
         activeColor: widget.activeColor,
         groupValue: widget.labels!.indexOf(_selected!),
         value: i,
-
         //just changed the selected filter to current selection
         //since these are radio buttons, and you can only pick
         //one at a time
-        onChanged: (widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i))) ? null :
-            (var index) => setState((){
-          _selected = widget.labels!.elementAt(i);
+        onChanged: (widget.disabled != null &&
+                widget.disabled!.contains(widget.labels!.elementAt(i)))
+            ? null
+            : (var index) => setState(() {
+                  _selected = widget.labels!.elementAt(i);
 
-          if(widget.onChange != null) widget.onChange!(widget.labels!.elementAt(i), i);
-          if(widget.onSelected != null) widget.onSelected!(widget.labels!.elementAt(i));
-        }),
+                  if (widget.onChange != null)
+                    widget.onChange!(widget.labels!.elementAt(i), i);
+                  if (widget.onSelected != null)
+                    widget.onSelected!(widget.labels!.elementAt(i));
+                }),
       );
-      JPText t =JPText(text:widget.labels!.elementAt(i),
-        textcolor:(widget.disabled != null && widget.disabled!.contains(widget.labels!.elementAt(i)))?
-        Theme.of(context).disabledColor:JPColor.black,
+
+      JPText t = JPText(
+        text: widget.labels!.elementAt(i),
+        textColor: (widget.disabled != null &&
+                widget.disabled!.contains(widget.labels!.elementAt(i)))
+            ? Theme.of(context).disabledColor
+            : JPColor.black,
       );
 
       //use user defined method to build
-      if(widget.itemBuilder != null) {
+      if (widget.itemBuilder != null) {
         content.add(widget.itemBuilder!(rb, t, i));
-      } else{ //otherwise, use predefined method of building
+      } else {
+        //otherwise, use predefined method of building
 
         //vertical orientation means Column with Row inside
-        if(widget.orientation == JPOrientation.vertical){
-
+        if (widget.orientation == JPOrientation.vertical) {
           content.add(Row(children: <Widget>[
             const SizedBox(width: 12.0),
             rb,
             const SizedBox(width: 12.0),
             t,
           ]));
-
-        }else{ //horizontal orientation means Row with Column inside
-
+        } else {
+          //horizontal orientation means Row with Column inside
           content.add(Column(children: <Widget>[
             rb,
             const SizedBox(width: 12.0),
             t,
           ]));
-
         }
       }
-
     }
 
     return Container(
       padding: widget.padding,
       margin: widget.margin,
-      child: widget.orientation == JPOrientation.vertical ? Column(children: content) : Row(children: content),
+      child: widget.orientation == JPOrientation.vertical
+          ? Column(children: content)
+          : Row(children: content),
     );
   }
 }

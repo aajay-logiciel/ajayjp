@@ -1,7 +1,8 @@
 enum JPButtonSize{
- small,
- medium,
  large,
- rectangle,
- square,
+ medium,
+ semiMedium,
+ small,
+ extraSmall
+
 }
