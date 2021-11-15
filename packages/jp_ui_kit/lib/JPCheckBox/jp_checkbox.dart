@@ -61,7 +61,7 @@ class JPCheckbox extends StatefulWidget {
     this.activeColor=JPColor.primary, //defaults to toggleableActiveColor,
     this.checkColor =  JPColor.white,
     this.tristate = false,
-    this.orientation = JPOrientation.vertical,
+    this.orientation = JPOrientation.horizontal,
     this.itemBuilder,
     this.padding = const EdgeInsets.all(0.0),
     this.margin = const EdgeInsets.all(0.0),
@@ -124,20 +124,6 @@ class _JPCheckboxState extends State<JPCheckbox> {
       if(widget.itemBuilder != null) {
         content.add(widget.itemBuilder!(cb, t, i));
       } else{ //otherwise, use predefined method of building
-
-        //vertical orientation means Column with Row inside
-        if(widget.orientation == JPOrientation.vertical){
-
-          content.add(Row(children: <Widget>[
-            const SizedBox(width: 12.0),
-            cb,
-            const SizedBox(width: 12.0),
-            t,
-            const SizedBox(width: 12.0),
-          ]));
-
-        }else{ //horizontal orientation means Row with Column inside
-
           content.add( Row(children: <Widget>[
              cb,
               const SizedBox(width: 12.0),
@@ -145,16 +131,13 @@ class _JPCheckboxState extends State<JPCheckbox> {
               const SizedBox(width: 12.0),
             ]),
          );
-
-        }
-
       }
     }
 
     return Container(
       padding: widget.padding,
       margin: widget.margin,
-      child: widget.orientation == JPOrientation.vertical ? Column(children: content) : Row(children: content),
+      child: widget.orientation == JPOrientation.vertical ? Column(children: content) : Row(children: content,),
     );
   }
 

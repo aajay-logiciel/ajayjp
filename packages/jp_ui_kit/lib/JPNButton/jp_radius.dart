@@ -1,0 +1,4 @@
+enum JPRadius{
+  circular,
+  round,
+}

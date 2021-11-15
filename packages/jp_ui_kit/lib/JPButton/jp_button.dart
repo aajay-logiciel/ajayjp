@@ -16,7 +16,7 @@ import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 
 class JPButton extends StatefulWidget {
-   JPButton({
+  JPButton({
     Key? key,
     this.onPressed,
     this.textStyle,
@@ -29,8 +29,8 @@ class JPButton extends StatefulWidget {
     this.type = JPButtonType.solid,
     this.shape = JPShape.circular,
     this.color = JPColor.primary,
-    this.jpButtonwidth ,
-    this.jpButtonheight ,
+    this.buttonwidth ,
+    this.buttonheight ,
     this.textColor,
     this.iconposition = JPIconPosition.start,
     this.size = JPSize.medium,
@@ -82,9 +82,9 @@ class JPButton extends StatefulWidget {
   /// Button type of [BShape] i.e, standard, circular, square, icons
   final JPShape shape;
 
-  JPButtonSize? jpButtonwidth;
+  JPButtonSize? buttonwidth;
 
-  JPButtonSize? jpButtonheight;
+  JPButtonSize? buttonheight;
 
   /// Pass [JPColors] or [Color]
   final Color color;
@@ -168,8 +168,8 @@ class _JPButtonState extends State<JPButton> {
 
   @override
   void initState() {
-   // widget.jpButtonwidth= (widget.iconData!=null)?JPButtonSize.square:JPButtonSize.large;
-   // widget.jpButtonheight= (widget.iconData!=null)?JPButtonSize.square:JPButtonSize.large;
+    // widget.jpButtonwidth= (widget.iconData!=null)?JPButtonSize.square:JPButtonSize.large;
+    // widget.jpButtonheight= (widget.iconData!=null)?JPButtonSize.square:JPButtonSize.large;
     color = widget.color;
     textColor = widget.textColor;
     child = widget.text != null ? JPText(text:widget.text!,textcolor: JPColor.white,) : widget.child;
@@ -178,7 +178,7 @@ class _JPButtonState extends State<JPButton> {
     type = widget.type;
     shape = widget.shape;
     size = widget.size;
-  //  jpButtonWidth=widget.jpButtonwidth;
+    //  jpButtonWidth=widget.jpButtonwidth;
     iconposition = widget.iconposition;
     disabledColor = widget.disabledColor;
     disabledTextColor = widget.disabledTextColor;
@@ -188,33 +188,33 @@ class _JPButtonState extends State<JPButton> {
 
 
 
-   buttonWidth(){
+  buttonWidth(){
     /*if(widget.iconData!=null && widget.text==null){
       return 30;
     }
     else{*/
-      switch(widget.jpButtonwidth){
-        case JPButtonSize.large:
-          return MediaQuery.of(context).size.width;
-        case JPButtonSize.medium:
-          return 160;
-        case JPButtonSize.small:
-          return 60;
-        case JPButtonSize.rectangle:
-          return 120;
-        case JPButtonSize.square:
-          return 30;
-      }
-   // }
+    switch(widget.buttonwidth){
+      case JPButtonSize.large:
+        return MediaQuery.of(context).size.width;
+      case JPButtonSize.medium:
+        return 160;
+      case JPButtonSize.small:
+        return 60;
+      case JPButtonSize.rectangle:
+        return 120;
+      case JPButtonSize.square:
+        return 30;
+    }
+    // }
 
   }
 
-   buttonHeight(){
+  buttonHeight(){
     if(widget.iconData!=null && widget.text==null){
       return 30;
     }
     else{
-      switch(widget.jpButtonwidth){
+      switch(widget.buttonwidth){
         case JPButtonSize.large:
           return 52;
         case JPButtonSize.medium:

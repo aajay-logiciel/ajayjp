@@ -318,6 +318,7 @@ class _JPToggleState extends State<JPToggle>
               ),
             ),
           ),
+
         );
       },
     );

@@ -23,20 +23,17 @@ class _CheckboxClassState extends State<CheckboxClass> {
         child: Padding(
           padding: EdgeInsets.all(10),
           child: Column(
-            children:  [
+            children:  const [
 
-              const SizedBox(
+              SizedBox(
                 height: 5,
               ),
 
 
-              JPCheckbox(labels: ['Option1','Option2','Option3','Option4','Option5','Option6'],
+              JPCheckbox(labels: ['Option1','Option2',/*'Option3','Option4','Option5','Option6'*/],
                 disabled: ['Option1'],
-                onChange: (bool isChecked, String label, int index) {  },
-                orientation: JPOrientation.horizontal,
               ),
-              const JPCheckbox(labels: ["abc"],),
-              const SizedBox(
+              SizedBox(
                 height: 20,
               ),
 

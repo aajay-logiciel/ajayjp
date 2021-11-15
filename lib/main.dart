@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home:  Toggle(),
+      home:  CheckboxClass(),
     );
   }
 }
@@ -62,8 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
               JPButton(
                 onPressed: (){},
                 text: "NORMAL BUTTON",
-                jpButtonwidth: JPButtonSize.large,
-                jpButtonheight: JPButtonSize.large,
+                buttonwidth: JPButtonSize.large,
+                buttonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -73,8 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: JPShape.circular,
                 text: "TERTIARY BUTTON",
                 color: JPColor.tertiary,
-                jpButtonwidth: JPButtonSize.large,
-                jpButtonheight: JPButtonSize.large,
+                buttonwidth: JPButtonSize.large,
+                buttonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -84,8 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: JPShape.circular,
                 text: "GRAY BUTTON",
                 color: JPColor.light_button,
-                jpButtonwidth: JPButtonSize.large,
-                jpButtonheight: JPButtonSize.large,
+                buttonwidth: JPButtonSize.large,
+                buttonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -98,8 +98,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 enabled: false,
                 shape: JPShape.circular,
                 text: "NORMAL BUTTON",
-                jpButtonwidth: JPButtonSize.large,
-                jpButtonheight: JPButtonSize.large,
+                buttonwidth: JPButtonSize.large,
+                buttonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -109,8 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: JPShape.circular,
                 text: "TERTIARY BUTTON",
                 color: JPColor.tertiary,
-                jpButtonwidth: JPButtonSize.large,
-                jpButtonheight: JPButtonSize.large,
+                buttonwidth: JPButtonSize.large,
+                buttonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -120,8 +120,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: JPShape.circular,
                 text: "GRAY BUTTON",
                 color: JPColor.light_button,
-                jpButtonwidth: JPButtonSize.large,
-                jpButtonheight: JPButtonSize.large,
+                buttonwidth: JPButtonSize.large,
+                buttonheight: JPButtonSize.large,
               ),
               SizedBox(
                 height: 5,
@@ -131,8 +131,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 5,
               ),
               JPButton(
-                jpButtonwidth: JPButtonSize.medium ,
-                jpButtonheight: JPButtonSize.medium,
+                buttonwidth: JPButtonSize.medium ,
+                buttonheight: JPButtonSize.medium,
                 onPressed: (){},
                 size: JPSize.medium,
                 shape: JPShape.circular,
@@ -146,8 +146,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 5,
               ),
               JPButton(
-                jpButtonwidth: JPButtonSize.small,
-                jpButtonheight: JPButtonSize.small,
+                buttonwidth: JPButtonSize.small,
+                buttonheight: JPButtonSize.small,
                 onPressed: (){},
                 size: JPSize.small,
                 shape: JPShape.circular,
@@ -174,8 +174,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 5,
               ),
               JPButton(
-                jpButtonwidth: JPButtonSize.small,
-                jpButtonheight: JPButtonSize.small,
+                buttonwidth: JPButtonSize.small,
+                buttonheight: JPButtonSize.small,
                 onPressed: (){},
                 type: JPButtonType.outline,
                 size: JPSize.small,
@@ -191,8 +191,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               JPButton(
                 onPressed: (){},
-                jpButtonwidth: JPButtonSize.rectangle,
-                jpButtonheight: JPButtonSize.rectangle,
+                buttonwidth: JPButtonSize.rectangle,
+                buttonheight: JPButtonSize.rectangle,
                 shape: JPShape.circular,
                 text: "Loading",
                 iconData:Icons.replay_circle_filled ,
@@ -207,8 +207,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
 
               JPButton(
-                jpButtonwidth: JPButtonSize.square,
-                jpButtonheight: JPButtonSize.square,
+                buttonwidth: JPButtonSize.square,
+                buttonheight: JPButtonSize.square,
                 shape: JPShape.standard,
                 onPressed: (){},
                 text: null,
