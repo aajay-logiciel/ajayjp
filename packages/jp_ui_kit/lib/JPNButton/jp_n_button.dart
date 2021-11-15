@@ -3,6 +3,7 @@ import 'package:jp_ui_kit/JPButton/jp_button_color_type.dart';
 import 'package:jp_ui_kit/JPButton/jp_button_size.dart';
 import 'package:jp_ui_kit/JPButton/jp_icon_position.dart';
 import 'package:jp_ui_kit/JPNButton/jp_radius.dart';
+import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 class JPNButton extends StatefulWidget {
    JPNButton({
@@ -18,6 +19,9 @@ class JPNButton extends StatefulWidget {
      this.text,
      this.size = JPButtonSize.large,
      this.textColor = JPColor.white,
+     this.fontFamily=JPFontFamily.montserrat,
+     this.fontWeight = JPFontWeight.bold,
+     this.textSize ,
     Key? key}) : super(key: key);
 
   final bool? enabled;
@@ -32,6 +36,9 @@ class JPNButton extends StatefulWidget {
   final String? text;
   final JPButtonSize size ;
   final Color textColor;
+  final JPFontFamily fontFamily;
+  final JPFontWeight fontWeight;
+  final JPTextSize? textSize;
 
 
   @override
@@ -51,7 +58,7 @@ class _JPNButtonState extends State<JPNButton> {
   String? text;
   JPTextSize? textSize;
   JPButtonType? type;
-  Color? textColor;
+
   @override
   void initState() {
     text = widget.text;
@@ -59,12 +66,22 @@ class _JPNButtonState extends State<JPNButton> {
     type = widget.type;
     iconData = widget.iconData;
     iconColor = widget.iconColor;
-    textColor = widget.textColor;
+    size=widget.size;
 
+
+    if(iconData != null && text == null) {
+      size =JPButtonSize.square;
+    } else if( iconData != null && text != null) {
+      size = JPButtonSize.rectangle;
+    } else {
+      size = JPButtonSize.large;
+    }
 
     if(text != null) {
       child = JPText ( text: text! ,
-               textcolor: getTextColor() ?? textColor,
+               fontfamily: widget.fontFamily,
+               fontWeight: widget.fontWeight,
+               textcolor: getTextColor() ?? widget.textColor,
                textSize: getTextSize());
        } else {
            child = widget.child;
@@ -88,26 +105,26 @@ class _JPNButtonState extends State<JPNButton> {
     super.initState();
   }
 
-  getTextSize() {
+  JPTextSize getTextSize() {
        switch(size) {
            case JPButtonSize.large:
-                return JPTextSize.Heading_3;
+                return JPTextSize.heading_3;
            case JPButtonSize.medium:
-                return JPTextSize.Heading_4;
+                return JPTextSize.heading_4;
            case JPButtonSize.small:
-                return JPTextSize.Heading_6;
+                return JPTextSize.heading_6;
            case JPButtonSize.rectangle:
-                return JPTextSize.Heading_6;
+                return JPTextSize.heading_6;
            default:
-                return JPTextSize.Heading_3;
+                return JPTextSize.heading_3;
        }
   }
 
   getTextColor() {
     if(type == JPButtonType.outline) {
-      textColor = JPColor.primary;
+      return JPColor.primary;
     } else {
-      textColor = JPColor.white;
+      return JPColor.white;
     }
   }
 
@@ -180,7 +197,7 @@ class _JPNButtonState extends State<JPNButton> {
         case JPButtonSize.small:
           return 60.0;
         case JPButtonSize.rectangle:
-          return 120.0;
+          return 140.0;
         case JPButtonSize.square:
           return 30;
         default:

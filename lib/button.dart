@@ -6,6 +6,8 @@ import 'package:jp_ui_kit/JPButton/jp_button.dart';
 import 'package:jp_ui_kit/JPButton/jp_button_color_type.dart';
 import 'package:jp_ui_kit/JPButton/jp_button_size.dart';
 import 'package:jp_ui_kit/JPCommonFiles/jp_shape.dart';
+import 'package:jp_ui_kit/JPText/jp_fontfamily.dart';
+import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 import 'package:get/get.dart';
 
@@ -27,11 +29,16 @@ class Button extends StatelessWidget {
             height: 20,
           ),
           JPNButton(
+            iconData: Icons.eleven_mp,
+            text: "LOAD MORE ",
+
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          JPNButton(
           text: "button",
-          // size: JPButtonSize.small,
-           // iconData: Icons.nineteen_mp_outlined,
             backgroundColor: Colors.red,
-           // type: JPButtonType.outline,
           ),
           const SizedBox(
             height: 20,

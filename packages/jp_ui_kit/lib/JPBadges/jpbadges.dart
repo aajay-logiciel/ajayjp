@@ -28,7 +28,7 @@ class JPBadges extends StatelessWidget {
             child:
         JPText(
           text: text,
-          textSize: JPTextSize.Heading_5,
+          textSize: JPTextSize.heading_5,
           textcolor: textcolor,
         )
           ),

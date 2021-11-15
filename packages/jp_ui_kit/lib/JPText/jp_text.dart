@@ -8,9 +8,9 @@ import 'package:jp_ui_kit/jp_ui_kit.dart';
 class JPText extends StatelessWidget {
   const JPText({
     required this.text,
-    this.textSize=JPTextSize.Heading_4,
-    this.fontfamily=JPFontFamily.Roboto,
-    this.fontWeight=JPFontWeight.REGULAR,
+    this.textSize=JPTextSize.heading_4,
+    this.fontfamily=JPFontFamily.roboto,
+    this.fontWeight=JPFontWeight.regular,
     this.textcolor=JPColor.black,
     Key? key}) : super(key: key);
 
@@ -26,47 +26,47 @@ class JPText extends StatelessWidget {
   Widget build(BuildContext context) {
 
     double getTextSize(){
-    switch(textSize){
-      case JPTextSize.Heading_1:
+      switch(textSize){
+      case JPTextSize.heading_1:
         return 20;
-      case JPTextSize.Heading_2:
+      case JPTextSize.heading_2:
         return 18;
-      case JPTextSize.Heading_3:
+      case JPTextSize.heading_3:
         return 16;
-      case JPTextSize.Heading_4:
+      case JPTextSize.heading_4:
         return 14;
-      case JPTextSize.Heading_5:
+      case JPTextSize.heading_5:
         return 12;
-      case JPTextSize.Heading_6:
+      case JPTextSize.heading_6:
         return 11;
       default:
         return 14;
+      }
     }
-  }
 
     String getFontFamily(){
-    switch(fontfamily){
-      case JPFontFamily.Roboto:
+      switch(fontfamily){
+      case JPFontFamily.roboto:
         return 'Roboto';
-      case JPFontFamily.Montserrat:
+      case JPFontFamily.montserrat:
         return 'Montserrat';
       default:
         return 'Roboto';
+      }
     }
-}
 
     FontWeight getFontWeight(){
       switch(fontWeight){
-        case JPFontWeight.REGULAR:
+        case JPFontWeight.regular:
           return FontWeight.w400;
-        case JPFontWeight.MEDIUM:
+        case JPFontWeight.medium:
           return FontWeight.w500;
-        case JPFontWeight.BOLD:
+        case JPFontWeight.bold:
           return FontWeight.w700;
         default:
           return FontWeight.w400;
+        }
       }
-    }
 
     return Text(
          text,
