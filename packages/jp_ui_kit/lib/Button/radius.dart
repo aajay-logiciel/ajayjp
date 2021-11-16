@@ -1,4 +1,4 @@
 enum JPRadius {
   circular,
-  round,
+  roundSquare,
 }

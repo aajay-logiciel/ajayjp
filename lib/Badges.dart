@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/JPBadges/jpbadges.dart';
-import 'package:jp_ui_kit/JPCommonFiles/jp_colors.dart';
+import 'package:jp_ui_kit/CommonFiles/color.dart';
 
 class BadgesClass extends StatelessWidget {
   const BadgesClass({Key? key}) : super(key: key);

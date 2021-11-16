@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:jp/button_class.dart';
 import 'package:jp/text.dart';
 import 'package:jp/toggle.dart';
-import 'package:jp_ui_kit/JPButton/jp_button_size.dart';
+import 'package:jp_ui_kit/Button/size.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 import 'package:get/get.dart';
 
 import 'Badges.dart';
 import 'Radiobutton.dart';
 import 'checkbox.dart';
+import 'lables.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -34,44 +35,51 @@ class Home extends StatelessWidget {
           children: [
             JPButton(
               text: "Button",
-              size: JPButtonSize.medium,
+              size: JPSize.medium,
               onPressed: () {
                 Get.to(const ButtonClass());
               },
             ),
             JPButton(
               text: "Text",
-              size: JPButtonSize.medium,
+              size: JPSize.medium,
               onPressed: () {
                 Get.to(const TextClass());
               },
             ),
             JPButton(
               text: "Checkbox",
-              size: JPButtonSize.medium,
+              size: JPSize.medium,
               onPressed: () {
                 Get.to(const CheckboxClass());
               },
             ),
             JPButton(
               text: "Radiobutton",
-              size: JPButtonSize.medium,
+              size: JPSize.medium,
               onPressed: () {
                 Get.to(const RadiobuttonClass());
               },
             ),
             JPButton(
               text: "Toggle",
-              size: JPButtonSize.medium,
+              size: JPSize.medium,
               onPressed: () {
                 Get.to(const ToggleClass());
               },
             ),
             JPButton(
               text: "Badges",
-              size: JPButtonSize.medium,
+              size: JPSize.medium,
               onPressed: () {
                 Get.to(const BadgesClass());
+              },
+            ),
+            JPButton(
+              text: "Labels",
+              size: JPSize.medium,
+              onPressed: () {
+                Get.to(const LabelsClass());
               },
             ),
           ],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jp_ui_kit/JPText/jp_fontfamily.dart';
-import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
-import 'package:jp_ui_kit/JPText/jp_textsize.dart';
-import 'package:jp_ui_kit/JPCommonFiles/jp_colors.dart';
+import 'package:jp_ui_kit/CommonFiles/color.dart';
+import 'package:jp_ui_kit/Text/fontfamily.dart';
+import 'package:jp_ui_kit/Text/fontweight.dart';
+import 'package:jp_ui_kit/Text/textsize.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPText extends StatelessWidget {

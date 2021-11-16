@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
+import 'package:jp_ui_kit/Text/fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class TextClass extends StatelessWidget {

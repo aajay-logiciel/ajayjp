@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jp_ui_kit/CommonFiles/color.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPToggle extends StatefulWidget {

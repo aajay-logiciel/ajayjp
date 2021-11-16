@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jp_ui_kit/JPCommonFiles/jp_colors.dart';
-import 'package:jp_ui_kit/JPCommonFiles/jp_orientation.dart';
-import 'package:jp_ui_kit/JPText/jp_text.dart';
+import 'package:jp_ui_kit/CommonFiles/color.dart';
+import 'package:jp_ui_kit/CommonFiles/orientation.dart';
+import 'package:jp_ui_kit/Text/index.dart';
 
 class JPRadioButton extends StatefulWidget {
   /// A list of strings that describes each Radio button. Each label must be distinct.

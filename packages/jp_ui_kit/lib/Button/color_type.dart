@@ -2,5 +2,5 @@ enum JPButtonColorType {
   primary,
   tertiary,
   lightGray,
-  white,
+  transparent,
 }

@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+import 'package:jp_ui_kit/CommonFiles/color.dart';
+import 'package:jp_ui_kit/Text/index.dart';
+import 'package:jp_ui_kit/Text/textsize.dart';
+import 'package:jp_ui_kit/jp_ui_kit.dart';
+
+class LabelsClass extends StatelessWidget {
+  const LabelsClass({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const JPText(
+          text: "Home",
+          textSize: JPTextSize.heading1,
+          textColor: JPColor.white,
+        ),
+      ),
+      body: Column(
+        children: const [
+          JPLabels(),
+        ],
+      ),
+    );
+  }
+}
