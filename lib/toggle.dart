@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/JPToggle/jp_toggle.dart';
 
-class Toggle extends StatefulWidget {
-  const Toggle({Key? key}) : super(key: key);
+class ToggleClass extends StatefulWidget {
+  const ToggleClass({Key? key}) : super(key: key);
 
   @override
-  _ToggleState createState() => _ToggleState();
+  _ToggleClassState createState() => _ToggleClassState();
 }
 
-class _ToggleState extends State<Toggle> {
+class _ToggleClassState extends State<ToggleClass> {
   bool status = false;
   bool status1 = false;
   bool status2 = true;

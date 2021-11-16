@@ -19,10 +19,10 @@ class JPButton extends StatefulWidget {
       this.iconPosition = JPIconPosition.start,
       this.text,
       this.size = JPButtonSize.large,
-      this.textColor,
+      this.textColor = Colors.white,
       this.fontFamily = JPFontFamily.montserrat,
       this.fontWeight = JPFontWeight.bold,
-      this.textSize,
+      this.textSize = JPTextSize.heading_3,
       this.borderColor = JPColor.primary,
       Key? key})
       : super(key: key);
@@ -59,7 +59,7 @@ class _JPButtonState extends State<JPButton> {
   String? text;
   JPTextSize? textSize;
   JPButtonType? type;
-  Color? textColor;
+  Color? textColor ;
 
   @override
   void initState() {
@@ -70,6 +70,7 @@ class _JPButtonState extends State<JPButton> {
     iconColor = widget.iconColor;
     size = widget.size;
     textColor = widget.textColor;
+    textSize = widget.textSize;
 
     if (iconData != null && text == null) {
       size = JPButtonSize.extraSmall;
@@ -82,8 +83,8 @@ class _JPButtonState extends State<JPButton> {
           text: text!,
           fontFamily: widget.fontFamily,
           fontWeight: widget.fontWeight,
-          textColor: getTextColor() ?? textColor,
-          textSize: getTextSize());
+          textColor: textColor ?? getTextColor(),
+          textSize: textSize ?? getTextSize());
     }
 
     if (iconData != null && text == null) {
@@ -99,7 +100,7 @@ class _JPButtonState extends State<JPButton> {
     super.initState();
   }
 
-  JPTextSize getTextSize() {
+   getTextSize() {
     switch (size) {
       case JPButtonSize.large:
         return JPTextSize.heading_3;
@@ -109,8 +110,6 @@ class _JPButtonState extends State<JPButton> {
         return JPTextSize.heading_6;
       case JPButtonSize.semiMedium:
         return JPTextSize.heading_6;
-      default:
-        return JPTextSize.heading_3;
     }
   }
 
@@ -262,7 +261,7 @@ class _JPButtonState extends State<JPButton> {
       child: Material(
         shape: shapeBorderType,
         type: MaterialType.button,
-        color: widget.backgroundColor ?? getButtonColor(),
+        color:   widget.backgroundColor ?? getButtonColor() ,
         child: InkWell(
           customBorder: borderShape ?? shapeBorderType,
           onTap: (widget.enabled == false) ? null : widget.onPressed,

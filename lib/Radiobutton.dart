@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/JPRadioButton/jp_radiobutton.dart';
 
-class Radiobutton extends StatefulWidget {
-  const Radiobutton({Key? key}) : super(key: key);
+class RadiobuttonClass extends StatefulWidget {
+  const RadiobuttonClass({Key? key}) : super(key: key);
 
   @override
-  _RadiobuttonState createState() => _RadiobuttonState();
+  _RadiobuttonClassState createState() => _RadiobuttonClassState();
 }
 
-class _RadiobuttonState extends State<Radiobutton> {
+class _RadiobuttonClassState extends State<RadiobuttonClass> {
   bool status = false;
   bool status1 = false;
   bool status2 = true;
