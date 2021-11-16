@@ -9,4 +9,3 @@ class JPSize {
   /// [JPSize.FULL] is used for full size widget
   static const double full = 100;
 }
-

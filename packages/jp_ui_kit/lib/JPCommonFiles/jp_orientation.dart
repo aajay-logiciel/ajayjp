@@ -1,4 +1,4 @@
-enum JPOrientation{
+enum JPOrientation {
   horizontal,
   vertical,
 }
