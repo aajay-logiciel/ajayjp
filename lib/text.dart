@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jp_ui_kit/JPText/jp_fontfamily.dart';
 import 'package:jp_ui_kit/JPText/jp_fontweight.dart';
-import 'package:jp_ui_kit/JPText/jp_text.dart';
-import 'package:jp_ui_kit/JPText/jp_textsize.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class TextClass extends StatelessWidget {
@@ -16,41 +13,19 @@ class TextClass extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children:  [
-             SizedBox(
-                height: 20,
+              const JPText(text: "Default"),
+              space(),
+              const JPText(text: "This is new text "),
+              space(),
+              const JPText(text: "This is new text ",
+                textColor: Colors.red,
+                fontFamily: JPFontFamily.montserrat,
+                fontWeight: JPFontWeight.bold,
+                textSize: JPTextSize.heading1,
               ),
-              Column(
-                children: const [
-                  JPText(text: "This is new text",
-                    textColor: Colors.red,
-                    textSize: JPTextSize.heading_1,
-                  ),
-
-                  JPText(text: "This is new text",
-                    textSize: JPTextSize.heading_1,
-                    fontFamily: JPFontFamily.roboto,
-                  ),
-                  JPText(text: "This is new text",
-                    textSize: JPTextSize.heading_2,
-                    fontFamily: JPFontFamily.roboto,
-                  ),
-                  JPText(text: "This is new text",
-                    textSize: JPTextSize.heading_3,
-                    fontFamily: JPFontFamily.roboto,
-                  ),
-                  JPText(text: "This is new text",
-                    textSize: JPTextSize.heading_4,
-                    fontFamily: JPFontFamily.roboto,
-                  ),
-
-
-                ],
-              ),
-
-          
 
             ],
           ),
@@ -58,4 +33,7 @@ class TextClass extends StatelessWidget {
       ),
     );
   }
+  Widget space() => const SizedBox(
+    height: 20,
+  );
 }

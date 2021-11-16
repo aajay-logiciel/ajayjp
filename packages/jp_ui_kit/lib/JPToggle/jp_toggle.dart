@@ -14,7 +14,7 @@ class JPToggle extends StatefulWidget {
     required this.value,
     required this.onToggle,
     this.activeColor = JPColor.primary,
-    this.inactiveColor = JPColor.gray,
+    this.inactiveColor = JPColor.darkGray,
     this.toggleColor = JPColor.white,
     this.activeToggleColor,
     this.inactiveToggleColor,

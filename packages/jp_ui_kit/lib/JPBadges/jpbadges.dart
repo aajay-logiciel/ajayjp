@@ -29,7 +29,7 @@ class JPBadges extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 5.0),
           child: JPText(
             text: text,
-            textSize: JPTextSize.heading_5,
+            textSize: JPTextSize.heading5,
             textColor: textColor,
           )),
     );

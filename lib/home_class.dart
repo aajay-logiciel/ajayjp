@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
         centerTitle: true,
         title: const JPText(
           text: "Home",
-          textSize: JPTextSize.heading_1,
+          textSize: JPTextSize.heading1,
           textColor: JPColor.white,
         ),
       ),

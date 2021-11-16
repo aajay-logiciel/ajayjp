@@ -8,7 +8,7 @@ import 'package:jp_ui_kit/jp_ui_kit.dart';
 class JPText extends StatelessWidget {
   const JPText(
       {required this.text,
-      this.textSize = JPTextSize.heading_4,
+      this.textSize = JPTextSize.heading4,
       this.fontFamily = JPFontFamily.roboto,
       this.fontWeight = JPFontWeight.regular,
       this.textColor = JPColor.black,
@@ -25,17 +25,17 @@ class JPText extends StatelessWidget {
   Widget build(BuildContext context) {
     double getTextSize() {
       switch (textSize) {
-        case JPTextSize.heading_1:
+        case JPTextSize.heading1:
           return 20;
-        case JPTextSize.heading_2:
+        case JPTextSize.heading2:
           return 18;
-        case JPTextSize.heading_3:
+        case JPTextSize.heading3:
           return 16;
-        case JPTextSize.heading_4:
+        case JPTextSize.heading4:
           return 14;
-        case JPTextSize.heading_5:
+        case JPTextSize.heading5:
           return 12;
-        case JPTextSize.heading_6:
+        case JPTextSize.heading6:
           return 11;
         default:
           return 14;
@@ -74,6 +74,7 @@ class JPText extends StatelessWidget {
         fontFamily: getFontFamily(),
         package: 'jp_ui_kit',
         fontWeight: getFontWeight(),
+        overflow: TextOverflow.ellipsis
       ),
     );
   }

@@ -8,7 +8,7 @@ import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPButton extends StatefulWidget {
   const JPButton(
-      {this.enabled = true,
+      {this.disabled = false,
       this.colorType = JPButtonColorType.primary,
       this.backgroundColor,
       this.type = JPButtonType.solid,
@@ -19,15 +19,17 @@ class JPButton extends StatefulWidget {
       this.iconPosition = JPIconPosition.start,
       this.text,
       this.size = JPButtonSize.large,
-      this.textColor = JPColor.white,
+      this.textColor,
       this.fontFamily = JPFontFamily.montserrat,
       this.fontWeight = JPFontWeight.bold,
-      this.textSize = JPTextSize.heading_3,
+      this.textSize = JPTextSize.heading3,
       this.borderColor = JPColor.primary,
-      Key? key})
+      this.iconSize = 15,
+        this.status =false,
+      Key? key, this.success})
       : super(key: key);
 
-  final bool? enabled;
+  final bool disabled;
   final JPButtonColorType colorType;
   final Color? backgroundColor;
   final JPButtonType type;
@@ -43,6 +45,9 @@ class JPButton extends StatefulWidget {
   final JPFontWeight fontWeight;
   final JPTextSize? textSize;
   final Color borderColor;
+  final double? iconSize;
+  final bool? status;
+  final bool? success;
 
   @override
   _JPButtonState createState() => _JPButtonState();
@@ -83,7 +88,7 @@ class _JPButtonState extends State<JPButton> {
         text: text!,
         fontFamily: widget.fontFamily,
         fontWeight: widget.fontWeight,
-        textColor: getTextColor() ?? textColor,
+        textColor: textColor ?? getTextColor(),
         textSize: getTextSize() ?? textSize,
       );
     }
@@ -104,23 +109,25 @@ class _JPButtonState extends State<JPButton> {
   getTextSize() {
     switch (size) {
       case JPButtonSize.large:
-        return JPTextSize.heading_3;
+        return JPTextSize.heading3;
       case JPButtonSize.medium:
-        return JPTextSize.heading_4;
+        return JPTextSize.heading4;
       case JPButtonSize.small:
-        return JPTextSize.heading_6;
+        return JPTextSize.heading6;
       case JPButtonSize.semiMedium:
-        return JPTextSize.heading_6;
+        return JPTextSize.heading6;
+      default:
+        return JPTextSize.heading3;
     }
   }
 
   getTextColor() {
-    if (textColor == JPColor.white) {
-      if (type == JPButtonType.outline) {
-        textColor = JPColor.primary;
-      } else if (widget.colorType == JPButtonColorType.lightGray) {
-        textColor = JPColor.tertiary;
-      }
+    if (type == JPButtonType.outline) {
+      textColor = JPColor.primary;
+    } else if (widget.colorType == JPButtonColorType.lightGray) {
+      textColor = JPColor.tertiary;
+    } else {
+      return JPColor.white;
     }
   }
 
@@ -151,7 +158,7 @@ class _JPButtonState extends State<JPButton> {
       case JPButtonType.outline:
         return BoxDecoration(
             borderRadius: getButtonRadius(),
-            color: JPColor.transparent,
+            color: widget.backgroundColor ?? JPColor.transparent,
             border: Border.all(
               width: 1.0,
               color: widget.borderColor,
@@ -265,9 +272,9 @@ class _JPButtonState extends State<JPButton> {
         color: widget.backgroundColor ?? getButtonColor(),
         child: InkWell(
           customBorder: borderShape ?? shapeBorderType,
-          onTap: (widget.enabled == false) ? null : widget.onPressed,
+          onTap: widget.disabled ? null : widget.onPressed,
           child: IconTheme.merge(
-            data: IconThemeData(opacity: (widget.enabled == true) ? 1 : 0.3),
+            data: const IconThemeData(),
             child: Container(
               height: getButtonHeight(),
               width: getButtonWidth(),
@@ -285,11 +292,11 @@ class _JPButtonState extends State<JPButton> {
                           children: <Widget>[
                             Icon(
                               iconData,
-                              size: 15,
+                              size: widget.iconSize,
                               color: iconColor,
                             ),
                             const SizedBox(width: 8),
-                            child!
+                            child!,
                           ],
                         )
                       : iconData != null &&
@@ -302,7 +309,7 @@ class _JPButtonState extends State<JPButton> {
                                 const SizedBox(width: 8),
                                 Icon(
                                   iconData,
-                                  size: 15,
+                                  size: widget.iconSize,
                                   color: iconColor,
                                 ),
                               ],
@@ -310,22 +317,22 @@ class _JPButtonState extends State<JPButton> {
                           : (iconData != null && widget.text == null)
                               ? Icon(
                                   iconData,
-                                  size: 15,
+                                  size: widget.iconSize,
                                   color: iconColor,
                                 )
                               : child,
                 ),
               ),
-            ),
           ),
         ),
+      ),
       ),
     );
 
     return Semantics(
       container: true,
       button: true,
-      enabled: widget.enabled,
+      enabled: widget.disabled,
       child: result,
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/JPButton/jp_button_color_type.dart';
 import 'package:jp_ui_kit/JPButton/jp_button_size.dart';
+import 'package:jp_ui_kit/JPButton/jp_icon_position.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class ButtonClass extends StatelessWidget {
@@ -13,7 +14,7 @@ class ButtonClass extends StatelessWidget {
           centerTitle: true,
           title: const JPText(
             text: "Button",
-            textSize: JPTextSize.heading_1,
+            textSize: JPTextSize.heading1,
             textColor: JPColor.white,
           ),
         ),
@@ -29,7 +30,7 @@ class ButtonClass extends StatelessWidget {
                 const JPButton(
                   text: "Button",
                   textColor: JPColor.secondary,
-                  textSize: JPTextSize.heading_1,
+                  textSize: JPTextSize.heading1,
                   backgroundColor: Colors.green,
                 ),
                 space(),
@@ -51,7 +52,7 @@ class ButtonClass extends StatelessWidget {
                 space(),
                 const JPButton(
                   text: "Large Button",
-                  enabled: false,
+                  disabled: true,
                 ),
                 space(),
                 const JPButton(
@@ -86,14 +87,15 @@ class ButtonClass extends StatelessWidget {
                 const JPText(text: "Icon with Text"),
                 space(),
                 const JPButton(
-                  iconData: Icons.eleven_mp,
-                  text: "Loading",
+                  iconData: Icons.add,
+                  text: "LOAD MORE",
                 ),
                 space(),
                 space(),
                 const JPButton(
                   iconData: Icons.eleven_mp,
                   text: "Loading Button",
+                  iconPosition: JPIconPosition.end,
                 ),
                 space(),
                 space(),
@@ -101,6 +103,7 @@ class ButtonClass extends StatelessWidget {
                 space(),
                 const JPButton(
                   iconData: Icons.eleven_mp,
+                  status: true,
                 ),
                 space(),
                 const JPButton(
