@@ -1,4 +1,4 @@
-enum JPType {
+enum JPButtonType {
   solid,
   outline,
   transparent,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/Button/color_type.dart';
 import 'package:jp_ui_kit/Button/size.dart';
-import 'package:jp_ui_kit/CommonFiles/icon_position.dart';
+import 'package:jp_ui_kit/Text/fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class ButtonClass extends StatelessWidget {
@@ -23,98 +23,149 @@ class ButtonClass extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                const JPText(text: "Standard"),
+                const JPButton(
+                  text: 'ajshdka',
+                  type: JPButtonType.outline,
+                  borderColor: JPButtonColorType.tertiary,
+                ),
+                text('Null Text Button'),
+                space(),
+                const JPButton(),
+                space(),
+                space(),
+                text('Background Change Button With Text, Large Size'),
                 space(),
                 const JPButton(
-                  iconData: Icons.eleven_mp,
-                  text: 'Button Normal',
-                  size: JPSize.mediumWithIcon,
-                  borderColor: JPColorType.tertiary,
+                  text: ("Normal"),
+                  backgroundColor: JPButtonColorType.primary,
                 ),
                 space(),
                 const JPButton(
-                  text: "Button",
-                  textSize: JPTextSize.heading1,
-                ),
-                space(),
-                const JPText(text: "Outline"),
-                space(),
-                const JPButton(
-                    //text: "Button",
-                    ),
-                space(),
-                const JPButton(
-                  text: "Button",
-                ),
-                space(),
-                const JPText(text: "Large"),
-                space(),
-                const JPButton(
-                  text: "Large Button",
+                  text: ("Normal"),
+                  backgroundColor: JPButtonColorType.primary,
                   disabled: true,
-                  colorType: JPColorType.tertiary,
                 ),
                 space(),
                 const JPButton(
-                  borderColor: JPColorType.tertiary,
-                  text: "Large Button",
+                  text: ("Normal"),
+                  backgroundColor: JPButtonColorType.tertiary,
                 ),
                 space(),
                 const JPButton(
-                  text: "Large Button",
-                  colorType: JPColorType.lightGray,
-                ),
-                space(),
-                const JPText(text: "Medium"),
-                space(),
-                const JPButton(
-                  text: "Medium Button",
-                  size: JPSize.medium,
-                ),
-                space(),
-                const JPText(text: "Small"),
-                space(),
-                const JPButton(
-                  text: "Small",
-                  size: JPSize.small,
+                  text: ("Normal"),
+                  backgroundColor: JPButtonColorType.tertiary,
+                  disabled: true,
                 ),
                 space(),
                 const JPButton(
-                  text: "Small Button",
-                  size: JPSize.small,
+                  text: ("Normal"),
+                  backgroundColor: JPButtonColorType.lightGray,
                 ),
                 space(),
-                const JPText(text: "Icon with Text"),
+                const JPButton(
+                  text: ("Normal"),
+                  backgroundColor: JPButtonColorType.lightGray,
+                  disabled: true,
+                ),
+                space(),
+                space(),
+                text(' Button With Text With Medium Size'),
+                space(),
+                const JPButton(
+                  text: "Medium",
+                  size: JPButtonSize.medium,
+                ),
+                space(),
+                const JPButton(
+                  text: "Medium",
+                  size: JPButtonSize.medium,
+                  backgroundColor: JPButtonColorType.tertiary,
+                ),
+                space(),
+                const JPButton(
+                  text: "Medium",
+                  size: JPButtonSize.medium,
+                  backgroundColor: JPButtonColorType.lightGray,
+                ),
+                space(),
+                space(),
+                text(' Button With Text With Small Size'),
+                space(),
+                Wrap(
+                  children: [
+                    const JPButton(
+                      text: "Small",
+                      size: JPButtonSize.small,
+                    ),
+                    space(),
+                    const JPButton(
+                      text: "Small",
+                      size: JPButtonSize.small,
+                      backgroundColor: JPButtonColorType.tertiary,
+                    ),
+                    space(),
+                    const JPButton(
+                      text: "Small",
+                      size: JPButtonSize.small,
+                      backgroundColor: JPButtonColorType.lightGray,
+                    ),
+                  ],
+                ),
+                space(),
+                space(),
+                text(' Button With Text And Icon'),
+                space(),
+                const JPButton(
+                  text: "Large",
+                  iconData: Icons.add,
+                ),
                 space(),
                 const JPButton(
                   iconData: Icons.add,
-                  text: "LOAD MORE",
+                  text: "Medium",
+                  size: JPButtonSize.medium,
+                  backgroundColor: JPButtonColorType.tertiary,
                 ),
                 space(),
+                const JPButton(
+                  iconData: Icons.add,
+                  text: "Medium With Icon",
+                  size: JPButtonSize.mediumWithIcon,
+                  backgroundColor: JPButtonColorType.tertiary,
+                ),
+                space(),
+                space(),
+                text('Border Change Button'),
+                space(),
+                Wrap(
+                  children: [
+                    const JPButton(
+                      text: "Small",
+                      size: JPButtonSize.small,
+                      borderColor: JPButtonColorType.tertiary,
+                    ),
+                    space(),
+                    const JPButton(
+                      text: "Small",
+                      textColor: JPColor.warning,
+                      size: JPButtonSize.small,
+                      borderColor: JPButtonColorType.primary,
+                    ),
+                  ],
+                ),
+                space(),
+                space(),
+                text('Icon Button'),
                 space(),
                 const JPButton(
                   iconData: Icons.eleven_mp,
-                  text: "Loading Button",
-                  iconPosition: JPIconPosition.end,
-                ),
-                space(),
-                space(),
-                const JPText(text: "Icon"),
-                space(),
-                const JPButton(
-                  iconData: Icons.eleven_mp,
+                  iconColor: JPColor.tertiary,
                 ),
                 space(),
                 const JPButton(
                   iconData: Icons.eleven_mp,
-                  iconColor: Colors.pink,
-                ),
-                const JPButton(
-                  borderColor: JPColorType.tertiary,
-                  text: "Large Button",
-                  size: JPSize.small,
-                  colorType: JPColorType.lightGray,
-                ),
+                  size: JPButtonSize.smallIcon,
+                )
               ],
             ),
           ),
@@ -123,5 +174,14 @@ class ButtonClass extends StatelessWidget {
 
   Widget space() => const SizedBox(
         height: 20,
+        width: 20,
+      );
+
+  Widget text(String text1) => Center(
+        child: JPText(
+          text: text1,
+          textSize: JPTextSize.heading1,
+          fontWeight: JPFontWeight.bold,
+        ),
       );
 }

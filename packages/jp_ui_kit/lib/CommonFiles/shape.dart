@@ -1,5 +1,5 @@
 /// [JPShape] is used to shape the Button widget.
-enum JPShape {
+enum JPButtonShape {
   /// [BShape.circular], used for circular shaped button with rounded corners
   circular,
 

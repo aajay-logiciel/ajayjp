@@ -1,4 +1,4 @@
-enum JPColorType {
+enum JPButtonColorType {
   primary,
   tertiary,
   lightGray,

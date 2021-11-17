@@ -35,49 +35,49 @@ class Home extends StatelessWidget {
           children: [
             JPButton(
               text: "Button",
-              size: JPSize.medium,
+              size: JPButtonSize.medium,
               onPressed: () {
                 Get.to(const ButtonClass());
               },
             ),
             JPButton(
               text: "Text",
-              size: JPSize.medium,
+              size: JPButtonSize.medium,
               onPressed: () {
                 Get.to(const TextClass());
               },
             ),
             JPButton(
               text: "Checkbox",
-              size: JPSize.medium,
+              size: JPButtonSize.medium,
               onPressed: () {
                 Get.to(const CheckboxClass());
               },
             ),
             JPButton(
               text: "Radiobutton",
-              size: JPSize.medium,
+              size: JPButtonSize.medium,
               onPressed: () {
                 Get.to(const RadiobuttonClass());
               },
             ),
             JPButton(
               text: "Toggle",
-              size: JPSize.medium,
+              size: JPButtonSize.medium,
               onPressed: () {
                 Get.to(const ToggleClass());
               },
             ),
             JPButton(
               text: "Badges",
-              size: JPSize.medium,
+              size: JPButtonSize.medium,
               onPressed: () {
                 Get.to(const BadgesClass());
               },
             ),
             JPButton(
               text: "Labels",
-              size: JPSize.medium,
+              size: JPButtonSize.medium,
               onPressed: () {
                 Get.to(const LabelsClass());
               },

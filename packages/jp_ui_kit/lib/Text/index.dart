@@ -12,7 +12,7 @@ class JPText extends StatelessWidget {
       this.fontFamily = JPFontFamily.roboto,
       this.fontWeight = JPFontWeight.regular,
       this.textColor = JPColor.black,
-        this.overflow = TextOverflow.ellipsis,
+      this.overflow = TextOverflow.ellipsis,
       Key? key})
       : super(key: key);
 
