@@ -34,6 +34,11 @@ class ButtonClass extends StatelessWidget {
                   text: 'ajshdka',
                   type: JPButtonType.outline,
                 ),
+                const JPButton(
+                  iconData: Icons.circle,
+                  text:'Loading',
+                  iconPosition: JPIconPosition.end,
+                ),
                 text('Null Text Button'),
                 space(),
                 const JPButton(),

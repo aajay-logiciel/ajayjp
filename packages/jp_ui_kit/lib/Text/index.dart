@@ -14,19 +14,36 @@ class JPText extends StatelessWidget {
       this.textColor = JPColor.black,
       this.overflow = TextOverflow.ellipsis,
       this.textAlign = TextAlign.center,
+        this.maxLine=1,
       Key? key})
       : super(key: key);
 
+  /// Defines text of a text.
   final String text;
+
+  /// Defines textSize of a text.
   final JPTextSize? textSize;
+
+  /// Defines fontFamily of a text.
   final JPFontFamily? fontFamily;
+
+  /// Defines fontWeight of a text.
   final JPFontWeight? fontWeight;
+
+  /// Defines textColor of a text.
   final Color? textColor;
+
+  /// Defines overflow of a text.
   final TextOverflow overflow;
+
+  /// Defines textAlign of a text.
   final TextAlign textAlign;
+  /// Defines maxLine of a text.
+  final int maxLine;
 
   @override
   Widget build(BuildContext context) {
+    /// Return double  textSize of a text and default textSize is [JPTextSize.heading4]
     double getTextSize() {
       switch (textSize) {
         case JPTextSize.heading1:
@@ -46,6 +63,7 @@ class JPText extends StatelessWidget {
       }
     }
 
+    /// Return  fontFamily of a text and default textSize is [JPFontFamily.roboto]
     String getFontFamily() {
       switch (fontFamily) {
         case JPFontFamily.roboto:
@@ -57,6 +75,7 @@ class JPText extends StatelessWidget {
       }
     }
 
+    /// Return  fontWeight of a text and default textSize is [JPFontFamily.regular]
     FontWeight getFontWeight() {
       switch (fontWeight) {
         case JPFontWeight.regular:
@@ -73,6 +92,7 @@ class JPText extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
+      maxLines: maxLine,
       style: TextStyle(
         color: textColor,
         fontSize: getTextSize(),

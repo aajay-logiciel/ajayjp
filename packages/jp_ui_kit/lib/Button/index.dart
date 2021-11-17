@@ -27,19 +27,46 @@ class JPButton extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
+  /// Defines enabled or disabled of a button.
   final bool disabled;
+
+  /// Used to set button color, text color, border color.
   final JPButtonColorType colorType;
+
+  /// Called when the button is tapped or otherwise activated.
   final VoidCallback? onPressed;
+
+  /// Defines icon data of an icon.
   final IconData? iconData;
+
+  /// Defines icon color of an icon.
   final Color? iconColor;
+
+  /// Defines icon position of an icon.
   final JPIconPosition iconPosition;
-  final String? text;
-  final JPButtonSize size;
-  final Color? textColor;
-  final JPFontFamily fontFamily;
-  final JPFontWeight fontWeight;
-  final JPTextSize? textSize;
+
+  /// Defines icon size of an icon.
   final double? iconSize;
+
+  /// Defines text of a button.
+  final String? text;
+
+  /// Defines text color of a button.
+  final Color? textColor;
+
+  /// Defines text size of a button.
+  final JPTextSize? textSize;
+
+  /// Defines text font family of a button.
+  final JPFontFamily fontFamily;
+
+  /// Defines font weight of a button.
+  final JPFontWeight fontWeight;
+
+  /// Defines size of a button.
+  final JPButtonSize size;
+
+  /// Defines type of a button.
   final JPButtonType? type;
 
   @override
@@ -72,6 +99,7 @@ class _JPButtonState extends State<JPButton> {
     super.initState();
   }
 
+  /// Return textSize by using button size and default size is [JPTextSize.heading3].
   getTextSize() {
     switch (size) {
       case JPButtonSize.large:
@@ -87,22 +115,30 @@ class _JPButtonState extends State<JPButton> {
     }
   }
 
+  /// Return Color by using colorType and default color is [JPColor.white] but for outline button default color is [JPColor.primary].
   Color getTextColor() {
     switch (widget.colorType) {
       case JPButtonColorType.primary:
-        return widget.type == JPButtonType.outline ? JPColor.primary : JPColor.white;
+        return widget.type == JPButtonType.outline
+            ? JPColor.primary
+            : JPColor.white;
 
       case JPButtonColorType.tertiary:
-        return widget.type == JPButtonType.outline ? JPColor.tertiary : JPColor.white;
-      
+        return widget.type == JPButtonType.outline
+            ? JPColor.tertiary
+            : JPColor.white;
+
       case JPButtonColorType.lightGray:
-        return widget.type == JPButtonType.outline ? JPColor.lightGray : JPColor.tertiary;
-      
+        return widget.type == JPButtonType.outline
+            ? JPColor.lightGray
+            : JPColor.tertiary;
+
       default:
         return JPColor.white;
     }
   }
 
+  /// Return Color  by using colorType and default color is [JPColor.primary] but for outline button color is [JPColor.transparent].
   Color getButtonColor() {
     if (type == JPButtonType.outline) {
       return JPColor.transparent;
@@ -123,6 +159,7 @@ class _JPButtonState extends State<JPButton> {
     }
   }
 
+  /// Return Color by using colorType and default color is [JPColor.primary].
   Color getBorderColor() {
     switch (widget.colorType) {
       case JPButtonColorType.primary:
@@ -139,6 +176,10 @@ class _JPButtonState extends State<JPButton> {
     }
   }
 
+  /// Return BoxDecoration of a container.
+  /// Defines button container decoration by using type.
+  /// Outline button have only border width and color.
+  /// Default border radius is circular of radius 50 and color [JPColor.primary].
   BoxDecoration getBoxDecoration() {
     switch (type) {
       case JPButtonType.solid:
@@ -160,6 +201,7 @@ class _JPButtonState extends State<JPButton> {
     }
   }
 
+  /// Return BorderRadiusGeometry of a button using button size.
   BorderRadiusGeometry getButtonRadius() {
     if (size == JPButtonSize.smallIcon) {
       return BorderRadius.circular(10);
@@ -172,6 +214,7 @@ class _JPButtonState extends State<JPButton> {
   Widget build(BuildContext context) {
     ShapeBorder shapeBorderType;
 
+    /// Return double by using button size and default size is flat.
     double getButtonWidth() {
       switch (size) {
         case JPButtonSize.flat:
@@ -195,6 +238,7 @@ class _JPButtonState extends State<JPButton> {
       }
     }
 
+    /// Return double by using button size and default size is flat.
     double getButtonHeight() {
       switch (size) {
         case JPButtonSize.flat:
@@ -255,11 +299,10 @@ class _JPButtonState extends State<JPButton> {
           child: IconTheme.merge(
             data: const IconThemeData(),
             child: Container(
-              height: getButtonHeight(),
-              width: getButtonWidth(),
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: getCenterData()
-            ),
+                height: getButtonHeight(),
+                width: getButtonWidth(),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: getContainerData()),
           ),
         ),
       ),
@@ -273,9 +316,9 @@ class _JPButtonState extends State<JPButton> {
     );
   }
 
+  /// Defines icon widget
   Widget getIcon() {
-    if(iconData == null) return const SizedBox.shrink();
-
+    if (iconData == null) return const SizedBox.shrink();
     return Icon(
       iconData,
       size: widget.iconSize,
@@ -283,9 +326,9 @@ class _JPButtonState extends State<JPButton> {
     );
   }
 
+  /// Defines text widget
   Widget getText() {
-    if(text == null) return const SizedBox.shrink();
-
+    if (text == null) return const SizedBox.shrink();
     return JPText(
       text: text!,
       fontFamily: widget.fontFamily,
@@ -296,15 +339,15 @@ class _JPButtonState extends State<JPButton> {
     );
   }
 
-
-  Widget getCenterData() {
+  /// Defines child widget of a container
+  Widget getContainerData() {
     List<Widget> rowChildren = <Widget>[
       getIcon(),
       const SizedBox(width: 5),
       Flexible(child: getText())
     ];
 
-    if(widget.iconPosition == JPIconPosition.end) {
+    if (widget.iconPosition == JPIconPosition.end) {
       rowChildren = <Widget>[
         Flexible(child: getText()),
         const SizedBox(width: 5),

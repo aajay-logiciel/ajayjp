@@ -9,11 +9,13 @@ class JPLabels extends StatefulWidget {
   const JPLabels(
       {this.text = 'Label',
       this.jpLabelType = JPLabelType.success,
-      this.textColor,
+      this.textColor = JPColor.white,
       this.backgroundColor,
       this.fontFamily = JPFontFamily.roboto,
       this.textSize = JPTextSize.heading5,
       this.fontWeight = JPFontWeight.regular,
+        this.labelWidth=50.0,
+        this.labelHeight=24.0,
       Key? key})
       : super(key: key);
 
@@ -23,15 +25,15 @@ class JPLabels extends StatefulWidget {
   final Color? backgroundColor;
   final JPFontFamily fontFamily;
   final JPTextSize textSize;
-
   final JPFontWeight fontWeight;
+  final double? labelWidth;
+  final double? labelHeight;
 
   @override
   State<JPLabels> createState() => _JPLabelsState();
 }
 
 class _JPLabelsState extends State<JPLabels> {
-  Widget? child;
   JPLabelType? jpLabelType;
   Color? backgroundColor;
   Color? textColor;
@@ -48,14 +50,6 @@ class _JPLabelsState extends State<JPLabels> {
   void initState() {
     backgroundColor = widget.backgroundColor;
     textColor = widget.textColor;
-    child = JPText(
-      text: widget.text,
-      fontWeight: widget.fontWeight,
-      fontFamily: widget.fontFamily,
-      textColor: textColor ?? getTextColor(),
-      textSize: widget.textSize,
-    );
-
     super.initState();
   }
 
@@ -83,7 +77,18 @@ class _JPLabelsState extends State<JPLabels> {
         borderRadius: BorderRadius.circular(50),
         color: backgroundColor ?? getBackgroundColor(),
       ),
-      child: child,
+      child: Center(
+        child: getTextWidget(),
+      )
+    );
+  }
+  getTextWidget() {
+    return JPText(
+      text: widget.text,
+      fontWeight: widget.fontWeight,
+      fontFamily: widget.fontFamily,
+      textColor: textColor ?? getTextColor(),
+      textSize: widget.textSize,
     );
   }
 }
