@@ -12,6 +12,7 @@ class JPText extends StatelessWidget {
       this.fontFamily = JPFontFamily.roboto,
       this.fontWeight = JPFontWeight.regular,
       this.textColor = JPColor.black,
+        this.overflow = TextOverflow.ellipsis,
       Key? key})
       : super(key: key);
 
@@ -20,6 +21,7 @@ class JPText extends StatelessWidget {
   final JPFontFamily? fontFamily;
   final JPFontWeight? fontWeight;
   final Color? textColor;
+  final TextOverflow overflow;
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +76,7 @@ class JPText extends StatelessWidget {
         fontFamily: getFontFamily(),
         package: 'jp_ui_kit',
         fontWeight: getFontWeight(),
-        overflow: TextOverflow.ellipsis
+        overflow: overflow,
       ),
     );
   }

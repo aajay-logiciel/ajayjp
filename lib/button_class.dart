@@ -25,7 +25,12 @@ class ButtonClass extends StatelessWidget {
               children: [
                 const JPText(text: "Standard"),
                 space(),
-                //const JPButton(),
+                const JPButton(
+                  iconData: Icons.eleven_mp,
+                  text: 'Button Normal',
+                  size: JPSize.mediumWithIcon,
+                  borderColor: JPColorType.tertiary,
+                ),
                 space(),
                 const JPButton(
                   text: "Button",
@@ -35,8 +40,8 @@ class ButtonClass extends StatelessWidget {
                 const JPText(text: "Outline"),
                 space(),
                 const JPButton(
-                  text: "Button",
-                ),
+                    //text: "Button",
+                    ),
                 space(),
                 const JPButton(
                   text: "Button",
@@ -47,17 +52,17 @@ class ButtonClass extends StatelessWidget {
                 const JPButton(
                   text: "Large Button",
                   disabled: true,
-                  colorType: JPButtonColorType.tertiary,
+                  colorType: JPColorType.tertiary,
                 ),
                 space(),
                 const JPButton(
-                  borderColor: JPButtonColorType.tertiary,
+                  borderColor: JPColorType.tertiary,
                   text: "Large Button",
                 ),
                 space(),
                 const JPButton(
                   text: "Large Button",
-                  colorType: JPButtonColorType.lightGray,
+                  colorType: JPColorType.lightGray,
                 ),
                 space(),
                 const JPText(text: "Medium"),
@@ -105,10 +110,10 @@ class ButtonClass extends StatelessWidget {
                   iconColor: Colors.pink,
                 ),
                 const JPButton(
-                  borderColor: JPButtonColorType.tertiary,
+                  borderColor: JPColorType.tertiary,
                   text: "Large Button",
                   size: JPSize.small,
-                  colorType: JPButtonColorType.lightGray,
+                  colorType: JPColorType.lightGray,
                 ),
               ],
             ),
