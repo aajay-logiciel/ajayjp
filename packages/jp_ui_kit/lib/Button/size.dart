@@ -1,1 +1,8 @@
-enum JPButtonSize { large, medium, mediumWithIcon, small, smallIcon }
+enum JPButtonSize {
+  flat,
+  large,
+  medium,
+  mediumWithIcon,
+  small,
+  smallIcon
+}

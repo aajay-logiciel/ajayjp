@@ -13,6 +13,7 @@ class JPText extends StatelessWidget {
       this.fontWeight = JPFontWeight.regular,
       this.textColor = JPColor.black,
       this.overflow = TextOverflow.ellipsis,
+      this.textAlign = TextAlign.center,
       Key? key})
       : super(key: key);
 
@@ -22,6 +23,7 @@ class JPText extends StatelessWidget {
   final JPFontWeight? fontWeight;
   final Color? textColor;
   final TextOverflow overflow;
+  final TextAlign textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +72,7 @@ class JPText extends StatelessWidget {
 
     return Text(
       text,
+      textAlign: textAlign,
       style: TextStyle(
         color: textColor,
         fontSize: getTextSize(),

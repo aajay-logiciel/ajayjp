@@ -1,4 +1,4 @@
-enum JPRadius {
+enum JPButtonRadius {
   circular,
   roundSquare,
 }

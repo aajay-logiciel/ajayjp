@@ -11,25 +11,24 @@ import 'radius.dart';
 class JPButton extends StatefulWidget {
   const JPButton({
     this.disabled = false,
-    this.backgroundColor = JPButtonColorType.primary,
+    this.colorType = JPButtonColorType.primary,
     this.onPressed,
     this.iconColor,
     this.iconData,
     this.iconPosition = JPIconPosition.start,
     this.text,
-    this.size = JPButtonSize.large,
+    this.size = JPButtonSize.flat,
     this.textColor,
     this.fontFamily = JPFontFamily.montserrat,
     this.fontWeight = JPFontWeight.bold,
     this.textSize = JPTextSize.heading3,
     this.iconSize = 15,
-    this.borderColor,
     this.type = JPButtonType.solid,
     Key? key,
   }) : super(key: key);
 
   final bool disabled;
-  final JPButtonColorType backgroundColor;
+  final JPButtonColorType colorType;
   final VoidCallback? onPressed;
   final IconData? iconData;
   final Color? iconColor;
@@ -40,7 +39,6 @@ class JPButton extends StatefulWidget {
   final JPFontFamily fontFamily;
   final JPFontWeight fontWeight;
   final JPTextSize? textSize;
-  final JPButtonColorType? borderColor;
   final double? iconSize;
   final JPButtonType? type;
 
@@ -52,7 +50,7 @@ class _JPButtonState extends State<JPButton> {
   IconData? iconData;
   Color? iconColor;
   JPButtonSize? size;
-  JPRadius? radius = JPRadius.circular;
+  JPButtonRadius? radius = JPButtonRadius.circular;
   ShapeBorder? borderShape;
   JPButtonShape? shape;
 
@@ -89,13 +87,19 @@ class _JPButtonState extends State<JPButton> {
     }
   }
 
-  getTextColor() {
-    if (widget.backgroundColor == JPButtonColorType.lightGray) {
-      return JPColor.tertiary;
-    } else if (type == JPButtonType.outline) {
-      return JPColor.tertiary;
-    } else {
-      return JPColor.white;
+  Color getTextColor() {
+    switch (widget.colorType) {
+      case JPButtonColorType.primary:
+        return widget.type == JPButtonType.outline ? JPColor.primary : JPColor.white;
+
+      case JPButtonColorType.tertiary:
+        return widget.type == JPButtonType.outline ? JPColor.tertiary : JPColor.white;
+      
+      case JPButtonColorType.lightGray:
+        return widget.type == JPButtonType.outline ? JPColor.lightGray : JPColor.tertiary;
+      
+      default:
+        return JPColor.white;
     }
   }
 
@@ -103,29 +107,33 @@ class _JPButtonState extends State<JPButton> {
     if (type == JPButtonType.outline) {
       return JPColor.transparent;
     }
-    switch (widget.backgroundColor) {
+
+    switch (widget.colorType) {
       case JPButtonColorType.primary:
         return JPColor.primary;
+
       case JPButtonColorType.tertiary:
         return JPColor.tertiary;
+
       case JPButtonColorType.lightGray:
         return JPColor.lightGray;
+
       default:
         return JPColor.primary;
     }
   }
 
-  getBorderColor() {
-    if (widget.borderColor == null) {
-      return JPColor.primary;
-    }
-    switch (widget.borderColor) {
+  Color getBorderColor() {
+    switch (widget.colorType) {
       case JPButtonColorType.primary:
         return JPColor.primary;
+
       case JPButtonColorType.tertiary:
         return JPColor.tertiary;
+
       case JPButtonColorType.lightGray:
         return JPColor.lightGray;
+
       default:
         return JPColor.primary;
     }
@@ -166,16 +174,22 @@ class _JPButtonState extends State<JPButton> {
 
     double getButtonWidth() {
       switch (size) {
-        case JPButtonSize.large:
+        case JPButtonSize.flat:
           return MediaQuery.of(context).size.width;
+
+        case JPButtonSize.large:
         case JPButtonSize.medium:
           return 160.0;
+
         case JPButtonSize.small:
           return 60.0;
+
         case JPButtonSize.mediumWithIcon:
           return 120.0;
+
         case JPButtonSize.smallIcon:
-          return 30;
+          return 26;
+
         default:
           return MediaQuery.of(context).size.width;
       }
@@ -183,16 +197,22 @@ class _JPButtonState extends State<JPButton> {
 
     double getButtonHeight() {
       switch (size) {
+        case JPButtonSize.flat:
         case JPButtonSize.large:
           return 52.0;
+
         case JPButtonSize.medium:
-          return 52.0;
+          return 46.0;
+
         case JPButtonSize.small:
-          return 30;
+          return 26.0;
+
         case JPButtonSize.mediumWithIcon:
           return 32.0;
+
         case JPButtonSize.smallIcon:
-          return 30;
+          return 26;
+
         default:
           return 52.0;
       }
@@ -226,7 +246,7 @@ class _JPButtonState extends State<JPButton> {
       child: Material(
         shape: shapeBorderType,
         type: MaterialType.button,
-        color: (widget.disabled == false)
+        color: !widget.disabled
             ? getButtonColor()
             : getButtonColor().withOpacity(0.5),
         child: InkWell(
@@ -238,14 +258,7 @@ class _JPButtonState extends State<JPButton> {
               height: getButtonHeight(),
               width: getButtonWidth(),
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Align(
-                alignment: Alignment.center,
-                child: Center(
-                  widthFactor: 1,
-                  heightFactor: 1,
-                  child: getCenterData(),
-                ),
-              ),
+              child: getCenterData()
             ),
           ),
         ),
@@ -261,6 +274,8 @@ class _JPButtonState extends State<JPButton> {
   }
 
   Widget getIcon() {
+    if(iconData == null) return const SizedBox.shrink();
+
     return Icon(
       iconData,
       size: widget.iconSize,
@@ -269,6 +284,8 @@ class _JPButtonState extends State<JPButton> {
   }
 
   Widget getText() {
+    if(text == null) return const SizedBox.shrink();
+
     return JPText(
       text: text!,
       fontFamily: widget.fontFamily,
@@ -279,57 +296,25 @@ class _JPButtonState extends State<JPButton> {
     );
   }
 
+
   Widget getCenterData() {
-    if (iconData != null &&
-        text != null &&
-        widget.iconPosition == JPIconPosition.start) {
-      if (size == JPButtonSize.mediumWithIcon) {
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Expanded(child: getText()),
-            const SizedBox(width: 8),
-            getIcon(),
-          ],
-        );
-      } else {
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            getText(),
-            const SizedBox(width: 8),
-            getIcon(),
-          ],
-        );
-      }
-    } else if (iconData != null &&
-        text != null &&
-        widget.iconPosition == JPIconPosition.end) {
-      if (size == JPButtonSize.mediumWithIcon) {
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Expanded(child: getText()),
-            const SizedBox(width: 8),
-            getIcon(),
-          ],
-        );
-      } else {
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            getText(),
-            const SizedBox(width: 8),
-            getIcon(),
-          ],
-        );
-      }
-    } else if (iconData != null && text == null) {
-      return getIcon();
-    } else if (text == null) {
-      return const SizedBox();
-    } else {
-      return getText();
+    List<Widget> rowChildren = <Widget>[
+      getIcon(),
+      const SizedBox(width: 5),
+      Flexible(child: getText())
+    ];
+
+    if(widget.iconPosition == JPIconPosition.end) {
+      rowChildren = <Widget>[
+        Flexible(child: getText()),
+        const SizedBox(width: 5),
+        getIcon()
+      ];
     }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: rowChildren,
+    );
   }
 }

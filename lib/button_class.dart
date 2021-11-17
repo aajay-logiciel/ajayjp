@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/Button/color_type.dart';
 import 'package:jp_ui_kit/Button/size.dart';
+import 'package:jp_ui_kit/CommonFiles/icon_position.dart';
 import 'package:jp_ui_kit/Text/fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
@@ -24,9 +25,14 @@ class ButtonClass extends StatelessWidget {
             child: Column(
               children: [
                 const JPButton(
+                  iconData: Icons.circle_outlined,
+                  iconPosition: JPIconPosition.end,
+                  size: JPButtonSize.large,
+                  text: 'LOAD MORE',
+                ),
+                const JPButton(
                   text: 'ajshdka',
                   type: JPButtonType.outline,
-                  borderColor: JPButtonColorType.tertiary,
                 ),
                 text('Null Text Button'),
                 space(),
@@ -37,34 +43,34 @@ class ButtonClass extends StatelessWidget {
                 space(),
                 const JPButton(
                   text: ("Normal"),
-                  backgroundColor: JPButtonColorType.primary,
+                  colorType: JPButtonColorType.primary,
                 ),
                 space(),
                 const JPButton(
                   text: ("Normal"),
-                  backgroundColor: JPButtonColorType.primary,
+                  colorType: JPButtonColorType.primary,
                   disabled: true,
                 ),
                 space(),
                 const JPButton(
                   text: ("Normal"),
-                  backgroundColor: JPButtonColorType.tertiary,
+                  colorType: JPButtonColorType.tertiary,
                 ),
                 space(),
                 const JPButton(
                   text: ("Normal"),
-                  backgroundColor: JPButtonColorType.tertiary,
+                  colorType: JPButtonColorType.tertiary,
                   disabled: true,
                 ),
                 space(),
                 const JPButton(
                   text: ("Normal"),
-                  backgroundColor: JPButtonColorType.lightGray,
+                  colorType: JPButtonColorType.lightGray,
                 ),
                 space(),
                 const JPButton(
                   text: ("Normal"),
-                  backgroundColor: JPButtonColorType.lightGray,
+                  colorType: JPButtonColorType.lightGray,
                   disabled: true,
                 ),
                 space(),
@@ -79,13 +85,13 @@ class ButtonClass extends StatelessWidget {
                 const JPButton(
                   text: "Medium",
                   size: JPButtonSize.medium,
-                  backgroundColor: JPButtonColorType.tertiary,
+                  colorType: JPButtonColorType.tertiary,
                 ),
                 space(),
                 const JPButton(
                   text: "Medium",
                   size: JPButtonSize.medium,
-                  backgroundColor: JPButtonColorType.lightGray,
+                  colorType: JPButtonColorType.lightGray,
                 ),
                 space(),
                 space(),
@@ -101,13 +107,13 @@ class ButtonClass extends StatelessWidget {
                     const JPButton(
                       text: "Small",
                       size: JPButtonSize.small,
-                      backgroundColor: JPButtonColorType.tertiary,
+                      colorType: JPButtonColorType.tertiary,
                     ),
                     space(),
                     const JPButton(
                       text: "Small",
                       size: JPButtonSize.small,
-                      backgroundColor: JPButtonColorType.lightGray,
+                      colorType: JPButtonColorType.lightGray,
                     ),
                   ],
                 ),
@@ -124,14 +130,14 @@ class ButtonClass extends StatelessWidget {
                   iconData: Icons.add,
                   text: "Medium",
                   size: JPButtonSize.medium,
-                  backgroundColor: JPButtonColorType.tertiary,
+                  colorType: JPButtonColorType.tertiary,
                 ),
                 space(),
                 const JPButton(
                   iconData: Icons.add,
                   text: "Medium With Icon",
                   size: JPButtonSize.mediumWithIcon,
-                  backgroundColor: JPButtonColorType.tertiary,
+                  colorType: JPButtonColorType.tertiary,
                 ),
                 space(),
                 space(),
@@ -142,14 +148,14 @@ class ButtonClass extends StatelessWidget {
                     const JPButton(
                       text: "Small",
                       size: JPButtonSize.small,
-                      borderColor: JPButtonColorType.tertiary,
+                      colorType: JPButtonColorType.tertiary,
                     ),
                     space(),
                     const JPButton(
                       text: "Small",
                       textColor: JPColor.warning,
                       size: JPButtonSize.small,
-                      borderColor: JPButtonColorType.primary,
+                      colorType: JPButtonColorType.primary,
                     ),
                   ],
                 ),
@@ -163,7 +169,7 @@ class ButtonClass extends StatelessWidget {
                 ),
                 space(),
                 const JPButton(
-                  iconData: Icons.eleven_mp,
+                  iconData: Icons.plus_one,
                   size: JPButtonSize.smallIcon,
                 )
               ],
