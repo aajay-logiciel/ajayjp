@@ -24,19 +24,20 @@ class ButtonClass extends StatelessWidget {
             child: Column(
               children: [
                 text('Null Text Button'),
+
                 space(),
-                const JPButton(
-                  text: 'HELLO BUTTON',
-                  disabled: true,
-                  type: JPButtonType.outline,
+                JPButton(
+                  text: 'BUTTON',
+                  onPressed: () {},
                 ),
                 space(),
                 space(),
                 text('FLAT BUTTONS'),
                 space(),
-                const JPButton(
+                JPButton(
                   text: ("PRIMARY BUTTON"),
                   colorType: JPButtonColorType.primary,
+                  onPressed: () {},
                 ),
                 space(),
                 const JPButton(
@@ -45,30 +46,34 @@ class ButtonClass extends StatelessWidget {
                   disabled: true,
                 ),
                 space(),
-                const JPButton(
+                JPButton(
                   colorType: JPButtonColorType.primary,
                   iconData: Icons.circle,
+                  onPressed: () {},
+                ),
+                space(),
+                JPButton(
+                  text: ("TERTIARY BUTTON"),
+                  colorType: JPButtonColorType.tertiary,
+                  onPressed: () {},
                 ),
                 space(),
                 const JPButton(
                   text: ("TERTIARY BUTTON"),
                   colorType: JPButtonColorType.tertiary,
-                ),
-                space(),
-                const JPButton(
-                  text: ("TERTIARY BUTTON"),
-                  colorType: JPButtonColorType.tertiary,
                   disabled: true,
                 ),
                 space(),
-                const JPButton(
+                JPButton(
                   iconData: Icons.circle,
                   colorType: JPButtonColorType.tertiary,
+                  onPressed: () {},
                 ),
                 space(),
-                const JPButton(
+                JPButton(
                   text: ("GRAY BUTTON"),
                   colorType: JPButtonColorType.lightGray,
+                  onPressed: () {},
                 ),
                 space(),
                 const JPButton(
@@ -77,18 +82,20 @@ class ButtonClass extends StatelessWidget {
                   disabled: true,
                 ),
                 space(),
-                const JPButton(
+                JPButton(
                   iconData: Icons.circle,
                   colorType: JPButtonColorType.lightGray,
                   iconColor: JPColor.tertiary,
+                  onPressed: () {},
                 ),
                 space(),
                 space(),
                 text('LARGE BUTTONS'),
                 space(),
-                const JPButton(
+                JPButton(
                   text: "BUTTON",
                   size: JPButtonSize.large,
+                  onPressed: () {},
                 ),
                 space(),
                 const JPButton(
@@ -103,16 +110,18 @@ class ButtonClass extends StatelessWidget {
                     colorType: JPButtonColorType.tertiary,
                     disabled: true),
                 space(),
-                const JPButton(
+                JPButton(
                   text: "BUTTON",
                   size: JPButtonSize.large,
                   colorType: JPButtonColorType.tertiary,
+                  onPressed: () {},
                 ),
                 space(),
-                const JPButton(
+                JPButton(
                   text: "BUTTON",
                   size: JPButtonSize.large,
                   colorType: JPButtonColorType.lightGray,
+                  onPressed: () {},
                 ),
                 space(),
                 const JPButton(
@@ -125,9 +134,10 @@ class ButtonClass extends StatelessWidget {
                 space(),
                 text('MEDIUM BUTTONS'),
                 space(),
-                const JPButton(
+                JPButton(
                   text: "BUTTON",
                   size: JPButtonSize.medium,
+                  onPressed: () {},
                 ),
                 space(),
                 const JPButton(
@@ -142,16 +152,18 @@ class ButtonClass extends StatelessWidget {
                     colorType: JPButtonColorType.tertiary,
                     disabled: true),
                 space(),
-                const JPButton(
+                JPButton(
                   text: "BUTTON",
                   size: JPButtonSize.medium,
                   colorType: JPButtonColorType.tertiary,
+                  onPressed: () {},
                 ),
                 space(),
-                const JPButton(
+                JPButton(
                   text: "BUTTON",
                   size: JPButtonSize.medium,
                   colorType: JPButtonColorType.lightGray,
+                  onPressed: () {},
                 ),
                 space(),
                 const JPButton(
@@ -170,9 +182,10 @@ class ButtonClass extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        const JPButton(
+                        JPButton(
                           text: 'ADD',
                           size: JPButtonSize.small,
+                          onPressed: () {},
                         ),
                         space(),
                         const JPButton(
@@ -184,10 +197,11 @@ class ButtonClass extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        const JPButton(
+                        JPButton(
                           text: 'BUTTON',
                           size: JPButtonSize.small,
                           colorType: JPButtonColorType.tertiary,
+                          onPressed: () {},
                         ),
                         space(),
                         const JPButton(
@@ -200,10 +214,11 @@ class ButtonClass extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        const JPButton(
+                        JPButton(
                           text: 'ADD',
                           size: JPButtonSize.small,
                           colorType: JPButtonColorType.lightGray,
+                          onPressed: () {},
                         ),
                         space(),
                         const JPButton(
@@ -220,88 +235,41 @@ class ButtonClass extends StatelessWidget {
                 space(),
                 text(' OUTLINE BUTTONS'),
                 space(),
-                const JPButton(
+                JPButton(
                   text: 'ADD',
                   type: JPButtonType.outline,
-                ),
-                space(),
-                const JPButton(
-                  text: 'ADD',
-                  type: JPButtonType.outline,
-                  size: JPButtonSize.medium,
+                  size: JPButtonSize.small,
+                  onPressed: () {},
                 ),
                 space(),
                 const JPButton(
                   text: 'ADD',
                   type: JPButtonType.outline,
                   size: JPButtonSize.small,
-                ),
-                space(),
-                const JPButton(
-                  text: 'ADD',
-                  type: JPButtonType.outline,
-                  size: JPButtonSize.small,
-                  colorType: JPButtonColorType.tertiary,
-                ),
-                space(),
-                const JPButton(
-                  text: 'ADD',
-                  type: JPButtonType.outline,
-                  size: JPButtonSize.small,
-                  colorType: JPButtonColorType.lightGray,
+                  disabled: true,
                 ),
                 space(),
                 text(' LOAD MORE BUTTONS'),
                 space(),
-                const JPButton(
-                  text: "Large",
-                  iconData: Icons.add,
-                ),
-                space(),
-                const JPButton(
-                  iconData: Icons.add,
-                  text: "Medium",
-                  size: JPButtonSize.medium,
-                  colorType: JPButtonColorType.tertiary,
-                ),
-                space(),
-                const JPButton(
-                  iconData: Icons.add,
-                  text: "Medium With Icon",
+                JPButton(
+                  text: "LOAD MORE",
+                  iconData: Icons.circle,
                   size: JPButtonSize.mediumWithIcon,
-                  colorType: JPButtonColorType.tertiary,
-                ),
-                space(),
-                space(),
-                text('TEXT COLOR CHANGE '),
-                space(),
-                const JPButton(
-                  text: 'COLOR CHANGE',
-                  textColor: JPColor.secondary,
-                ),
-                space(),
-                const JPButton(
-                  text: 'COLOR CHANGE',
-                  textColor: JPColor.secondary,
-                  size: JPButtonSize.large,
-                ),
-                space(),
-                const JPButton(
-                  text: 'COLOR CHANGE',
-                  textColor: JPColor.secondary,
-                  size: JPButtonSize.small,
+                  onPressed: () {},
                 ),
                 space(),
                 space(),
                 text('ICON BUTTON'),
                 space(),
-                const JPButton(
+                JPButton(
                   iconData: Icons.eleven_mp,
+                  onPressed: () {},
                 ),
                 space(),
-                const JPButton(
+                JPButton(
                   iconData: Icons.eleven_mp,
                   size: JPButtonSize.mediumWithIcon,
+                  onPressed: () {},
                 ),
                 space(),
                 text('SMALL ICON BUTTON'),
@@ -318,12 +286,26 @@ class ButtonClass extends StatelessWidget {
         width: 20,
       );
 
-  Widget text(String text1) => Center(
-        child: JPText(
-          text: text1,
-          textSize: JPTextSize.heading2,
-          fontWeight: JPFontWeight.bold,
-          maxLine: 2,
-        ),
-      );
+  Widget text(String text1) => Align(
+    alignment: Alignment.topLeft,
+    child: Container(
+      padding: const EdgeInsets.only(
+        bottom: 5, // Space between underline and text
+      ),
+      decoration: const BoxDecoration(
+          border: Border(bottom: BorderSide(
+            color: Colors.black,
+            width: 1.0, // Underline thickness
+          ))
+      ),
+      child: JPText(
+        text: text1,
+        textSize: JPTextSize.heading2,
+        fontWeight: JPFontWeight.bold,
+        maxLine: 2,
+      ),
+    ),
+  );
 }
+
+

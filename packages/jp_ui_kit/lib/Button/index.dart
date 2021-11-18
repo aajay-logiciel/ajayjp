@@ -122,15 +122,15 @@ class _JPButtonState extends State<JPButton> {
     switch (widget.colorType) {
       case JPButtonColorType.primary:
         color = (widget.type == JPButtonType.outline) ? JPColor.primary : JPColor.white;
-          break;
+        break;
 
       case JPButtonColorType.tertiary:
         color = (widget.type == JPButtonType.outline) ? JPColor.tertiary : JPColor.white;
-          break;
+        break;
 
       case JPButtonColorType.lightGray:
         color = (widget.type == JPButtonType.outline) ? JPColor.lightGray : JPColor.tertiary;
-          break;
+        break;
 
       default:
         color = JPColor.white;

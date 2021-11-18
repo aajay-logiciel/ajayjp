@@ -18,10 +18,13 @@ class LabelsClass extends StatelessWidget {
           textColor: JPColor.white,
         ),
       ),
-      body: Column(
-        children: const [
-          JPLabels(),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: const [
+            
+          ],
+        ),
       ),
     );
   }

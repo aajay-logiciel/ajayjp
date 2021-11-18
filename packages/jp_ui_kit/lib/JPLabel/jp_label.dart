@@ -71,6 +71,7 @@ class _JPLabelsState extends State<JPLabels> {
     }
 
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
       width: 50.0,
       height: 24.0,
       decoration: BoxDecoration(

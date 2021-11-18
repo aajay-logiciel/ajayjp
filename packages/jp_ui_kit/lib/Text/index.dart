@@ -15,6 +15,7 @@ class JPText extends StatelessWidget {
       this.overflow = TextOverflow.ellipsis,
       this.textAlign = TextAlign.center,
         this.maxLine=1,
+        this.textDecoration,
       Key? key})
       : super(key: key);
 
@@ -40,6 +41,9 @@ class JPText extends StatelessWidget {
   final TextAlign textAlign;
   /// Defines maxLine of a text.
   final int maxLine;
+
+  ///Defines text decoration
+  final TextDecoration? textDecoration;
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +104,7 @@ class JPText extends StatelessWidget {
         package: 'jp_ui_kit',
         fontWeight: getFontWeight(),
         overflow: overflow,
+        decoration: textDecoration,
       ),
     );
   }

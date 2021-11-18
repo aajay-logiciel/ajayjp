@@ -197,70 +197,8 @@ class TextClass extends StatelessWidget {
               ),
               space(),
               space(),
-              text("CHANGE TEXT COLOR "),
-              space(),
-              const JPText(
-                text: "ROBOTO / REGULAR/ 20px ",
-                fontFamily: JPFontFamily.roboto,
-                fontWeight: JPFontWeight.regular,
-                textSize: JPTextSize.heading1,
-                textColor: JPColor.secondary,
-              ),
-              space(),
-              space(),
-              text("TEXT OVERFLOW "),
-              space(),
-              const SizedBox(
-                width: 200,
-                child: JPText(
-                  text: "ROBOTO / REGULAR/ 20px ",
-                  fontFamily: JPFontFamily.roboto,
-                  fontWeight: JPFontWeight.regular,
-                  textSize: JPTextSize.heading1,
-                ),
-              ),
-              space(),
-              space(),
-              text("TEXT ALIGNMENT"),
-              space(),
-              Container(
-                width: 100,
-                height: 20,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                  color: Colors.black,
-                  width: 2,
-                )),
-                child: const JPText(text: " ROBOTO"),
-              ),
-              space(),
-              Container(
-                width: 100,
-                height: 20,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                  color: Colors.black,
-                  width: 2,
-                )),
-                child: const JPText(
-                  text: " ROBOTO",
-                  textAlign: TextAlign.start,
-                ),
-              ),
-              space(),
-              Container(
-                width: 100,
-                height: 20,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                  color: Colors.black,
-                  width: 2,
-                )),
-                child: const JPText(
-                  text: " ROBOTO",
-                  textAlign: TextAlign.end,
-                ),
-              ),
+
+
             ],
           ),
         ),
@@ -272,12 +210,24 @@ class TextClass extends StatelessWidget {
         height: 20,
       );
 
-  Widget text(String text1) => Center(
-        child: JPText(
-          text: text1,
-          textSize: JPTextSize.heading2,
-          fontWeight: JPFontWeight.bold,
-          maxLine: 2,
-        ),
-      );
+  Widget text(String text1) => Align(
+    alignment: Alignment.topLeft,
+    child: Container(
+      padding: const EdgeInsets.only(
+        bottom: 5, // Space between underline and text
+      ),
+      decoration: const BoxDecoration(
+          border: Border(bottom: BorderSide(
+            color: Colors.black,
+            width: 1.0, // Underline thickness
+          ))
+      ),
+      child: JPText(
+        text: text1,
+        textSize: JPTextSize.heading2,
+        fontWeight: JPFontWeight.bold,
+        maxLine: 2,
+      ),
+    ),
+  );
 }
