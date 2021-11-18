@@ -185,7 +185,9 @@ class _JPButtonState extends State<JPButton> {
       case JPButtonType.solid:
         return BoxDecoration(
           borderRadius: getButtonRadius(),
-          color: getButtonColor(),
+          color: !widget.disabled
+              ? getButtonColor()
+              : getButtonColor().withOpacity(0.5),
         );
       case JPButtonType.outline:
         return BoxDecoration(
@@ -193,7 +195,9 @@ class _JPButtonState extends State<JPButton> {
             color: JPColor.transparent,
             border: Border.all(
               width: 1.0,
-              color: getBorderColor(),
+              color: !widget.disabled
+                  ? getButtonColor()
+                  : getButtonColor().withOpacity(0.5),
             ));
       default:
         return BoxDecoration(
