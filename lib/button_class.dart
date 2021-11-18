@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/Button/color_type.dart';
 import 'package:jp_ui_kit/Button/size.dart';
-import 'package:jp_ui_kit/CommonFiles/icon_position.dart';
 import 'package:jp_ui_kit/Text/fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
@@ -26,7 +25,11 @@ class ButtonClass extends StatelessWidget {
               children: [
                 text('Null Text Button'),
                 space(),
-                const JPButton(),
+                const JPButton(
+                  text: 'HELLO BUTTON',
+                  disabled: true,
+                  type: JPButtonType.outline,
+                ),
                 space(),
                 space(),
                 text('FLAT BUTTONS'),

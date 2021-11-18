@@ -20,7 +20,7 @@ class JPButton extends StatefulWidget {
     this.size = JPButtonSize.flat,
     this.textColor,
     this.fontFamily = JPFontFamily.montserrat,
-    this.fontWeight = JPFontWeight.bold,
+    this.fontWeight = JPFontWeight.medium,
     this.textSize = JPTextSize.heading3,
     this.iconSize = 15,
     this.type = JPButtonType.solid,
@@ -117,25 +117,27 @@ class _JPButtonState extends State<JPButton> {
 
   /// Return Color by using colorType and default color is [JPColor.white] but for outline button default color is [JPColor.primary].
   Color getTextColor() {
+    Color color = JPColor.white;
+
     switch (widget.colorType) {
       case JPButtonColorType.primary:
-        return widget.type == JPButtonType.outline
-            ? JPColor.primary
-            : JPColor.white;
+        color = (widget.type == JPButtonType.outline) ? JPColor.primary : JPColor.white;
+          break;
 
       case JPButtonColorType.tertiary:
-        return widget.type == JPButtonType.outline
-            ? JPColor.tertiary
-            : JPColor.white;
+        color = (widget.type == JPButtonType.outline) ? JPColor.tertiary : JPColor.white;
+          break;
 
       case JPButtonColorType.lightGray:
-        return widget.type == JPButtonType.outline
-            ? JPColor.lightGray
-            : JPColor.tertiary;
+        color = (widget.type == JPButtonType.outline) ? JPColor.lightGray : JPColor.tertiary;
+          break;
 
       default:
-        return JPColor.white;
+        color = JPColor.white;
+        break;
     }
+
+    return color;
   }
 
   /// Return Color  by using colorType and default color is [JPColor.primary] but for outline button color is [JPColor.transparent].
@@ -144,19 +146,27 @@ class _JPButtonState extends State<JPButton> {
       return JPColor.transparent;
     }
 
+    Color color = JPColor.primary;
+
     switch (widget.colorType) {
       case JPButtonColorType.primary:
-        return JPColor.primary;
+        color = JPColor.primary;
+        break;
 
       case JPButtonColorType.tertiary:
-        return JPColor.tertiary;
+        color = JPColor.tertiary;
+        break;
 
       case JPButtonColorType.lightGray:
-        return JPColor.lightGray;
+        color = JPColor.lightGray;
+        break;
 
       default:
-        return JPColor.primary;
+        color = JPColor.primary;
+        break;
     }
+
+    return widget.disabled ? color.withOpacity(0.4) : color;
   }
 
   /// Return Color by using colorType and default color is [JPColor.primary].
@@ -173,35 +183,6 @@ class _JPButtonState extends State<JPButton> {
 
       default:
         return JPColor.primary;
-    }
-  }
-
-  /// Return BoxDecoration of a container.
-  /// Defines button container decoration by using type.
-  /// Outline button have only border width and color.
-  /// Default border radius is circular of radius 50 and color [JPColor.primary].
-  BoxDecoration getBoxDecoration() {
-    switch (type) {
-      case JPButtonType.solid:
-        return BoxDecoration(
-          borderRadius: getButtonRadius(),
-          color: !widget.disabled
-              ? getButtonColor()
-              : getButtonColor().withOpacity(0.5),
-        );
-      case JPButtonType.outline:
-        return BoxDecoration(
-            borderRadius: getButtonRadius(),
-            color: JPColor.transparent,
-            border: Border.all(
-              width: 1.0,
-              color: !widget.disabled
-                  ? getButtonColor()
-                  : getButtonColor().withOpacity(0.5),
-            ));
-      default:
-        return BoxDecoration(
-            borderRadius: getButtonRadius(), color: JPColor.primary);
     }
   }
 
@@ -286,28 +267,20 @@ class _JPButtonState extends State<JPButton> {
       );
     }
 
-    final result = Container(
-      constraints: (iconData != null && size == JPButtonSize.smallIcon)
-          ? const BoxConstraints(minWidth: 30, maxHeight: 30)
-          : const BoxConstraints(minWidth: 90, maxHeight: 52),
-      decoration: getBoxDecoration(),
-      child: Material(
-        shape: shapeBorderType,
-        type: MaterialType.button,
-        color: !widget.disabled
-            ? getButtonColor()
-            : getButtonColor().withOpacity(0.5),
-        child: InkWell(
-          customBorder: borderShape ?? shapeBorderType,
-          onTap: widget.disabled ? null : widget.onPressed,
-          child: IconTheme.merge(
-            data: const IconThemeData(),
-            child: Container(
-                height: getButtonHeight(),
-                width: getButtonWidth(),
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: getContainerData()),
-          ),
+    final result = Material(
+      shape: shapeBorderType,
+      type: MaterialType.button,
+      color: getButtonColor(),
+      child: InkWell(
+        customBorder: borderShape ?? shapeBorderType,
+        onTap: widget.disabled ? null : widget.onPressed,
+        child: IconTheme.merge(
+          data: const IconThemeData(),
+          child: Container(
+              height: getButtonHeight(),
+              width: getButtonWidth(),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: getContainerData()),
         ),
       ),
     );
