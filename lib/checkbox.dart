@@ -32,12 +32,9 @@ class _CheckboxClassState extends State<CheckboxClass> {
 
               JPNCheckbox(
                 text: 'abjabc',
+                isLabelClickable: false,
               ),
 
-              JPCheckbox(labels: ['Option1','Option2','Option3','Option4','Option5','Option6',],
-                disabled: ['Option1'],
-                checked: ['Option1'],
-              ),
               SizedBox(
                 height: 20,
               ),
