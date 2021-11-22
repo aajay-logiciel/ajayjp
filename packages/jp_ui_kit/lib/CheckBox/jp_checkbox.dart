@@ -152,8 +152,9 @@ class _JPCheckboxState extends State<JPCheckbox> {
           _selected.add(widget.labels!.elementAt(i));
         }
 
-        if (widget.onChange != null)
+        if (widget.onChange != null) {
           widget.onChange!(isChecked, widget.labels!.elementAt(i), i);
+        }
         if (widget.onSelected != null) widget.onSelected!(_selected);
       });
     }

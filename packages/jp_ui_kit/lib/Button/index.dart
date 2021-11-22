@@ -15,7 +15,7 @@ class JPButton extends StatefulWidget {
     this.onPressed,
     this.iconColor,
     this.iconData,
-    this.iconPosition = JPIconPosition.start,
+    this.iconPosition = JPPosition.start,
     this.text,
     this.size = JPButtonSize.flat,
     this.textColor,
@@ -43,7 +43,7 @@ class JPButton extends StatefulWidget {
   final Color? iconColor;
 
   /// Defines icon position of an icon.
-  final JPIconPosition iconPosition;
+  final JPPosition iconPosition;
 
   /// Defines icon size of an icon.
   final double? iconSize;
@@ -324,7 +324,7 @@ class _JPButtonState extends State<JPButton> {
       Flexible(child: getText())
     ];
 
-    if (widget.iconPosition == JPIconPosition.end) {
+    if (widget.iconPosition == JPPosition.end) {
       rowChildren = <Widget>[
         Flexible(child: getText()),
         const SizedBox(width: 5),
