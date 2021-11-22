@@ -82,12 +82,14 @@ class _JPNCheckboxState extends State<JPNCheckbox> {
       });
     }
 
+    /// Defines onTap function of a checkbox.
     getOnTap() {
       setState(() {
         checkBoxValue = !checkBoxValue!;
       });
     }
 
+    /// Checkbox Widget of a checkbox
     Checkbox checkbox = Checkbox(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -101,6 +103,7 @@ class _JPNCheckboxState extends State<JPNCheckbox> {
           widget.disabled ? activeColor!.withOpacity(0.4) : activeColor,
     );
 
+    /// Label Widget of a checkbox
     JPText label = JPText(
       text: text,
       textColor:
