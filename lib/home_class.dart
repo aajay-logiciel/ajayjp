@@ -6,8 +6,8 @@ import 'package:jp_ui_kit/Button/size.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 import 'package:get/get.dart';
 
-import 'Badges.dart';
-import 'Radiobutton.dart';
+import 'badges.dart';
+import 'radiobutton.dart';
 import 'checkbox.dart';
 import 'lables.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jp_ui_kit/JPBadges/jpbadges.dart';
+import 'package:jp_ui_kit/Badges/index.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
 
 class BadgesClass extends StatelessWidget {
@@ -15,50 +15,47 @@ class BadgesClass extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(10),
           child: Column(
-            children:  [
-
-
+            children: [
               Row(
-                children: [
-                  JPBadges(
+                children: const [
+                  Badges(
                     text: "2",
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  JPBadges(
+                  Badges(
                     backgroundColor: JPColor.tertiary,
                     text: "2",
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  JPBadges(
+                  Badges(
                     backgroundColor: JPColor.secondary,
                     text: "2",
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  JPBadges(
+                  Badges(
                     backgroundColor: JPColor.lightGray,
                     text: "2",
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  JPBadges(
+                  Badges(
                     text: "12",
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  JPBadges(
+                  Badges(
                     text: "123",
                   ),
                 ],
               )
-
             ],
           ),
         ),

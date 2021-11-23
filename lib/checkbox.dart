@@ -39,6 +39,10 @@ class _CheckboxClassState extends State<CheckboxClass> {
                 height: 20,
               ),
 
+              JPACheckbox(
+                selected: true,
+                text: 'Clicked',
+              ),
 
             ],
           ),

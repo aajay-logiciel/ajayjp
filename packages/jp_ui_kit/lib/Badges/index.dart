@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
-class JPBadges extends StatelessWidget {
-  const JPBadges(
+class Badges extends StatelessWidget {
+  const Badges(
       {this.backgroundColor = JPColor.primary,
       required this.text,
       this.textColor = JPColor.white,
       Key? key})
       : super(key: key);
 
+  /// Defines background color of badges.
   final Color? backgroundColor;
 
+  /// Defines text color of badges.
   final String text;
+
+  /// Defines textColor color of badges.
   final Color? textColor;
 
   @override

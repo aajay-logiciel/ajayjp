@@ -14,4 +14,5 @@ class JPColor {
   static const Color darkGray = Color(0xff9CA2B0);
   static const Color success = Color(0xff42BA96);
   static const Color warning = Color(0xffFFA115);
+  static const Color splashColor = Color(0xff418BCA);
 }
