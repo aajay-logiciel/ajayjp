@@ -17,4 +17,3 @@ export 'package:jp_ui_kit/Button/index.dart';
 export 'package:jp_ui_kit/JPLabel/jp_label.dart';
 export 'package:jp_ui_kit/JPLabel/jp_label_type.dart';
 export 'package:jp_ui_kit/CheckBox/index.dart';
-export 'package:jp_ui_kit/CheckBox/jpa_checkbox.dart';
