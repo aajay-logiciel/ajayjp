@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/JPRadioButton/index.dart';
 import 'package:jp_ui_kit/JPRadioButton/jp_radiobutton.dart';
+import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class RadiobuttonClass extends StatefulWidget {
   const RadiobuttonClass({Key? key}) : super(key: key);
@@ -27,15 +28,9 @@ class _RadiobuttonClassState extends State<RadiobuttonClass> {
                 height: 5,
               ),
 
-              JPNRadioButton(value: 'a',
-              groupValue: 'a',
-              text: 'adfasdf',),
-              JPNRadioButton(value: 'a',
-                groupValue: 'b',
-                text: 'adfasdf',),
-              JPNRadioButton(value: '',
-                groupValue: 'c',
-                text: 'adfasdf',),
+              JPRadioButton(
+                labels: ['abcdef','abcdef','abcdef'],
+              )
 
 
             ],

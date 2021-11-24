@@ -56,12 +56,6 @@ class _JPNRadioButtonState extends State<JPNRadioButton> {
       });
     }
 
-    /// Defines onTap function of a checkbox.
-   /* getOnTap() {
-      setState(() {
-        checkBoxValue = !checkBoxValue!;
-      });
-    }*/
 
     /// Checkbox Widget of a checkbox
     Radio radio = Radio(

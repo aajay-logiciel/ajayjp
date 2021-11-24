@@ -7,6 +7,8 @@ class JPRadioButton extends StatefulWidget {
   /// A list of strings that describes each Radio button. Each label must be distinct.
   final List<String>? labels;
 
+
+
   /// Specifies which Radio button to automatically pick.
   /// Every element must match a label.
   /// This is useful for clearing what is picked (set it to "").
@@ -50,10 +52,11 @@ class JPRadioButton extends StatefulWidget {
     this.onChange,
     this.onSelected,
     this.activeColor = JPColor.primary, //defaults to toggleableActiveColor,
-    this.orientation = JPOrientation.vertical,
+    this.orientation = JPOrientation.horizontal,
     this.itemBuilder,
     this.padding = const EdgeInsets.all(0.0),
     this.margin = const EdgeInsets.all(0.0),
+
   }) : super(key: key);
 
   @override
@@ -63,12 +66,14 @@ class JPRadioButton extends StatefulWidget {
 class _JPRadioButtonState extends State<JPRadioButton> {
   String? _selected;
 
+
   @override
   void initState() {
     super.initState();
 
     //set the selected to the picked (if not null)
     _selected = widget.picked ?? "";
+
   }
 
   @override
@@ -112,22 +117,12 @@ class _JPRadioButtonState extends State<JPRadioButton> {
       } else {
         //otherwise, use predefined method of building
 
-        //vertical orientation means Column with Row inside
-        if (widget.orientation == JPOrientation.vertical) {
           content.add(Row(children: <Widget>[
             const SizedBox(width: 12.0),
             rb,
             const SizedBox(width: 12.0),
             t,
           ]));
-        } else {
-          //horizontal orientation means Row with Column inside
-          content.add(Column(children: <Widget>[
-            rb,
-            const SizedBox(width: 12.0),
-            t,
-          ]));
-        }
       }
     }
 
@@ -135,8 +130,8 @@ class _JPRadioButtonState extends State<JPRadioButton> {
       padding: widget.padding,
       margin: widget.margin,
       child: widget.orientation == JPOrientation.vertical
-          ? Column(children: content)
-          : Row(children: content),
+          ? Wrap(children: content)
+          : Wrap(children: content),
     );
   }
 }
