@@ -7,18 +7,19 @@ import 'package:jp_ui_kit/Text/index.dart';
 import 'package:jp_ui_kit/Text/textsize.dart';
 
 class JPNRadioButton extends StatefulWidget {
-  const JPNRadioButton({
-    required this.value,
-    required this.groupValue,
-    this.disabled = false,
-    this.text,
-    this.textSize = JPTextSize.heading4,
-    this.textColor = JPColor.black,
-    this.fontFamily = JPFontFamily.roboto,
-    this.fontWeight = JPFontWeight.regular,
-    this.isLabelClickable = true,
-    this.jpPosition = JPPosition.end,
-    Key? key}) : super(key: key);
+  const JPNRadioButton(
+      {required this.value,
+      required this.groupValue,
+      this.disabled = false,
+      this.text,
+      this.textSize = JPTextSize.heading4,
+      this.textColor = JPColor.black,
+      this.fontFamily = JPFontFamily.roboto,
+      this.fontWeight = JPFontWeight.regular,
+      this.isLabelClickable = true,
+      this.jpPosition = JPPosition.end,
+      Key? key})
+      : super(key: key);
   final String? text;
   final JPTextSize? textSize;
   final Color? textColor;
@@ -29,6 +30,7 @@ class JPNRadioButton extends StatefulWidget {
   final JPPosition jpPosition;
   final String value;
   final String groupValue;
+
   @override
   _JPNRadioButtonState createState() => _JPNRadioButtonState();
 }
@@ -47,6 +49,7 @@ class _JPNRadioButtonState extends State<JPNRadioButton> {
     groupValue = widget.groupValue;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     /// Defines onChanged function of a checkbox.
@@ -56,18 +59,15 @@ class _JPNRadioButtonState extends State<JPNRadioButton> {
       });
     }
 
-
     /// Checkbox Widget of a checkbox
-    Radio radio = Radio(
-        value: value,
-        groupValue: groupValue,
-        onChanged: getOnChanged);
+    Radio radio =
+        Radio(value: value, groupValue: groupValue, onChanged: getOnChanged);
 
     /// Label Widget of a checkbox
     JPText label = JPText(
       text: text,
       textColor:
-      widget.disabled == false ? textColor : textColor!.withOpacity(0.4),
+          widget.disabled == false ? textColor : textColor!.withOpacity(0.4),
       textSize: widget.textSize,
       fontWeight: widget.fontWeight,
       fontFamily: widget.fontFamily,
@@ -110,10 +110,8 @@ class _JPNRadioButtonState extends State<JPNRadioButton> {
       );
     }
     return InkWell(
-    //  onTap: widget.isLabelClickable == false ? null : getOnTap,
+      //  onTap: widget.isLabelClickable == false ? null : getOnTap,
       child: FittedBox(child: getContainerData()),
     );
   }
 }
-
-

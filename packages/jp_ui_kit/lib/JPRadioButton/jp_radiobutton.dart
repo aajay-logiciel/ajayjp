@@ -1,62 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
 import 'package:jp_ui_kit/CommonFiles/orientation.dart';
+import 'package:jp_ui_kit/Text/fontweight.dart';
 import 'package:jp_ui_kit/Text/index.dart';
+import 'package:jp_ui_kit/jp_ui_kit.dart';
+
+import 'jp_radio_data.dart';
 
 class JPRadioButton extends StatefulWidget {
-  /// A list of strings that describes each Radio button. Each label must be distinct.
-  final List<String>? labels;
+  /// Describe the list of JPRadioData Class variables labels and disabled of a radio box.
+  final List<JPRadioData>? jpRadioData;
 
-
-
-  /// Specifies which Radio button to automatically pick.
-  /// Every element must match a label.
-  /// This is useful for clearing what is picked (set it to "").
-  /// If this is non-null, then the user must handle updating this; otherwise, the state of the RadioButtonGroup won't change.
+  ///Describe the groupValue of a radio box.
   final String? picked;
 
-  /// Specifies which buttons should be disabled.
-  /// If this is non-null, no buttons will be disabled.
-  /// The strings passed to this must match the labels.
-  final List<String>? disabled;
-
-  /// Called when the value of the RadioButtonGroup changes.
-  final void Function(String label, int index)? onChange;
-
-  /// Called when the user makes a selection.
-  final void Function(String selected)? onSelected;
-
-  /// Specifies the orientation to display elements.
+  /// Describe the orientation to display radio boxes.
   final JPOrientation? orientation;
 
-  /// Called when needed to build a RadioButtonGroup element.
-  final Widget Function(Radio radioButton, JPText label, int index)?
-      itemBuilder;
-
-  //RADIO BUTTON FIELDS
   /// The color to use when a Radio button is checked.
   final Color? activeColor;
 
-  //SPACING STUFF
-  /// Empty space in which to inset the RadioButtonGroup.
-  final EdgeInsetsGeometry? padding;
+  /// Describe the textSize [JPTextSize.heading4] of label of a radio box.
+  final JPTextSize? textSize;
 
-  /// Empty space surrounding the RadioButtonGroup.
-  final EdgeInsetsGeometry? margin;
+  /// Describe the fontFamily [JPFontFamily.roboto] of label of a radio box.
+  final JPFontFamily fontFamily;
+
+  /// Describe the fontWeight [JPFontWeight.regular] of label of a radio box.
+  final JPFontWeight fontWeight;
+
+  /// Describe the textColor [JPColor.black] of label of a radio box.
+  final Color? textColor;
 
   const JPRadioButton({
     Key? key,
-    required this.labels,
-    this.picked,
-    this.disabled,
-    this.onChange,
-    this.onSelected,
+    this.jpRadioData,
     this.activeColor = JPColor.primary, //defaults to toggleableActiveColor,
-    this.orientation = JPOrientation.horizontal,
-    this.itemBuilder,
-    this.padding = const EdgeInsets.all(0.0),
-    this.margin = const EdgeInsets.all(0.0),
-
+    this.orientation = JPOrientation.vertical,
+    this.picked,
+    this.fontWeight = JPFontWeight.regular,
+    this.fontFamily = JPFontFamily.roboto,
+    this.textSize = JPTextSize.heading4,
+    this.textColor = JPColor.black,
   }) : super(key: key);
 
   @override
@@ -66,72 +51,56 @@ class JPRadioButton extends StatefulWidget {
 class _JPRadioButtonState extends State<JPRadioButton> {
   String? _selected;
 
-
   @override
   void initState() {
     super.initState();
-
-    //set the selected to the picked (if not null)
     _selected = widget.picked ?? "";
-
   }
 
   @override
   Widget build(BuildContext context) {
-    //set the selected to the picked (if not null)
-    _selected = widget.picked ?? _selected;
-
-    List<Widget> content = [];
-    for (int i = 0; i < widget.labels!.length; i++) {
-      Radio rb = Radio(
-        activeColor: widget.activeColor,
-        groupValue: widget.labels!.indexOf(_selected!),
-        value: i,
-        //just changed the selected filter to current selection
-        //since these are radio buttons, and you can only pick
-        //one at a time
-        onChanged: (widget.disabled != null &&
-                widget.disabled!.contains(widget.labels!.elementAt(i)))
-            ? null
-            : (var index) => setState(() {
-                  _selected = widget.labels!.elementAt(i);
-
-                  if (widget.onChange != null)
-                    widget.onChange!(widget.labels!.elementAt(i), i);
-                  if (widget.onSelected != null)
-                    widget.onSelected!(widget.labels!.elementAt(i));
-                }),
-      );
-
-      JPText t = JPText(
-        text: widget.labels!.elementAt(i),
-        textColor: (widget.disabled != null &&
-                widget.disabled!.contains(widget.labels!.elementAt(i)))
-            ? Theme.of(context).disabledColor
-            : JPColor.black,
-      );
-
-      //use user defined method to build
-      if (widget.itemBuilder != null) {
-        content.add(widget.itemBuilder!(rb, t, i));
-      } else {
-        //otherwise, use predefined method of building
-
-          content.add(Row(children: <Widget>[
-            const SizedBox(width: 12.0),
-            rb,
-            const SizedBox(width: 12.0),
-            t,
-          ]));
-      }
+    /// onChanged function of a radio.
+    getOnChanged(val) {
+      setState(() {
+        _selected = val;
+      });
     }
 
-    return Container(
-      padding: widget.padding,
-      margin: widget.margin,
-      child: widget.orientation == JPOrientation.vertical
-          ? Wrap(children: content)
-          : Wrap(children: content),
-    );
+    List<Widget> content = [];
+    for (int i = 0; i < widget.jpRadioData!.length; i++) {
+      Radio radio = Radio(
+        activeColor: !widget.jpRadioData!.elementAt(i).disabled!
+            ? widget.activeColor
+            : widget.activeColor!.withOpacity(0.4),
+        groupValue: _selected,
+        value: widget.jpRadioData!.elementAt(i).label,
+        onChanged:
+            !widget.jpRadioData!.elementAt(i).disabled! ? getOnChanged : null,
+        hoverColor: JPColor.primary.withOpacity(0.1),
+      );
+
+      JPText text = JPText(
+        text: widget.jpRadioData!.elementAt(i).label,
+        textColor: !widget.jpRadioData!.elementAt(i).disabled!
+            ? widget.textColor
+            : widget.textColor!.withOpacity(0.4),
+        textSize: widget.textSize,
+        fontWeight: widget.fontWeight,
+        fontFamily: widget.fontFamily,
+      );
+
+      content.add(Row(children: <Widget>[
+        const SizedBox(width: 30.0),
+        radio,
+        const SizedBox(width: 8.0),
+        text,
+      ]));
+    }
+
+    if (widget.orientation == JPOrientation.horizontal) {
+      return Row(children: content);
+    }
+
+    return Column(children: content);
   }
 }

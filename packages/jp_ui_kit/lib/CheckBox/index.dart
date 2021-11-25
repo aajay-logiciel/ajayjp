@@ -6,7 +6,7 @@ import 'package:jp_ui_kit/jp_ui_kit.dart';
 class JPCheckbox extends StatefulWidget {
   const JPCheckbox(
       {this.disabled = false,
-      this.isTextClickable = true,
+      this.isTextClickable = false,
       this.selected = false,
       this.text,
       this.textSize = JPTextSize.heading4,
@@ -17,7 +17,7 @@ class JPCheckbox extends StatefulWidget {
       : super(key: key);
 
   /// Defines enabled or disabled of a checkbox.
-  final bool? disabled;
+  final bool disabled;
 
   /// Defines text is clickable or not of a checkbox.
   final bool? isTextClickable;
@@ -46,7 +46,7 @@ class JPCheckbox extends StatefulWidget {
 
 class _JPCheckboxState extends State<JPCheckbox> {
   late bool selected;
-  late String text;
+  late String? text;
 
   getOnTab() {
     return setState(() {
@@ -57,7 +57,7 @@ class _JPCheckboxState extends State<JPCheckbox> {
   @override
   void initState() {
     selected = widget.selected!;
-    text = widget.text ?? '';
+    text = widget.text;
     super.initState();
   }
 
@@ -67,85 +67,91 @@ class _JPCheckboxState extends State<JPCheckbox> {
     getBorder() {
       return Border.all(
           color:
-              widget.disabled! ? JPColor.black.withOpacity(0.5) : JPColor.black,
+              widget.disabled ? JPColor.black.withOpacity(0.5) : JPColor.black,
           width: 1);
     }
 
     ///Defines text widget of a checkbox.
-    Widget getText() => JPText(
-          text: text,
-          textColor: widget.disabled == false
-              ? widget.textColor
-              : widget.textColor!.withOpacity(0.4),
-          textSize: widget.textSize,
-          fontWeight: widget.fontWeight,
-          fontFamily: widget.fontFamily,
-        );
+    Widget getText() {
+      getColor() {
+        return widget.disabled
+            ? widget.textColor!.withOpacity(0.4)
+            : widget.textColor;
+      }
+
+      return JPText(
+        text: text!,
+        textColor: getColor(),
+        textSize: widget.textSize,
+        fontWeight: widget.fontWeight,
+        fontFamily: widget.fontFamily,
+      );
+    }
 
     ///Defines checkbox widget of a checkbox.
     ///InkWell is used when isTextClickable method of a checkbox.
-    Widget getCheckBox() => InkWell(
-          borderRadius: BorderRadius.circular(50),
-          splashColor: JPColor.primary.withOpacity(0.1),
-          hoverColor: JPColor.primary.withOpacity(0.1),
-          onTap: widget.disabled!
-              ? null
-              : widget.isTextClickable!
-                  ? null
-                  : getOnTab,
-          child: Container(
-            height: 32,
-            width: 32,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-            ),
-            child: Center(
-              child: AnimatedContainer(
-                height: 17.0,
-                width: 17.0,
-                curve: Curves.linear,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: selected
-                      ? Colors.white
-                      : widget.disabled!
-                          ? JPColor.primary.withOpacity(0.5)
-                          : JPColor.primary,
-                  border: selected ? getBorder() : null,
-                ),
-                duration: const Duration(milliseconds: 1),
-                child: const Center(
-                    child: Icon(
-                  Icons.check,
-                  color: JPColor.white,
-                  size: 14,
-                )),
+    Widget getCheckBox() {
+      getTab() {
+        return widget.disabled
+            ? null
+            : (widget.isTextClickable! ? null : getOnTab);
+      }
+
+      getColor() {
+        return selected
+            ? Colors.white
+            : (widget.disabled
+                ? JPColor.primary.withOpacity(0.5)
+                : JPColor.primary);
+      }
+
+      return InkWell(
+        borderRadius: BorderRadius.circular(50),
+        splashColor: JPColor.primary.withOpacity(0.1),
+        hoverColor: JPColor.primary.withOpacity(0.1),
+        onTap: getTab(),
+        child: Container(
+          height: 32,
+          width: 32,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+          ),
+          child: Center(
+            child: AnimatedContainer(
+              height: 17.0,
+              width: 17.0,
+              curve: Curves.linear,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: getColor(),
+                border: selected ? getBorder() : null,
               ),
+              duration: const Duration(milliseconds: 1),
+              child: const Center(
+                  child: Icon(
+                Icons.check,
+                color: JPColor.white,
+                size: 14,
+              )),
             ),
           ),
-        );
-
-    ///Defines row children widget
-    getRowChildren() {
-      return [
-        getCheckBox(),
-        const SizedBox(
-          width: 8.5,
         ),
-        getText(),
-        const SizedBox(
-          width: 8.5,
-        ),
-      ];
+      );
     }
 
     ///Defines Fitted box Widget
     getFittedBoxData() {
-      if (text == '') {
+      if (text == null) {
         return getCheckBox();
       }
       return Row(
-        children: getRowChildren(),
+        children: [
+          getCheckBox(),
+          const SizedBox(
+            width: 8.5,
+          ),
+          getText(),
+        ],
       );
     }
 
@@ -153,12 +159,12 @@ class _JPCheckboxState extends State<JPCheckbox> {
       borderRadius: BorderRadius.circular(50),
       splashColor: JPColor.primary.withOpacity(0.1),
       hoverColor: JPColor.primary.withOpacity(0.1),
-      onTap: widget.disabled!
-          ? null
-          : widget.isTextClickable!
-              ? getOnTab
-              : null,
-      child: FittedBox(child: getFittedBoxData()),
+      onTap:
+          widget.disabled ? null : (widget.isTextClickable! ? getOnTab : null),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: FittedBox(child: getFittedBoxData()),
+      ),
     );
   }
 }

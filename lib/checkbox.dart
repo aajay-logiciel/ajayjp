@@ -19,7 +19,7 @@ class _CheckboxClassState extends State<CheckboxClass> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Column(
             children:  const [
               JPCheckbox(
@@ -27,7 +27,8 @@ class _CheckboxClassState extends State<CheckboxClass> {
               ),
               JPCheckbox(
                 text: 'Clicked',
-                disabled: true,
+                //disabled: true,
+                isTextClickable: true,
               ),
 
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jp_ui_kit/JPRadioButton/index.dart';
 import 'package:jp_ui_kit/JPRadioButton/jp_radiobutton.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
@@ -11,6 +10,13 @@ class RadiobuttonClass extends StatefulWidget {
 }
 
 class _RadiobuttonClassState extends State<RadiobuttonClass> {
+  List<JPRadioData> data = [
+    JPRadioData(label: 'label', disabled: true),
+    JPRadioData(label: 'label1'),
+    JPRadioData(label: 'label2'),
+    JPRadioData(label: 'label3'),
+    JPRadioData(label: 'label4')
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +26,15 @@ class _RadiobuttonClassState extends State<RadiobuttonClass> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Column(
-            children:  const [
-
-              SizedBox(
+            children: [
+              JPRadioButton(
+                jpRadioData: data,
+              ),
+              const SizedBox(
                 height: 5,
               ),
-
-              JPRadioButton(
-                labels: ['abcdef','abcdef','abcdef'],
-              )
-
-
             ],
           ),
         ),

@@ -9,6 +9,7 @@ export 'package:jp_ui_kit/Text/fontfamily.dart';
 export 'package:jp_ui_kit/Text/textsize.dart';
 export 'package:jp_ui_kit/Text/index.dart';
 export 'package:jp_ui_kit/JPRadioButton/jp_radiobutton.dart';
+export 'package:jp_ui_kit/JPRadioButton/jp_radio_data.dart';
 export 'package:jp_ui_kit/JPToggle/jp_toggle.dart';
 export 'package:jp_ui_kit/Badges/index.dart';
 export 'package:jp_ui_kit/JPChips/jp_chips.dart';
