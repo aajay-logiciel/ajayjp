@@ -52,6 +52,7 @@ class _JPNRadioButtonState extends State<JPNRadioButton> {
 
   @override
   Widget build(BuildContext context) {
+
     /// Defines onChanged function of a checkbox.
     getOnChanged(value) {
       setState(() {
@@ -61,7 +62,7 @@ class _JPNRadioButtonState extends State<JPNRadioButton> {
 
     /// Checkbox Widget of a checkbox
     Radio radio =
-        Radio(value: value, groupValue: groupValue, onChanged: getOnChanged);
+        Radio(value: value, groupValue: groupValue, onChanged:  getOnChanged);
 
     /// Label Widget of a checkbox
     JPText label = JPText(

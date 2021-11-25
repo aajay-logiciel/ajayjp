@@ -11,9 +11,6 @@ class JPRadioButton extends StatefulWidget {
   /// Describe the list of JPRadioData Class variables labels and disabled of a radio box.
   final List<JPRadioData>? jpRadioData;
 
-  ///Describe the groupValue of a radio box.
-  final String? picked;
-
   /// Describe the orientation to display radio boxes.
   final JPOrientation? orientation;
 
@@ -32,16 +29,19 @@ class JPRadioButton extends StatefulWidget {
   /// Describe the textColor [JPColor.black] of label of a radio box.
   final Color? textColor;
 
+  /// Describe the text is clickable or not od a radio box.
+  final bool? isTextClickable;
+
   const JPRadioButton({
     Key? key,
     this.jpRadioData,
     this.activeColor = JPColor.primary, //defaults to toggleableActiveColor,
     this.orientation = JPOrientation.vertical,
-    this.picked,
     this.fontWeight = JPFontWeight.regular,
     this.fontFamily = JPFontFamily.roboto,
     this.textSize = JPTextSize.heading4,
     this.textColor = JPColor.black,
+    this.isTextClickable = false,
   }) : super(key: key);
 
   @override
@@ -49,20 +49,24 @@ class JPRadioButton extends StatefulWidget {
 }
 
 class _JPRadioButtonState extends State<JPRadioButton> {
-  String? _selected;
+  int? _selected;
 
   @override
   void initState() {
     super.initState();
-    _selected = widget.picked ?? "";
+    //  _selected = widget.picked ?? "";
   }
 
   @override
   Widget build(BuildContext context) {
     /// onChanged function of a radio.
-    getOnChanged(val) {
+    getOnChanged(T) {
+      if(widget.isTextClickable!){
+        null;
+      }
+
       setState(() {
-        _selected = val;
+        _selected = T;
       });
     }
 
@@ -73,10 +77,11 @@ class _JPRadioButtonState extends State<JPRadioButton> {
             ? widget.activeColor
             : widget.activeColor!.withOpacity(0.4),
         groupValue: _selected,
-        value: widget.jpRadioData!.elementAt(i).label,
+        value: i,
         onChanged:
-            !widget.jpRadioData!.elementAt(i).disabled! ? getOnChanged : null,
+            !widget.jpRadioData!.elementAt(i).disabled! ?  getOnChanged : null,
         hoverColor: JPColor.primary.withOpacity(0.1),
+        focusColor: JPColor.primary,
       );
 
       JPText text = JPText(
@@ -89,12 +94,22 @@ class _JPRadioButtonState extends State<JPRadioButton> {
         fontFamily: widget.fontFamily,
       );
 
-      content.add(Row(children: <Widget>[
-        const SizedBox(width: 30.0),
-        radio,
-        const SizedBox(width: 8.0),
-        text,
-      ]));
+      content.add(InkWell(
+        borderRadius: BorderRadius.circular(50),
+        splashColor: JPColor.primary.withOpacity(0.1),
+        hoverColor: JPColor.primary.withOpacity(0.1),
+        onTap:widget.jpRadioData!.elementAt(i).disabled! ? null: (widget.isTextClickable!
+            ? () { getOnChanged(i); }: null),
+        child: FittedBox(
+          child: Row(children: <Widget>[
+            const SizedBox(width: 10.0),
+            radio,
+            const SizedBox(width: 8.0),
+            text,
+            const SizedBox(width: 10.0),
+          ]),
+        ),
+      ));
     }
 
     if (widget.orientation == JPOrientation.horizontal) {

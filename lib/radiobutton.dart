@@ -31,6 +31,7 @@ class _RadiobuttonClassState extends State<RadiobuttonClass> {
             children: [
               JPRadioButton(
                 jpRadioData: data,
+                isTextClickable: true,
               ),
               const SizedBox(
                 height: 5,
