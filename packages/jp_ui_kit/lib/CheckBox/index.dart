@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
 import 'package:jp_ui_kit/Text/fontweight.dart';
@@ -13,6 +15,8 @@ class JPCheckbox extends StatefulWidget {
       this.textColor = JPColor.black,
       this.fontFamily = JPFontFamily.roboto,
       this.fontWeight = JPFontWeight.regular,
+        this.borderColor = JPColor.black,
+        this.checkBoxColor = JPColor.primary,
       Key? key})
       : super(key: key);
 
@@ -40,6 +44,10 @@ class JPCheckbox extends StatefulWidget {
   /// Defines text textSize[JPTextSize.heading4] of a checkbox.
   final JPTextSize? textSize;
 
+  final Color? borderColor;
+
+  final Color? checkBoxColor;
+
   @override
   _JPCheckboxState createState() => _JPCheckboxState();
 }
@@ -51,6 +59,10 @@ class _JPCheckboxState extends State<JPCheckbox> {
   getOnTab() {
     return setState(() {
       selected = !selected;
+      focusNode.requestFocus();
+      Timer(const Duration(milliseconds: 300),
+          () => focusNode.unfocus(),
+      );
     });
   }
 
@@ -61,13 +73,14 @@ class _JPCheckboxState extends State<JPCheckbox> {
     super.initState();
   }
 
+  FocusNode focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     ///Defines border of a checkbox.
     getBorder() {
       return Border.all(
           color:
-              widget.disabled ? JPColor.black.withOpacity(0.5) : JPColor.black,
+              widget.disabled ? widget.borderColor!.withOpacity(0.5) : widget.borderColor!,
           width: 1);
     }
 
@@ -91,25 +104,28 @@ class _JPCheckboxState extends State<JPCheckbox> {
     ///Defines checkbox widget of a checkbox.
     ///InkWell is used when isTextClickable method of a checkbox.
     Widget getCheckBox() {
-      getTab() {
+
+      getTap() {
         return widget.disabled
             ? null
-            : (widget.isTextClickable! ? null : getOnTab);
+             : getOnTab;
       }
 
       getColor() {
         return selected
             ? Colors.white
             : (widget.disabled
-                ? JPColor.primary.withOpacity(0.5)
-                : JPColor.primary);
+                ? widget.checkBoxColor!.withOpacity(0.5)
+                : widget.checkBoxColor);
       }
 
       return InkWell(
+        focusColor: JPColor.primary.withOpacity(0.1),
+        focusNode: focusNode,
         borderRadius: BorderRadius.circular(50),
         splashColor: JPColor.primary.withOpacity(0.1),
         hoverColor: JPColor.primary.withOpacity(0.1),
-        onTap: getTab(),
+        onTap: getTap(),
         child: Container(
           height: 32,
           width: 32,
@@ -155,10 +171,7 @@ class _JPCheckboxState extends State<JPCheckbox> {
       );
     }
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(50),
-      splashColor: JPColor.primary.withOpacity(0.1),
-      hoverColor: JPColor.primary.withOpacity(0.1),
+    return GestureDetector(
       onTap:
           widget.disabled ? null : (widget.isTextClickable! ? getOnTab : null),
       child: Padding(

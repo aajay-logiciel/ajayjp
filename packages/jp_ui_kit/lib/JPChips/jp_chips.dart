@@ -38,7 +38,7 @@ class _JPChipsState extends State<JPChips> {
       width: getwidth(),
       constraints: BoxConstraints(maxWidth: 200,minWidth: 70),
       decoration: BoxDecoration(
-        color: JPColor.borderColor,
+        color: JPColor.dimGray,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(

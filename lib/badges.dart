@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jp_ui_kit/Badges/index.dart';
+import 'package:jp_ui_kit/Badge/index.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
 
 class BadgesClass extends StatelessWidget {
@@ -9,7 +9,7 @@ class BadgesClass extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Badges"),
+        title: const Text("Badge"),
       ),
       body: SingleChildScrollView(
         child: Padding(

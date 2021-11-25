@@ -121,15 +121,21 @@ class _JPButtonState extends State<JPButton> {
 
     switch (widget.colorType) {
       case JPButtonColorType.primary:
-        color = (widget.type == JPButtonType.outline) ? JPColor.primary : JPColor.white;
+        color = (widget.type == JPButtonType.outline)
+            ? JPColor.primary
+            : JPColor.white;
         break;
 
       case JPButtonColorType.tertiary:
-        color = (widget.type == JPButtonType.outline) ? JPColor.tertiary : JPColor.white;
+        color = (widget.type == JPButtonType.outline)
+            ? JPColor.tertiary
+            : JPColor.white;
         break;
 
       case JPButtonColorType.lightGray:
-        color = (widget.type == JPButtonType.outline) ? JPColor.lightGray : JPColor.tertiary;
+        color = (widget.type == JPButtonType.outline)
+            ? JPColor.lightGray
+            : JPColor.tertiary;
         break;
 
       default:
@@ -267,11 +273,25 @@ class _JPButtonState extends State<JPButton> {
       );
     }
 
+    getSplashColor() {
+      switch (widget.colorType) {
+        case JPButtonColorType.primary:
+          return JPColor.primary.withOpacity(0.2);
+        case JPButtonColorType.tertiary:
+          return JPColor.tertiary.withOpacity(0.2);
+        case JPButtonColorType.lightGray:
+          return JPColor.lightGray.withOpacity(0.1);
+        default:
+          return JPColor.primary.withOpacity(0.2);
+      }
+    }
+
     final result = Material(
       shape: shapeBorderType,
       type: MaterialType.button,
       color: getButtonColor(),
       child: InkWell(
+        splashColor: getSplashColor(),
         customBorder: borderShape ?? shapeBorderType,
         onTap: widget.disabled ? null : widget.onPressed,
         child: IconTheme.merge(
@@ -312,7 +332,6 @@ class _JPButtonState extends State<JPButton> {
       fontWeight: widget.fontWeight,
       textColor: textColor ?? getTextColor(),
       textSize: getTextSize(),
-      overflow: TextOverflow.ellipsis,
     );
   }
 
@@ -321,7 +340,7 @@ class _JPButtonState extends State<JPButton> {
     List<Widget> rowChildren = <Widget>[
       getIcon(),
       const SizedBox(width: 5),
-      Flexible(child: getText())
+       Flexible(child: getText())
     ];
 
     if (widget.iconPosition == JPPosition.end) {

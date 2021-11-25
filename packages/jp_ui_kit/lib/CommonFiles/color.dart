@@ -9,7 +9,7 @@ class JPColor {
   static const Color lightGray = Color(0xffE9EBEF);
   static const Color tertiary = Color(0xff54627D);
   static const Color white = Color(0xffffffff);
-  static const Color borderColor = Color(0xffE0E0E0);
+  static const Color dimGray = Color(0xffE0E0E0);
   static const Color transparent = Colors.transparent;
   static const Color darkGray = Color(0xff9CA2B0);
   static const Color success = Color(0xff42BA96);

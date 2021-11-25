@@ -23,6 +23,12 @@ class ButtonClass extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
+
+                JPButton(
+                  size: JPButtonSize.small,
+                  text: 'BUTTON IS BEST FOR US THAT IS WHY WE SAY JSYS JAKD DDNDK JFYSJS KUCDN',
+                  onPressed: () {},
+                ),
                 text('Null Text Button'),
 
                 space(),

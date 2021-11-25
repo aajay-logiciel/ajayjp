@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
 import 'package:jp_ui_kit/CommonFiles/orientation.dart';
@@ -54,17 +56,16 @@ class _JPRadioButtonState extends State<JPRadioButton> {
   @override
   void initState() {
     super.initState();
-    //  _selected = widget.picked ?? "";
   }
 
   @override
   Widget build(BuildContext context) {
+
     /// onChanged function of a radio.
     getOnChanged(T) {
-      if(widget.isTextClickable!){
+      if (widget.isTextClickable!) {
         null;
       }
-
       setState(() {
         _selected = T;
       });
@@ -79,7 +80,7 @@ class _JPRadioButtonState extends State<JPRadioButton> {
         groupValue: _selected,
         value: i,
         onChanged:
-            !widget.jpRadioData!.elementAt(i).disabled! ?  getOnChanged : null,
+            !widget.jpRadioData!.elementAt(i).disabled! ? getOnChanged : null,
         hoverColor: JPColor.primary.withOpacity(0.1),
         focusColor: JPColor.primary,
       );
@@ -94,12 +95,14 @@ class _JPRadioButtonState extends State<JPRadioButton> {
         fontFamily: widget.fontFamily,
       );
 
-      content.add(InkWell(
-        borderRadius: BorderRadius.circular(50),
-        splashColor: JPColor.primary.withOpacity(0.1),
-        hoverColor: JPColor.primary.withOpacity(0.1),
-        onTap:widget.jpRadioData!.elementAt(i).disabled! ? null: (widget.isTextClickable!
-            ? () { getOnChanged(i); }: null),
+      content.add(GestureDetector (
+        onTap: widget.jpRadioData!.elementAt(i).disabled!
+            ? null
+            : (widget.isTextClickable!
+                ? () {
+                    getOnChanged(i);
+                  }
+                : null),
         child: FittedBox(
           child: Row(children: <Widget>[
             const SizedBox(width: 10.0),

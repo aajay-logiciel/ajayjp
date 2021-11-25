@@ -12,7 +12,7 @@ class JPText extends StatelessWidget {
       this.fontFamily = JPFontFamily.roboto,
       this.fontWeight = JPFontWeight.regular,
       this.textColor = JPColor.black,
-      this.overflow = TextOverflow.ellipsis,
+      this.overflow ,
       this.textAlign = TextAlign.center,
         this.maxLine=1,
         this.textDecoration,
@@ -35,7 +35,7 @@ class JPText extends StatelessWidget {
   final Color? textColor;
 
   /// Defines overflow of a text.
-  final TextOverflow overflow;
+  final TextOverflow? overflow;
 
   /// Defines textAlign of a text.
   final TextAlign textAlign;

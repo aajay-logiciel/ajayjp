@@ -69,7 +69,7 @@ class Home extends StatelessWidget {
               },
             ),
             JPButton(
-              text: "Badges",
+              text: "Badge",
               size: JPButtonSize.medium,
               onPressed: () {
                 Get.to(const BadgesClass());
