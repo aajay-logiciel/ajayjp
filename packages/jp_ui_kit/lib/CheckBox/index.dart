@@ -15,8 +15,8 @@ class JPCheckbox extends StatefulWidget {
       this.textColor = JPColor.black,
       this.fontFamily = JPFontFamily.roboto,
       this.fontWeight = JPFontWeight.regular,
-        this.borderColor = JPColor.black,
-        this.checkBoxColor = JPColor.primary,
+      this.borderColor = JPColor.black,
+      this.checkBoxColor = JPColor.primary,
       Key? key})
       : super(key: key);
 
@@ -60,8 +60,9 @@ class _JPCheckboxState extends State<JPCheckbox> {
     return setState(() {
       selected = !selected;
       focusNode.requestFocus();
-      Timer(const Duration(milliseconds: 300),
-          () => focusNode.unfocus(),
+      Timer(
+        const Duration(milliseconds: 300),
+        () => focusNode.unfocus(),
       );
     });
   }
@@ -74,13 +75,15 @@ class _JPCheckboxState extends State<JPCheckbox> {
   }
 
   FocusNode focusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     ///Defines border of a checkbox.
     getBorder() {
       return Border.all(
-          color:
-              widget.disabled ? widget.borderColor!.withOpacity(0.5) : widget.borderColor!,
+          color: widget.disabled
+              ? widget.borderColor!.withOpacity(0.5)
+              : widget.borderColor!,
           width: 1);
     }
 
@@ -104,11 +107,8 @@ class _JPCheckboxState extends State<JPCheckbox> {
     ///Defines checkbox widget of a checkbox.
     ///InkWell is used when isTextClickable method of a checkbox.
     Widget getCheckBox() {
-
       getTap() {
-        return widget.disabled
-            ? null
-             : getOnTab;
+        return widget.disabled ? null : getOnTab;
       }
 
       getColor() {

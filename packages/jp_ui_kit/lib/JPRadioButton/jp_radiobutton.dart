@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
 import 'package:jp_ui_kit/CommonFiles/orientation.dart';
@@ -60,12 +61,26 @@ class _JPRadioButtonState extends State<JPRadioButton> {
 
   @override
   Widget build(BuildContext context) {
+    final List<FocusNode> focusNode = List<FocusNode>.generate(
+        widget.jpRadioData!.length, (_) => FocusNode());
+    void _fieldFocusChange(
+        BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
+      setState(() {
+        FocusScope.of(context).requestFocus(nextFocus);
+        Timer(
+          const Duration(milliseconds: 1),
+          () => FocusScope.of(context)
+              .unfocus(disposition: UnfocusDisposition.scope),
+        );
+      });
+    }
 
     /// onChanged function of a radio.
     getOnChanged(T) {
       if (widget.isTextClickable!) {
         null;
       }
+      _fieldFocusChange(context, focusNode[T], focusNode[T]);
       setState(() {
         _selected = T;
       });
@@ -74,6 +89,7 @@ class _JPRadioButtonState extends State<JPRadioButton> {
     List<Widget> content = [];
     for (int i = 0; i < widget.jpRadioData!.length; i++) {
       Radio radio = Radio(
+        focusNode: focusNode[i],
         activeColor: !widget.jpRadioData!.elementAt(i).disabled!
             ? widget.activeColor
             : widget.activeColor!.withOpacity(0.4),
@@ -82,7 +98,7 @@ class _JPRadioButtonState extends State<JPRadioButton> {
         onChanged:
             !widget.jpRadioData!.elementAt(i).disabled! ? getOnChanged : null,
         hoverColor: JPColor.primary.withOpacity(0.1),
-        focusColor: JPColor.primary,
+        focusColor: JPColor.primary.withOpacity(0.1),
       );
 
       JPText text = JPText(
@@ -95,7 +111,7 @@ class _JPRadioButtonState extends State<JPRadioButton> {
         fontFamily: widget.fontFamily,
       );
 
-      content.add(GestureDetector (
+      content.add(GestureDetector(
         onTap: widget.jpRadioData!.elementAt(i).disabled!
             ? null
             : (widget.isTextClickable!

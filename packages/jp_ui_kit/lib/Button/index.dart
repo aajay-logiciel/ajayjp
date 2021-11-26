@@ -286,6 +286,41 @@ class _JPButtonState extends State<JPButton> {
       }
     }
 
+    getConstraint() {
+      switch (size) {
+        case JPButtonSize.flat:
+          return BoxConstraints(
+            minWidth: MediaQuery.of(context).size.width,
+          );
+
+        case JPButtonSize.large:
+        case JPButtonSize.medium:
+          return const BoxConstraints(
+            minWidth: 160.0,
+          );
+
+        case JPButtonSize.small:
+          return const BoxConstraints(
+            minWidth: 60.0,
+          );
+
+        case JPButtonSize.mediumWithIcon:
+          return const BoxConstraints(
+            minWidth: 120.0,
+          );
+
+        case JPButtonSize.smallIcon:
+          return const BoxConstraints(
+            minWidth: 26.0,
+          );
+
+        default:
+          return BoxConstraints(
+            minWidth: MediaQuery.of(context).size.width,
+          );
+      }
+    }
+
     final result = Material(
       shape: shapeBorderType,
       type: MaterialType.button,
@@ -297,8 +332,9 @@ class _JPButtonState extends State<JPButton> {
         child: IconTheme.merge(
           data: const IconThemeData(),
           child: Container(
+              constraints: getConstraint(),
               height: getButtonHeight(),
-              width: getButtonWidth(),
+              //width: getButtonWidth(),
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: getContainerData()),
         ),
@@ -340,20 +376,19 @@ class _JPButtonState extends State<JPButton> {
     List<Widget> rowChildren = <Widget>[
       getIcon(),
       const SizedBox(width: 5),
-       Flexible(child: getText())
+      getText()
     ];
 
     if (widget.iconPosition == JPPosition.end) {
-      rowChildren = <Widget>[
-        Flexible(child: getText()),
-        const SizedBox(width: 5),
-        getIcon()
-      ];
+      rowChildren = <Widget>[getText(), const SizedBox(width: 5), getIcon()];
     }
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: rowChildren,
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: rowChildren,
+      ),
     );
   }
 }

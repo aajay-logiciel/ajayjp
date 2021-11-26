@@ -23,14 +23,18 @@ class ButtonClass extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-
+                Container(
+                  constraints: const BoxConstraints(minWidth: 60.0),
+                  color: Colors.amber,
+                  height: 52,
+                  child: const Text('Helllo hellockjfglkjdfgkajldfkgjafjgaf'),
+                ),
                 JPButton(
                   size: JPButtonSize.small,
-                  text: 'BUTTON IS BEST FOR US THAT IS WHY WE SAY JSYS JAKD DDNDK JFYSJS KUCDN',
+                  text: 'BUTTON IS BEST FOR US THAT IS jkhakj akjhgkl',
                   onPressed: () {},
                 ),
                 text('Null Text Button'),
-
                 space(),
                 JPButton(
                   text: 'BUTTON',
@@ -293,25 +297,23 @@ class ButtonClass extends StatelessWidget {
       );
 
   Widget text(String text1) => Align(
-    alignment: Alignment.topLeft,
-    child: Container(
-      padding: const EdgeInsets.only(
-        bottom: 5, // Space between underline and text
-      ),
-      decoration: const BoxDecoration(
-          border: Border(bottom: BorderSide(
+        alignment: Alignment.topLeft,
+        child: Container(
+          padding: const EdgeInsets.only(
+            bottom: 5, // Space between underline and text
+          ),
+          decoration: const BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(
             color: Colors.black,
             width: 1.0, // Underline thickness
-          ))
-      ),
-      child: JPText(
-        text: text1,
-        textSize: JPTextSize.heading2,
-        fontWeight: JPFontWeight.bold,
-        maxLine: 2,
-      ),
-    ),
-  );
+          ))),
+          child: JPText(
+            text: text1,
+            textSize: JPTextSize.heading2,
+            fontWeight: JPFontWeight.bold,
+            maxLine: 2,
+          ),
+        ),
+      );
 }
-
-
