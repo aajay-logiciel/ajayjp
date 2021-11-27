@@ -24,6 +24,7 @@ class _CheckboxClassState extends State<CheckboxClass> {
             children:  const [
               JPCheckbox(
                 text: 'Clicked',
+                selected: true,
               ),
               JPCheckbox(
                 text: 'Clicked',

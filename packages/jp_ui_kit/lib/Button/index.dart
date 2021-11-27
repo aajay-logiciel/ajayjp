@@ -79,7 +79,6 @@ class _JPButtonState extends State<JPButton> {
   JPButtonSize? size;
   JPButtonRadius? radius = JPButtonRadius.circular;
   ShapeBorder? borderShape;
-  JPButtonShape? shape;
 
   String? text;
   JPTextSize? textSize;
@@ -329,15 +328,11 @@ class _JPButtonState extends State<JPButton> {
         splashColor: getSplashColor(),
         customBorder: borderShape ?? shapeBorderType,
         onTap: widget.disabled ? null : widget.onPressed,
-        child: IconTheme.merge(
-          data: const IconThemeData(),
-          child: Container(
-              constraints: getConstraint(),
-              height: getButtonHeight(),
-              //width: getButtonWidth(),
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: getContainerData()),
-        ),
+        child: Container(
+            constraints: getConstraint(),
+            height: getButtonHeight(),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: getContainerData()),
       ),
     );
 
@@ -375,12 +370,14 @@ class _JPButtonState extends State<JPButton> {
   Widget getContainerData() {
     List<Widget> rowChildren = <Widget>[
       getIcon(),
-      const SizedBox(width: 5),
+      iconData == null ? const SizedBox.shrink() : const SizedBox(width: 5),
       getText()
     ];
 
     if (widget.iconPosition == JPPosition.end) {
-      rowChildren = <Widget>[getText(), const SizedBox(width: 5), getIcon()];
+      rowChildren = <Widget>[getText(),
+        iconData == null ? const SizedBox.shrink() : const SizedBox(width: 5),
+        getIcon()];
     }
 
     return FittedBox(

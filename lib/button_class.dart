@@ -208,7 +208,7 @@ class ButtonClass extends StatelessWidget {
                     Column(
                       children: [
                         JPButton(
-                          text: 'BUTTON',
+                          text: 'BUTTON ',
                           size: JPButtonSize.small,
                           colorType: JPButtonColorType.tertiary,
                           onPressed: () {},

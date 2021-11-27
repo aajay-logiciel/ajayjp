@@ -8,8 +8,7 @@ import 'package:jp_ui_kit/Text/textsize.dart';
 
 class JPNRadioButton extends StatefulWidget {
   const JPNRadioButton(
-      {required this.value,
-      required this.groupValue,
+      {
       this.disabled = false,
       this.text,
       this.textSize = JPTextSize.heading4,
@@ -28,8 +27,6 @@ class JPNRadioButton extends StatefulWidget {
   final bool disabled;
   final bool isLabelClickable;
   final JPPosition jpPosition;
-  final String value;
-  final String groupValue;
 
   @override
   _JPNRadioButtonState createState() => _JPNRadioButtonState();
@@ -38,81 +35,44 @@ class JPNRadioButton extends StatefulWidget {
 class _JPNRadioButtonState extends State<JPNRadioButton> {
   late String text;
   Color? textColor;
-  late String value;
-  late String groupValue;
 
   @override
   void initState() {
     text = widget.text ?? '';
     textColor = widget.textColor;
-    value = widget.value;
-    groupValue = widget.groupValue;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
-    /// Defines onChanged function of a checkbox.
-    getOnChanged(value) {
-      setState(() {
-        groupValue = value;
-      });
-    }
-
-    /// Checkbox Widget of a checkbox
-    Radio radio =
-        Radio(value: value, groupValue: groupValue, onChanged:  getOnChanged);
-
-    /// Label Widget of a checkbox
-    JPText label = JPText(
-      text: text,
-      textColor:
-          widget.disabled == false ? textColor : textColor!.withOpacity(0.4),
-      textSize: widget.textSize,
-      fontWeight: widget.fontWeight,
-      fontFamily: widget.fontFamily,
-    );
-
-    Widget getContainerData() {
-      List<Widget> rowChildren = <Widget>[
-        radio,
-        const SizedBox(
-          width: 8.5,
-        ),
-        label,
-        const SizedBox(
-          width: 8.5,
-        ),
-      ];
-
-      if (widget.jpPosition == JPPosition.start) {
-        rowChildren = <Widget>[
-          label,
-          const SizedBox(
-            width: 8.5,
-          ),
-          radio,
-          const SizedBox(
-            width: 8.5,
-          ),
-        ];
-      }
-
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: rowChildren,
-      );
-    }
-
-    if (text == '') {
+    Widget getRadio(){
       return Container(
-        child: getContainerData(),
+        decoration: BoxDecoration(
+          color: JPColor.white,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(
+            color: JPColor.primary,
+            width: 2,
+          )
+        ),
+        height: 18,
+        width: 18,
+        child: const Icon(Icons.circle,color: JPColor.primary,size: 12,),
       );
     }
+
+    Widget getText(){
+      return const JPText(text: 'label');
+    }
+
     return InkWell(
-      //  onTap: widget.isLabelClickable == false ? null : getOnTap,
-      child: FittedBox(child: getContainerData()),
+      child: FittedBox(child: Row(
+        children: [
+          getRadio(),
+          const SizedBox(width: 8,),
+          getText(),
+        ],
+      )),
     );
   }
 }

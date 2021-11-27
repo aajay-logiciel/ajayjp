@@ -15,6 +15,6 @@ export 'package:jp_ui_kit/Badge/index.dart';
 export 'package:jp_ui_kit/JPChips/jp_chips.dart';
 export 'package:jp_ui_kit/Button/radius.dart';
 export 'package:jp_ui_kit/Button/index.dart';
-export 'package:jp_ui_kit/JPLabel/jp_label.dart';
-export 'package:jp_ui_kit/JPLabel/jp_label_type.dart';
+export 'package:jp_ui_kit/JPLabel/index.dart';
+export 'package:jp_ui_kit/JPLabel/label_type.dart';
 export 'package:jp_ui_kit/CheckBox/index.dart';

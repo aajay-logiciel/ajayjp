@@ -13,7 +13,7 @@ class LabelsClass extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const JPText(
-          text: "Home",
+          text: "Label",
           textSize: JPTextSize.heading1,
           textColor: JPColor.white,
         ),
@@ -22,7 +22,9 @@ class LabelsClass extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: const [
-            
+            JPLabels(
+              text: 'a',
+            ),
           ],
         ),
       ),

@@ -1,14 +1,14 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
+import 'package:jp_ui_kit/CommonFiles/icon_position.dart';
 import 'package:jp_ui_kit/Text/fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPCheckbox extends StatefulWidget {
   const JPCheckbox(
       {this.disabled = false,
-      this.isTextClickable = false,
+      this.isTextClickable = true,
       this.selected = false,
       this.text,
       this.textSize = JPTextSize.heading4,
@@ -17,6 +17,10 @@ class JPCheckbox extends StatefulWidget {
       this.fontWeight = JPFontWeight.regular,
       this.borderColor = JPColor.black,
       this.checkBoxColor = JPColor.primary,
+      this.position = JPPosition.start,
+        this.checkColor = JPColor.white,
+        this.checkBoxHeight = 17.0,
+        this.checkBoxWidth = 17.0,
       Key? key})
       : super(key: key);
 
@@ -44,9 +48,23 @@ class JPCheckbox extends StatefulWidget {
   /// Defines text textSize[JPTextSize.heading4] of a checkbox.
   final JPTextSize? textSize;
 
+  /// Defines borderColor of a checkbox.
   final Color? borderColor;
 
+  /// Defines checkBoxColor of a checkbox.
   final Color? checkBoxColor;
+
+  /// Defines checkbox position [JPPosition.start] with related to text of a checkbox.
+  final JPPosition? position;
+
+  /// Defines checkColor of a checkbox.
+  final Color? checkColor;
+
+  /// Defines width of a checkbox.
+  final double? checkBoxWidth;
+
+  /// Defines height of a checkbox.
+  final double? checkBoxHeight;
 
   @override
   _JPCheckboxState createState() => _JPCheckboxState();
@@ -113,10 +131,10 @@ class _JPCheckboxState extends State<JPCheckbox> {
 
       getColor() {
         return selected
-            ? Colors.white
-            : (widget.disabled
+            ? (widget.disabled
                 ? widget.checkBoxColor!.withOpacity(0.5)
-                : widget.checkBoxColor);
+                : widget.checkBoxColor)
+            : Colors.white;
       }
 
       return InkWell(
@@ -134,19 +152,19 @@ class _JPCheckboxState extends State<JPCheckbox> {
           ),
           child: Center(
             child: AnimatedContainer(
-              height: 17.0,
-              width: 17.0,
+              height: widget.checkBoxHeight,
+              width: widget.checkBoxWidth,
               curve: Curves.linear,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: getColor(),
-                border: selected ? getBorder() : null,
+                border: selected ? null : getBorder(),
               ),
               duration: const Duration(milliseconds: 1),
-              child: const Center(
+              child:  Center(
                   child: Icon(
                 Icons.check,
-                color: JPColor.white,
+                color: widget.checkColor,
                 size: 14,
               )),
             ),
@@ -155,10 +173,22 @@ class _JPCheckboxState extends State<JPCheckbox> {
       );
     }
 
-    ///Defines Fitted box Widget
+    /// Defines Fitted box Widget
     getFittedBoxData() {
       if (text == null) {
         return getCheckBox();
+      }
+
+      if (widget.position == JPPosition.end) {
+        return Row(
+          children: [
+            getText(),
+            const SizedBox(
+              width: 8.5,
+            ),
+            getCheckBox(),
+          ],
+        );
       }
       return Row(
         children: [

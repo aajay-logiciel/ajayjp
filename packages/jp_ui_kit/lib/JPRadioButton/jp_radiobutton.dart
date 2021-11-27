@@ -63,26 +63,22 @@ class _JPRadioButtonState extends State<JPRadioButton> {
   Widget build(BuildContext context) {
     final List<FocusNode> focusNode = List<FocusNode>.generate(
         widget.jpRadioData!.length, (_) => FocusNode());
-    void _fieldFocusChange(
-        BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
-      setState(() {
-        FocusScope.of(context).requestFocus(nextFocus);
-        Timer(
-          const Duration(milliseconds: 1),
-          () => FocusScope.of(context)
-              .unfocus(disposition: UnfocusDisposition.scope),
-        );
-      });
-    }
 
     /// onChanged function of a radio.
     getOnChanged(T) {
       if (widget.isTextClickable!) {
         null;
       }
-      _fieldFocusChange(context, focusNode[T], focusNode[T]);
+
       setState(() {
         _selected = T;
+        focusNode[T].requestFocus();
+        Timer(
+          const Duration(milliseconds: 300),
+          () {
+            return focusNode[T].unfocus();
+          },
+        );
       });
     }
 
@@ -102,7 +98,7 @@ class _JPRadioButtonState extends State<JPRadioButton> {
       );
 
       JPText text = JPText(
-        text: widget.jpRadioData!.elementAt(i).label,
+        text: widget.jpRadioData!.elementAt(i).label!,
         textColor: !widget.jpRadioData!.elementAt(i).disabled!
             ? widget.textColor
             : widget.textColor!.withOpacity(0.4),
@@ -110,6 +106,15 @@ class _JPRadioButtonState extends State<JPRadioButton> {
         fontWeight: widget.fontWeight,
         fontFamily: widget.fontFamily,
       );
+
+      getSizedBox() {
+        if (widget.jpRadioData!.elementAt(i).label == null) {
+          return const SizedBox.shrink();
+        }
+        return const SizedBox(
+          width: 8,
+        );
+      }
 
       content.add(GestureDetector(
         onTap: widget.jpRadioData!.elementAt(i).disabled!
@@ -121,11 +126,9 @@ class _JPRadioButtonState extends State<JPRadioButton> {
                 : null),
         child: FittedBox(
           child: Row(children: <Widget>[
-            const SizedBox(width: 10.0),
             radio,
-            const SizedBox(width: 8.0),
+            getSizedBox(),
             text,
-            const SizedBox(width: 10.0),
           ]),
         ),
       ));
