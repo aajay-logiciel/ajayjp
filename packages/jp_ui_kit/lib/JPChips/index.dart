@@ -6,25 +6,25 @@ import 'package:jp_ui_kit/jp_ui_kit.dart';
 class JPChips extends StatefulWidget {
   const JPChips({this.text="Chip Name",
     this.image,
-    this.iscancel=false,
-    this.isleading=false,
+    this.isCancel=false,
+    this.isLeading=false,
     Key? key}) : super(key: key);
 
   final String text;
   final Widget? image;
-  final bool iscancel;
-  final bool isleading;
+  final bool isCancel;
+  final bool isLeading;
   @override
   _JPChipsState createState() => _JPChipsState();
 }
 
 class _JPChipsState extends State<JPChips> {
 
-  double getwidth(){
-    if(widget.iscancel==true &&widget.iscancel==true){
+  double getWidth(){
+    if(widget.isCancel==true &&widget.isCancel==true){
       return 110;
     }
-    else if(widget.isleading==false && widget.iscancel==true){
+    else if(widget.isLeading==false && widget.isCancel==true){
       return 100;
     }
     else{
@@ -35,8 +35,8 @@ class _JPChipsState extends State<JPChips> {
   Widget build(BuildContext context) {
     return Container(
      height: 24,
-      width: getwidth(),
-      constraints: BoxConstraints(maxWidth: 200,minWidth: 70),
+      width: getWidth(),
+      constraints: const BoxConstraints(maxWidth: 200,minWidth: 70),
       decoration: BoxDecoration(
         color: JPColor.dimGray,
         borderRadius: BorderRadius.circular(10),
@@ -44,17 +44,17 @@ class _JPChipsState extends State<JPChips> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          imgicon(),
+          imgIcon(),
           txt(),
-          clsbutton(),
-          SizedBox(width: 10,)
+          clsButton(),
+          const SizedBox(width: 10,)
         ],
       ),
     );
   }
 Widget txt(){
     return Text(widget.text,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         fontFamily: 'Roboto',
@@ -62,26 +62,26 @@ Widget txt(){
       ),);
 }
 
-  Widget imgicon(){
+  Widget imgIcon(){
 return Visibility(
-  visible: widget.isleading,
-    child:(widget.isleading==false)?SizedBox(width: 0,) :Container(
+  visible: widget.isLeading,
+    child:(widget.isLeading==false)?const SizedBox.shrink() :Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(width: 2,color: JPColor.primary)
       ),
       child: ClipRRect(
        borderRadius: BorderRadius.circular(8),
-        child: Icon(Icons.person,size: 14,color: JPColor.primary,),
+        child: const Icon(Icons.person,size: 14,color: JPColor.primary,),
       ),
     ),
 );
   }
 
-  Widget clsbutton(){
+  Widget clsButton(){
      return Visibility(
-       visible: widget.iscancel,
-         child: (widget.iscancel==false)?SizedBox(width: 0,):Align(
+       visible: widget.isCancel,
+         child: (widget.isCancel==false)?const SizedBox.shrink():Align(
            alignment: Alignment.topCenter,
            child: SizedBox(
              height: 7,
@@ -89,7 +89,7 @@ return Visibility(
              child: IconButton(
                  splashRadius: 1,
                  onPressed: (){},
-                 icon: Icon(Icons.close,color: JPColor.secondary,size: 10,)),
+                 icon: const Icon(Icons.close,color: JPColor.secondary,size: 10,)),
            ),
          ),);
   }

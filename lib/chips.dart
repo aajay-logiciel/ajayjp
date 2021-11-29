@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jp_ui_kit/JPChips/jp_chips.dart';
+import 'package:jp_ui_kit/JPChips/index.dart';
 
 class Chips extends StatelessWidget {
   const Chips({Key? key}) : super(key: key);
@@ -21,17 +21,17 @@ class Chips extends StatelessWidget {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: [
+                  children: const [
                     JPChips(
-                      iscancel: true,
-                      isleading: true,
+                      isCancel: true,
+                      isLeading: true,
                       text: "Chip Name",
                     ),
                     SizedBox(
                       width: 20,
                     ),
                     JPChips(
-                      iscancel: true,
+                      isCancel: true,
                       text: "Chip Name",
                     ),
                     SizedBox(

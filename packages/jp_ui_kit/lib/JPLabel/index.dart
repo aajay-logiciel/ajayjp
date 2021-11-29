@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
-import 'package:jp_ui_kit/Text/fontweight.dart';
+import 'package:jp_ui_kit/CommonFiles/fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 import 'label_type.dart';
 
-class JPLabels extends StatefulWidget {
-  const JPLabels(
-      {required this.text,
+class JPLabel extends StatefulWidget {
+  const JPLabel(
+      { this.text = 'Label',
       this.labelType = JPLabelType.success,
       this.textColor = JPColor.white,
       this.backgroundColor,
@@ -40,10 +40,10 @@ class JPLabels extends StatefulWidget {
   final JPFontWeight fontWeight;
 
   @override
-  State<JPLabels> createState() => _JPLabelsState();
+  State<JPLabel> createState() => _JPLabelState();
 }
 
-class _JPLabelsState extends State<JPLabels> {
+class _JPLabelState extends State<JPLabel> {
   JPLabelType? labelType;
   Color? backgroundColor;
   Color? textColor;

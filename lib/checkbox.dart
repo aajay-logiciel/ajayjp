@@ -9,7 +9,7 @@ class CheckboxClass extends StatefulWidget {
 }
 
 class _CheckboxClassState extends State<CheckboxClass> {
-
+bool isSelected= false;
   @override
   Widget build(BuildContext context) {
 
@@ -21,18 +21,16 @@ class _CheckboxClassState extends State<CheckboxClass> {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
-            children:  const [
+            children:   [
               JPCheckbox(
                 text: 'Clicked',
-                selected: true,
+                selected: isSelected,
               ),
-              JPCheckbox(
+              const JPCheckbox(
                 text: 'Clicked',
                 //disabled: true,
                 isTextClickable: true,
               ),
-
-
             ],
           ),
         ),

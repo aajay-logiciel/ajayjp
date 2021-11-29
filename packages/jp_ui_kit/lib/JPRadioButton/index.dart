@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
-import 'package:jp_ui_kit/CommonFiles/icon_position.dart';
-import 'package:jp_ui_kit/Text/fontfamily.dart';
-import 'package:jp_ui_kit/Text/fontweight.dart';
+import 'package:jp_ui_kit/CommonFiles/position.dart';
+import 'package:jp_ui_kit/CommonFiles/fontfamily.dart';
+import 'package:jp_ui_kit/CommonFiles/fontweight.dart';
 import 'package:jp_ui_kit/Text/index.dart';
-import 'package:jp_ui_kit/Text/textsize.dart';
+import 'package:jp_ui_kit/CommonFiles/textsize.dart';
 
 class JPNRadioButton extends StatefulWidget {
   const JPNRadioButton(

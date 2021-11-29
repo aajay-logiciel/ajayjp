@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
-import 'package:jp_ui_kit/CommonFiles/icon_position.dart';
+import 'package:jp_ui_kit/CommonFiles/position.dart';
 import 'package:jp_ui_kit/CommonFiles/shape.dart';
-import 'package:jp_ui_kit/Text/fontweight.dart';
+import 'package:jp_ui_kit/CommonFiles/fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 import 'color_type.dart';
 import 'size.dart';

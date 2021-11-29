@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
-import 'package:jp_ui_kit/Text/index.dart';
 import 'package:jp_ui_kit/CommonFiles/textsize.dart';
+import 'package:jp_ui_kit/Text/index.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
-class LabelsClass extends StatelessWidget {
-  const LabelsClass({Key? key}) : super(key: key);
+class Avatar extends StatelessWidget {
+  const Avatar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,7 @@ class LabelsClass extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: const [
-            JPLabel(
-            ),
-            InkWell()
+           JPAvatar(),
           ],
         ),
       ),

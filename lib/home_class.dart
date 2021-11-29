@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jp/avatar.dart';
 import 'package:jp/button_class.dart';
 import 'package:jp/text.dart';
 import 'package:jp/toggle.dart';
@@ -7,6 +8,7 @@ import 'package:jp_ui_kit/jp_ui_kit.dart';
 import 'package:get/get.dart';
 
 import 'badges.dart';
+import 'chips.dart';
 import 'radiobutton.dart';
 import 'checkbox.dart';
 import 'lables.dart';
@@ -80,6 +82,20 @@ class Home extends StatelessWidget {
               size: JPButtonSize.medium,
               onPressed: () {
                 Get.to(const LabelsClass());
+              },
+            ),
+            JPButton(
+              text: "Avatar",
+              size: JPButtonSize.medium,
+              onPressed: () {
+                Get.to(const Avatar());
+              },
+            ),
+            JPButton(
+              text: "Chips",
+              size: JPButtonSize.medium,
+              onPressed: () {
+                Get.to(const Chips());
               },
             ),
           ],

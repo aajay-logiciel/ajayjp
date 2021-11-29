@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
 import 'package:jp_ui_kit/CommonFiles/orientation.dart';
-import 'package:jp_ui_kit/Text/fontweight.dart';
+import 'package:jp_ui_kit/CommonFiles/fontweight.dart';
 import 'package:jp_ui_kit/Text/index.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 

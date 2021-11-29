@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
-import 'package:jp_ui_kit/Text/fontfamily.dart';
-import 'package:jp_ui_kit/Text/fontweight.dart';
-import 'package:jp_ui_kit/Text/textsize.dart';
+import 'package:jp_ui_kit/CommonFiles/fontfamily.dart';
+import 'package:jp_ui_kit/CommonFiles/fontweight.dart';
+import 'package:jp_ui_kit/CommonFiles/textsize.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPText extends StatelessWidget {
@@ -16,6 +16,7 @@ class JPText extends StatelessWidget {
       this.textAlign = TextAlign.center,
         this.maxLine=1,
         this.textDecoration,
+        this.style,
       Key? key})
       : super(key: key);
 
@@ -44,6 +45,8 @@ class JPText extends StatelessWidget {
 
   ///Defines text decoration
   final TextDecoration? textDecoration;
+
+  final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +100,7 @@ class JPText extends StatelessWidget {
       text,
       textAlign: textAlign,
       maxLines: maxLine,
-      style: TextStyle(
+      style: style ?? TextStyle(
         color: textColor,
         fontSize: getTextSize(),
         fontFamily: getFontFamily(),

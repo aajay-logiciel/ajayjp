@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/CommonFiles/color.dart';
-import 'package:jp_ui_kit/CommonFiles/icon_position.dart';
-import 'package:jp_ui_kit/Text/fontweight.dart';
+import 'package:jp_ui_kit/CommonFiles/position.dart';
+import 'package:jp_ui_kit/CommonFiles/fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
 class JPCheckbox extends StatefulWidget {
@@ -74,17 +74,19 @@ class _JPCheckboxState extends State<JPCheckbox> {
   late bool selected;
   late String? text;
 
-  getOnTab() {
+
+  getTextTap() {
     return setState(() {
       selected = !selected;
       focusNode.requestFocus();
       Timer(
-        const Duration(milliseconds: 300),
+        const Duration(seconds: 1),
         () => focusNode.unfocus(),
       );
     });
   }
 
+  
   @override
   void initState() {
     selected = widget.selected!;
@@ -125,8 +127,8 @@ class _JPCheckboxState extends State<JPCheckbox> {
     ///Defines checkbox widget of a checkbox.
     ///InkWell is used when isTextClickable method of a checkbox.
     Widget getCheckBox() {
-      getTap() {
-        return widget.disabled ? null : getOnTab;
+      getCheckBoxTap() {
+        return widget.disabled ? null : getTextTap;
       }
 
       getColor() {
@@ -143,7 +145,7 @@ class _JPCheckboxState extends State<JPCheckbox> {
         borderRadius: BorderRadius.circular(50),
         splashColor: JPColor.primary.withOpacity(0.1),
         hoverColor: JPColor.primary.withOpacity(0.1),
-        onTap: getTap(),
+        onTap: getCheckBoxTap(),
         child: Container(
           height: 32,
           width: 32,
@@ -172,6 +174,7 @@ class _JPCheckboxState extends State<JPCheckbox> {
         ),
       );
     }
+
 
     /// Defines Fitted box Widget
     getFittedBoxData() {
@@ -203,7 +206,7 @@ class _JPCheckboxState extends State<JPCheckbox> {
 
     return GestureDetector(
       onTap:
-          widget.disabled ? null : (widget.isTextClickable! ? getOnTab : null),
+          widget.disabled ? null : (widget.isTextClickable! ? getTextTap : null),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: FittedBox(child: getFittedBoxData()),
