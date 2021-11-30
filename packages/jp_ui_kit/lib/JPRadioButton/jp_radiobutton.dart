@@ -64,6 +64,9 @@ class _JPRadioButtonState extends State<JPRadioButton> {
     final List<FocusNode> focusNode = List<FocusNode>.generate(
         widget.jpRadioData!.length, (_) => FocusNode());
 
+    final List<Color> splashColor = List<Color>.generate(widget.jpRadioData!.length, (index) => JPColor.transparent);
+    List s = List.filled(widget.jpRadioData!.length, JPColor.transparent, growable: false);
+
     /// onChanged function of a radio.
     getOnChanged(T) {
       if (widget.isTextClickable!) {
@@ -71,30 +74,31 @@ class _JPRadioButtonState extends State<JPRadioButton> {
       }
 
       setState(() {
+        s[T] = JPColor.primary;
         _selected = T;
-        focusNode[T].requestFocus();
-        Timer(
-          const Duration(milliseconds: 300),
-          () {
-            return focusNode[T].unfocus();
-          },
-        );
       });
     }
 
     List<Widget> content = [];
     for (int i = 0; i < widget.jpRadioData!.length; i++) {
-      Radio radio = Radio(
-        focusNode: focusNode[i],
-        activeColor: !widget.jpRadioData!.elementAt(i).disabled!
-            ? widget.activeColor
-            : widget.activeColor!.withOpacity(0.4),
-        groupValue: _selected,
-        value: i,
-        onChanged:
-            !widget.jpRadioData!.elementAt(i).disabled! ? getOnChanged : null,
-        hoverColor: JPColor.primary.withOpacity(0.1),
-        focusColor: JPColor.primary.withOpacity(0.1),
+      Container radio = Container(
+        height: 32,
+          width: 32,
+        decoration: BoxDecoration(
+          color: s[i],
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: Radio(
+          activeColor: !widget.jpRadioData!.elementAt(i).disabled!
+              ? widget.activeColor
+              : widget.activeColor!.withOpacity(0.4),
+          groupValue: _selected,
+          value: i,
+          onChanged:
+          !widget.jpRadioData!.elementAt(i).disabled! ? getOnChanged : null,
+          hoverColor: JPColor.primary.withOpacity(0.1),
+          focusColor: JPColor.primary.withOpacity(0.1),
+        ),
       );
 
       JPText text = JPText(
@@ -120,10 +124,10 @@ class _JPRadioButtonState extends State<JPRadioButton> {
         onTap: widget.jpRadioData!.elementAt(i).disabled!
             ? null
             : (widget.isTextClickable!
-                ? () {
-                    getOnChanged(i);
-                  }
-                : null),
+            ? () {
+          getOnChanged(i);
+        }
+            : null),
         child: FittedBox(
           child: Row(children: <Widget>[
             radio,

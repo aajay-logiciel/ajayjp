@@ -19,3 +19,5 @@ export 'package:jp_ui_kit/JPLabel/index.dart';
 export 'package:jp_ui_kit/JPLabel/label_type.dart';
 export 'package:jp_ui_kit/CheckBox/index.dart';
 export 'package:jp_ui_kit/Avatar/index.dart';
+export 'package:jp_ui_kit/JPRadioButton/jp_radio.dart';
+export 'package:jp_ui_kit/JPRadioButton/multiple_radio.dart';

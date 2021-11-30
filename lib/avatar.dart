@@ -22,7 +22,9 @@ class Avatar extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: const [
-           JPAvatar(),
+           JPAvatar(
+             image: NetworkImage('https://picsum.photos/250?image=9'),
+           ),
           ],
         ),
       ),

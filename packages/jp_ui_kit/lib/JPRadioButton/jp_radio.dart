@@ -5,8 +5,8 @@ import 'package:jp_ui_kit/CommonFiles/position.dart';
 import 'package:jp_ui_kit/CommonFiles/fontweight.dart';
 import 'package:jp_ui_kit/jp_ui_kit.dart';
 
-class JPCheckbox extends StatefulWidget {
-  const JPCheckbox(
+class JPRadioBox extends StatefulWidget {
+  const JPRadioBox(
       {this.disabled = false,
       this.isTextClickable = true,
       this.selected = false,
@@ -16,11 +16,13 @@ class JPCheckbox extends StatefulWidget {
       this.fontFamily = JPFontFamily.roboto,
       this.fontWeight = JPFontWeight.regular,
       this.borderColor = JPColor.black,
-      this.color = JPColor.primary,
+      this.checkBoxColor = JPColor.primary,
       this.position = JPPosition.start,
-        this.checkColor = JPColor.white,
-        this.height = 17.0,
-        this.width = 17.0,
+      this.checkColor = JPColor.white,
+      this.checkBoxHeight = 17.0,
+      this.checkBoxWidth = 17.0,
+        this.value,
+        this.jpRadioData,
       Key? key})
       : super(key: key);
 
@@ -52,7 +54,7 @@ class JPCheckbox extends StatefulWidget {
   final Color? borderColor;
 
   /// Defines checkBoxColor of a checkbox.
-  final Color? color;
+  final Color? checkBoxColor;
 
   /// Defines checkbox position [JPPosition.start] with related to text of a checkbox.
   final JPPosition? position;
@@ -61,60 +63,56 @@ class JPCheckbox extends StatefulWidget {
   final Color? checkColor;
 
   /// Defines width of a checkbox.
-  final double? width;
+  final double? checkBoxWidth;
 
   /// Defines height of a checkbox.
-  final double? height;
+  final double? checkBoxHeight;
+
+  final int? value;
+
+  final List<JPRadioData>? jpRadioData;
+
 
   @override
-  _JPCheckboxState createState() => _JPCheckboxState();
+  _JPRadioBoxState createState() => _JPRadioBoxState();
 }
 
-class _JPCheckboxState extends State<JPCheckbox> {
+class _JPRadioBoxState extends State<JPRadioBox> {
   late bool selected;
+  int? _selected;
   late String? text;
+  late Color fillColor;
   Color? splashColor;
+   List<Color> s = [];
 
+  getOnChanged(T) {
+    if (widget.isTextClickable!) {
+      null;
+    }
 
-   getTextTap() {
-     setState(() {
-       splashColor = JPColor.primary.withOpacity(0.1);
-      selected = !selected;
+    setState(() {
+      _selected = T;
     });
-     Timer(
-       const Duration(milliseconds: 300),
-           () {
-         setState(() {
-           splashColor = JPColor.transparent;
-         });
-         return;
-       },
-     );
   }
 
-  
   @override
   void initState() {
     selected = widget.selected!;
     text = widget.text;
+    fillColor = JPColor.white;
     splashColor = JPColor.transparent;
+    for(
+    int i=0 ; i<= widget.jpRadioData!.length ; i++){
+      s.add(JPColor.transparent);
+    }
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    ///Defines border of a checkbox.
-    getBorder() {
-      return Border.all(
-          color: widget.disabled
-              ? widget.borderColor!.withOpacity(0.5)
-              : widget.borderColor!,
-          width: 1);
-    }
 
     ///Defines text widget of a checkbox.
-    Widget getText() {
+    Widget getText(int index) {
       getColor() {
         return widget.disabled
             ? widget.textColor!.withOpacity(0.4)
@@ -122,7 +120,7 @@ class _JPCheckboxState extends State<JPCheckbox> {
       }
 
       return JPText(
-        text: text!,
+        text: widget.jpRadioData!.elementAt(index).label!,
         textColor: getColor(),
         textSize: widget.textSize,
         fontWeight: widget.fontWeight,
@@ -132,87 +130,84 @@ class _JPCheckboxState extends State<JPCheckbox> {
 
     ///Defines checkbox widget of a checkbox.
     ///InkWell is used when isTextClickable method of a checkbox.
-    Widget getCheckBox() {
-
-      getColor() {
-        return selected
-            ? (widget.disabled
-                ? widget.color!.withOpacity(0.5)
-                : widget.color)
-            : Colors.white;
-      }
-
-      return InkWell(
-        borderRadius: BorderRadius.circular(50),
-        highlightColor: JPColor.primary.withOpacity(0.1),
-        onTap:widget.disabled ?  null : (widget.isTextClickable! ? null :  getTextTap ),
-        child: Container(
-          height: 32,
-          width: 32,
-          decoration: BoxDecoration(
-            color: splashColor,
-            borderRadius: BorderRadius.circular(50),
-          ),
-          child: Center(
-            child: AnimatedContainer(
-              height: widget.height,
-              width: widget.width,
-              curve: Curves.linear,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: getColor(),
-                border: selected ? null : getBorder(),
-              ),
-              duration: const Duration(milliseconds: 1),
-              child:  Center(
-                  child: Icon(
-                Icons.check,
-                color: widget.checkColor,
-                size: 14,
-              )),
-            ),
-          ),
+    Widget getRadioBox(int index) {
+      return Container(
+        height: 32,
+        width: 32,
+        decoration: BoxDecoration(
+          color: s[index],
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: Radio(
+          groupValue: _selected,
+          value: index,
+          onChanged: getOnChanged,
+          hoverColor: JPColor.primary.withOpacity(0.1),
+          focusColor: JPColor.primary.withOpacity(0.1),
         ),
       );
     }
 
-
     /// Defines Fitted box Widget
-    getFittedBoxData() {
-      if (text == null) {
-        return getCheckBox();
-      }
+    getFittedBoxData(int index) {
+      /*if (text == null) {
+        return getRadioBox(index);
+      }*/
 
       if (widget.position == JPPosition.end) {
         return Row(
           children: [
-            getText(),
+            getText(index),
             const SizedBox(
               width: 8.5,
             ),
-            getCheckBox(),
+            getRadioBox(index),
           ],
         );
       }
       return Row(
         children: [
-          getCheckBox(),
+          getRadioBox(index),
           const SizedBox(
             width: 8.5,
           ),
-          getText(),
+          getText(index),
         ],
       );
     }
 
-    return GestureDetector(
-      onTap: widget.disabled ?  null : (widget.isTextClickable! ? getTextTap : null)  ,
-      child: Padding(
+    return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-            child: getFittedBoxData()),
-      ),
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: 500,
+            height: 200,
+            child: ListView.builder(
+                itemCount: widget.jpRadioData!.length,
+                itemBuilder: (context , index){
+                  return GestureDetector(
+                    onTap: (){
+                      print(s);
+                      print(s[index]);
+                      s.insert(index, JPColor.primary);
+                      print(s);
+
+                      getOnChanged(index);
+
+                      Timer(
+                        const Duration(milliseconds: 300),
+                            () {
+                          setState(() {
+                            s.insert(index, JPColor.transparent);
+                          });
+                          return;
+                        },
+                      );
+                    },
+                      child: getFittedBoxData(index));
+                }),
+          ),
+        )
     );
   }
 }

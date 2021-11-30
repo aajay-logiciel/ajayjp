@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:jp_ui_kit/JPRadioButton/index.dart';
 import 'package:jp_ui_kit/JPRadioButton/jp_radiobutton.dart';
@@ -30,11 +31,15 @@ class _RadiobuttonClassState extends State<RadiobuttonClass> {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-              JPRadioButton(
+             /* JPRadioButton(
                 jpRadioData: data,
                 isTextClickable: true,
+              ),*/
+
+              JPRadioBox(
+                jpRadioData: data,
               ),
-              const JPNRadioButton(),
+
               const SizedBox(
                 height: 5,
               ),

@@ -325,7 +325,7 @@ class _JPButtonState extends State<JPButton> {
       type: MaterialType.button,
       color: getButtonColor(),
       child: InkWell(
-        splashColor: getSplashColor(),
+        highlightColor: getSplashColor(),
         customBorder: borderShape ?? shapeBorderType,
         onTap: widget.disabled ? null : widget.onPressed,
         child: Container(

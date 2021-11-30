@@ -25,11 +25,12 @@ bool isSelected= false;
               JPCheckbox(
                 text: 'Clicked',
                 selected: isSelected,
+                isTextClickable: true,
+                disabled: true,
               ),
               const JPCheckbox(
                 text: 'Clicked',
-                //disabled: true,
-                isTextClickable: true,
+                isTextClickable: false,
               ),
             ],
           ),

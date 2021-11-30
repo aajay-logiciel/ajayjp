@@ -10,24 +10,46 @@ class JPAvatar extends StatefulWidget {
       this.borderColor = JPColor.transparent,
       this.borderWidth = 0.0,
       this.size,
+      this.defaultBorder,
+      required this.image,
+      this.fit = BoxFit.fill,
       Key? key})
       : super(key: key);
 
-
+  /// Defines width of avatar
   final double? width;
+
+  /// Defines height of avatar
   final double? height;
+
+  /// Defines radius of avatar
   final double radius;
+
+  /// Defines borderColor of avatar
   final Color borderColor;
+
+  /// Defines borderWidth of avatar
   final double borderWidth;
+
+  /// Defines size [JPAvatarSize.medium] of avatar
   final JPAvatarSize? size;
+
+  /// Defines defaultBorder of a avatar
+  final Color? defaultBorder;
+
+  /// Defines image of a avatar
+  final ImageProvider image;
+
+  /// Define to fit image in a given size of a avatar
+  final BoxFit fit;
 
   @override
   State<JPAvatar> createState() => _JPAvatarState();
 }
 
 class _JPAvatarState extends State<JPAvatar> {
-  late double? width;
-  late double? height;
+  double? width;
+  double? height;
 
   @override
   void initState() {
@@ -56,9 +78,12 @@ class _JPAvatarState extends State<JPAvatar> {
       height: getSize(),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(widget.radius),
-          color: Colors.black,
+          image: DecorationImage(
+            image: widget.image,
+            fit: widget.fit,
+          ),
           border: Border.all(
-            color: widget.borderColor,
+            color: widget.defaultBorder ?? widget.borderColor,
             width: widget.borderWidth,
           )),
     );
